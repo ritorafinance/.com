@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Historique - RFG</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f2f3f7;
+}
+
+/* HEADER */
+
+.topbar{
+height:80px;
+background:#0b76d1;
+display:flex;
+align-items:center;
+padding:0 22px;
+color:#fff;
+box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.menu-btn{
+font-size:34px;
+cursor:pointer;
+margin-right:25px;
+}
+
+.page-title{
+font-size:22px;
+font-weight:500;
+}
+
+/* MENU */
+
+.sidebar{
+position:fixed;
+top:0;
+left:-280px;
+width:280px;
+height:100%;
+background:#fff;
+box-shadow:3px 0 20px rgba(0,0,0,.25);
+transition:.3s;
+z-index:999;
+overflow-y:auto;
+}
+
+.sidebar.active{
+left:0;
+}
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.45);
+display:none;
+z-index:998;
+}
+
+.overlay.active{
+display:block;
+}
+
+.sidebar-header{
+background:#0b76d1;
+padding:25px;
+color:#fff;
+}
+
+.profile-box{
+display:flex;
+flex-direction:column;
+align-items:center;
+text-align:center;
+}
+
+.profile-photo{
+width:90px;
+height:90px;
+border-radius:50%;
+border:3px solid #fff;
+object-fit:cover;
+background:#fff;
+margin-bottom:12px;
+}
+
+.profile-name{
+font-size:18px;
+font-weight:600;
+}
+
+.profile-account{
+font-size:14px;
+opacity:.9;
+margin-top:6px;
+}
+
+.profile-balance{
+margin-top:12px;
+background:rgba(255,255,255,.18);
+padding:8px 18px;
+border-radius:20px;
+font-weight:600;
+}
+
+.sidebar a{
+display:block;
+padding:18px 25px;
+text-decoration:none;
+color:#222;
+border-bottom:1px solid #eee;
+font-size:15px;
+transition:.25s;
+}
+
+.sidebar a:hover{
+background:#f6f6f6;
+padding-left:32px;
+}
+
+.logout{
+color:#e53935!important;
+font-weight:600;
+}
+
+/* CONTENU */
+
+.container{
+padding:20px;
+}
+
+.title-box{
+background:#fff;
+padding:18px 20px;
+border-radius:8px;
+box-shadow:0 2px 8px rgba(0,0,0,.12);
+margin-bottom:20px;
+}
+
+.title-box h2{
+font-size:24px;
+color:#333;
+}
+
+.title-box p{
+color:#666;
+margin-top:5px;
+font-size:14px;
+}
+
+/* TRANSACTIONS */
+
+.transaction{
+background:#fff;
+border-radius:8px;
+padding:18px;
+margin-bottom:16px;
+box-shadow:0 2px 8px rgba(0,0,0,.12);
+border-left:6px solid #0b76d1;
+transition:.25s;
+}
+
+.transaction:hover{
+transform:translateY(-3px);
+box-shadow:0 8px 18px rgba(0,0,0,.18);
+}
+
+.transaction-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+}
+
+.type{
+font-size:18px;
+font-weight:600;
+color:#222;
+}
+
+.montant{
+font-size:22px;
+font-weight:700;
+}
+
+.credit{
+color:#0aaf4f;
+}
+
+.debit{
+color:#e53935;
+}
+
+.info{
+color:#555;
+font-size:14px;
+margin-top:6px;
+}
+
+.date{
+margin-top:10px;
+font-size:13px;
+color:#888;
+}
+
+.empty{
+background:#fff;
+padding:35px;
+text-align:center;
+border-radius:8px;
+box-shadow:0 2px 8px rgba(0,0,0,.12);
+color:#777;
+font-size:17px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="sidebar" id="sidebar">
+
+<div class="sidebar-header">
+
+<div class="profile-box">
+
+<img id="profilePhoto"
+class="profile-photo"
+src="https://ui-avatars.com/api/?name=RFG&background=ffffff&color=0b76d1&size=200">
+
+<div class="profile-name" id="profileName">
+Chargement...
+</div>
+
+<div class="profile-account" id="accountNumber">
+Compte : ----------
+</div>
+
+<div class="profile-balance">
+SOLDE :
+<span id="menuSolde">0 €</span>
+</div>
+
+</div>
+
+</div>
+
+<a href="dashboard.html">Accueil</a>
+<a href="profil.html">Mon profil</a>
+<a href="transfert.html">Transferts</a>
+<a href="depot.html">Recharger mon compte</a>
+<a href="historique.html">Historiques</a>
+
+<a href="#" class="logout" id="logoutBtn">
+Déconnexion
+</a>
+
+</div>
+
+<div class="topbar">
+
+<div class="menu-btn" id="menuBtn">
+☰
+</div>
+
+<div class="page-title">
+Historique
+</div>
+
+</div>
+
+<div class="container">
+
+<div class="title-box">
+
+<h2>Historique des transactions</h2>
+
+<p>
+Toutes vos opérations sont enregistrées automatiquement et classées de la plus récente à la plus ancienne.
+</p>
+
+</div>
+
+<div id="listeTransactions">
+
+<div class="empty">
+Chargement des transactions...
+</div>
+
+</div>
+
+</div>
+
+<script type="module">
+
+const browserLang = navigator.language.substring(0,2);
+
+const lang = [
+"fr",
+"en",
+"es",
+"it",
+"pt",
+"de",
+"pl",
+"ru",
+"nl"
+].includes(browserLang) ? browserLang : "fr";
+
+const t = {
+
+fr:{
+title:"Historique - RFG",
+loading:"Chargement...",
+account:"Compte",
+balance:"SOLDE",
+home:"Accueil",
+profile:"Mon profil",
+transfer:"Transferts",
+deposit:"Recharger mon compte",
+history:"Historiques",
+logout:"Déconnexion",
+page:"Historique",
+historyTitle:"Historique des transactions",
+historyDesc:"Toutes vos opérations sont enregistrées automatiquement et classées de la plus récente à la plus ancienne.",
+loadingTransactions:"Chargement des transactions...",
+noTransaction:"Aucune transaction enregistrée.",
+transaction:"Transaction",
+beneficiary:"Bénéficiaire",
+status:"Statut",
+pending:"EN ATTENTE",
+loadingError:"Erreur lors du chargement des transactions.",
+infoError:"Impossible de charger les informations.",
+logoutError:"Impossible de se déconnecter.",
+at:"à"
+},
+
+en:{
+title:"History - RFG",
+loading:"Loading...",
+account:"Account",
+balance:"BALANCE",
+home:"Home",
+profile:"My Profile",
+transfer:"Transfers",
+deposit:"Deposit Funds",
+history:"History",
+logout:"Logout",
+page:"History",
+historyTitle:"Transaction History",
+historyDesc:"All your transactions are automatically recorded and sorted from newest to oldest.",
+loadingTransactions:"Loading transactions...",
+noTransaction:"No transactions recorded.",
+transaction:"Transaction",
+beneficiary:"Beneficiary",
+status:"Status",
+pending:"PENDING",
+loadingError:"Error loading transactions.",
+infoError:"Unable to load information.",
+logoutError:"Unable to sign out.",
+at:"at"
+},
+
+es:{
+title:"Historial - RFG",
+loading:"Cargando...",
+account:"Cuenta",
+balance:"SALDO",
+home:"Inicio",
+profile:"Mi perfil",
+transfer:"Transferencias",
+deposit:"Recargar cuenta",
+history:"Historial",
+logout:"Cerrar sesión",
+page:"Historial",
+historyTitle:"Historial de transacciones",
+historyDesc:"Todas sus operaciones se registran automáticamente y se clasifican de la más reciente a la más antigua.",
+loadingTransactions:"Cargando transacciones...",
+noTransaction:"No hay transacciones registradas.",
+transaction:"Transacción",
+beneficiary:"Beneficiario",
+status:"Estado",
+pending:"PENDIENTE",
+loadingError:"Error al cargar las transacciones.",
+infoError:"No se pudo cargar la información.",
+logoutError:"No se pudo cerrar la sesión.",
+at:"a las"
+},
+
+it:{
+title:"Cronologia - RFG",
+loading:"Caricamento...",
+account:"Conto",
+balance:"SALDO",
+home:"Home",
+profile:"Il mio profilo",
+transfer:"Trasferimenti",
+deposit:"Ricarica conto",
+history:"Cronologia",
+logout:"Disconnetti",
+page:"Cronologia",
+historyTitle:"Cronologia delle transazioni",
+historyDesc:"Tutte le operazioni vengono registrate automaticamente e ordinate dalla più recente alla più vecchia.",
+loadingTransactions:"Caricamento transazioni...",
+noTransaction:"Nessuna transazione registrata.",
+transaction:"Transazione",
+beneficiary:"Beneficiario",
+status:"Stato",
+pending:"IN ATTESA",
+loadingError:"Errore durante il caricamento delle transazioni.",
+infoError:"Impossibile caricare le informazioni.",
+logoutError:"Impossibile disconnettersi.",
+at:"alle"
+},
+
+pt:{
+title:"Histórico - RFG",
+loading:"Carregando...",
+account:"Conta",
+balance:"SALDO",
+home:"Início",
+profile:"Meu perfil",
+transfer:"Transferências",
+deposit:"Recarregar conta",
+history:"Histórico",
+logout:"Sair",
+page:"Histórico",
+historyTitle:"Histórico de transações",
+historyDesc:"Todas as suas operações são registradas automaticamente e organizadas da mais recente para a mais antiga.",
+loadingTransactions:"Carregando transações...",
+noTransaction:"Nenhuma transação registrada.",
+transaction:"Transação",
+beneficiary:"Beneficiário",
+status:"Status",
+pending:"PENDENTE",
+loadingError:"Erro ao carregar as transações.",
+infoError:"Não foi possível carregar as informações.",
+logoutError:"Não foi possível sair.",
+at:"às"
+},
+
+de:{
+title:"Verlauf - RFG",
+loading:"Wird geladen...",
+account:"Konto",
+balance:"KONTOSTAND",
+home:"Startseite",
+profile:"Mein Profil",
+transfer:"Überweisungen",
+deposit:"Konto aufladen",
+history:"Verlauf",
+logout:"Abmelden",
+page:"Verlauf",
+historyTitle:"Transaktionsverlauf",
+historyDesc:"Alle Ihre Transaktionen werden automatisch gespeichert und von der neuesten zur ältesten sortiert.",
+loadingTransactions:"Transaktionen werden geladen...",
+noTransaction:"Keine Transaktionen vorhanden.",
+transaction:"Transaktion",
+beneficiary:"Empfänger",
+status:"Status",
+pending:"AUSSTEHEND",
+loadingError:"Fehler beim Laden der Transaktionen.",
+infoError:"Informationen konnten nicht geladen werden.",
+logoutError:"Abmeldung nicht möglich.",
+at:"um"
+},
+
+pl:{
+title:"Historia - RFG",
+loading:"Ładowanie...",
+account:"Konto",
+balance:"SALDO",
+home:"Strona główna",
+profile:"Mój profil",
+transfer:"Przelewy",
+deposit:"Doładuj konto",
+history:"Historia",
+logout:"Wyloguj",
+page:"Historia",
+historyTitle:"Historia transakcji",
+historyDesc:"Wszystkie operacje są automatycznie zapisywane i sortowane od najnowszych do najstarszych.",
+loadingTransactions:"Ładowanie transakcji...",
+noTransaction:"Brak zapisanych transakcji.",
+transaction:"Transakcja",
+beneficiary:"Beneficjent",
+status:"Status",
+pending:"OCZEKUJĄCE",
+loadingError:"Błąd podczas ładowania transakcji.",
+infoError:"Nie można załadować informacji.",
+logoutError:"Nie można się wylogować.",
+at:"o"
+},
+
+ru:{
+title:"История - RFG",
+loading:"Загрузка...",
+account:"Счет",
+balance:"БАЛАНС",
+home:"Главная",
+profile:"Мой профиль",
+transfer:"Переводы",
+deposit:"Пополнить счет",
+history:"История",
+logout:"Выйти",
+page:"История",
+historyTitle:"История операций",
+historyDesc:"Все ваши операции автоматически сохраняются и сортируются от самых новых к самым старым.",
+loadingTransactions:"Загрузка операций...",
+noTransaction:"Нет сохраненных операций.",
+transaction:"Операция",
+beneficiary:"Получатель",
+status:"Статус",
+pending:"В ОЖИДАНИИ",
+loadingError:"Ошибка загрузки операций.",
+infoError:"Не удалось загрузить информацию.",
+logoutError:"Не удалось выйти.",
+at:"в"
+},
+
+nl:{
+title:"Geschiedenis - RFG",
+loading:"Laden...",
+account:"Rekening",
+balance:"SALDO",
+home:"Home",
+profile:"Mijn profiel",
+transfer:"Overschrijvingen",
+deposit:"Account opladen",
+history:"Geschiedenis",
+logout:"Uitloggen",
+page:"Geschiedenis",
+historyTitle:"Transactiegeschiedenis",
+historyDesc:"Al uw transacties worden automatisch opgeslagen en gesorteerd van de nieuwste naar de oudste.",
+loadingTransactions:"Transacties laden...",
+noTransaction:"Geen transacties gevonden.",
+transaction:"Transactie",
+beneficiary:"Begunstigde",
+status:"Status",
+pending:"IN AFWACHTING",
+loadingError:"Fout bij het laden van transacties.",
+infoError:"Kan de informatie niet laden.",
+logoutError:"Kan niet uitloggen.",
+at:"om"
+}
+
+}[lang];
+
+document.title = t.title;
+
+document.querySelector(".page-title").textContent = t.page;
+
+document.querySelector(".title-box h2").textContent = t.historyTitle;
+
+document.querySelector(".title-box p").textContent = t.historyDesc;
+
+document.querySelector(".profile-balance").childNodes[0].textContent =
+t.balance + " : ";
+
+document.getElementById("profileName").textContent = t.loading;
+
+document.getElementById("accountNumber").textContent =
+t.account + " : ----------";
+
+document.querySelector('a[href="dashboard.html"]').textContent = t.home;
+
+document.querySelector('a[href="profil.html"]').textContent = t.profile;
+
+document.querySelector('a[href="transfert.html"]').textContent = t.transfer;
+
+document.querySelector('a[href="depot.html"]').textContent = t.deposit;
+
+document.querySelector('a[href="historique.html"]').textContent = t.history;
+
+document.getElementById("logoutBtn").textContent = t.logout;
+
+document.getElementById("listeTransactions").innerHTML = `
+<div class="empty">
+${t.loadingTransactions}
+</div>
+`;
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged,
+signOut
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+getFirestore,
+doc,
+getDoc,
+collection,
+query,
+where,
+orderBy,
+onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+/* FIREBASE */
+
+const firebaseConfig={
+
+apiKey:"AIzaSyA3bj3QMqH9fxda8ixe66dSlW-Kb8mD8hk",
+
+authDomain:"rfg-finance.firebaseapp.com",
+
+projectId:"rfg-finance",
+
+storageBucket:"rfg-finance.firebasestorage.app",
+
+messagingSenderId:"600995823489",
+
+appId:"1:600995823489:web:1a4449f074d14eca05f280"
+
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+/* MENU */
+
+const sidebar=document.getElementById("sidebar");
+const overlay=document.getElementById("overlay");
+const menuBtn=document.getElementById("menuBtn");
+
+menuBtn.onclick=()=>{
+
+sidebar.classList.add("active");
+overlay.classList.add("active");
+
+}
+
+overlay.onclick=()=>{
+
+sidebar.classList.remove("active");
+overlay.classList.remove("active");
+
+}
+
+/* AUTH */
+
+onAuthStateChanged(auth,async(user)=>{
+
+if(!user){
+
+window.location.replace("connecter.html");
+return;
+
+}
+
+try{
+
+const ref=doc(db,"utilisateurs",user.uid);
+
+const snap=await getDoc(ref);
+
+if(snap.exists()){
+
+const data=snap.data();
+
+const prenom=data.prenom||"";
+const nom=data.nom||"";
+
+document.getElementById("profileName").textContent=
+prenom+" "+nom;
+
+document.getElementById("accountNumber").textContent=
+t.account + " : " + (data.numeroCompte || "---------");
+
+document.getElementById("menuSolde").textContent =
+Number(data.solde ?? 0).toLocaleString(lang) + " " + (data.devise || "€");
+
+if(data.photo){
+
+document.getElementById("profilePhoto").src=data.photo;
+
+}else{
+
+document.getElementById("profilePhoto").src=
+`https://ui-avatars.com/api/?name=${encodeURIComponent(prenom+" "+nom)}&background=ffffff&color=0b76d1&size=200`;
+
+}
+
+}
+
+/* HISTORIQUE EN TEMPS RÉEL */
+
+const q = query(
+    collection(db, "historique"),
+    where("uid", "==", user.uid)
+);
+
+onSnapshot(q,(snapshot)=>{
+
+const liste=document.getElementById("listeTransactions");
+
+if(snapshot.empty){
+
+liste.innerHTML=`
+<div class="empty">
+${t.noTransaction}
+</div>
+`;
+
+return;
+
+}
+
+liste.innerHTML="";
+
+snapshot.forEach((docSnap)=>{
+
+const data=docSnap.data();
+
+const type = data.type || t.transaction;
+
+let typeTraduit = type;
+
+if(type === "Recharger mon compte" || type === "Deposit Funds"){
+typeTraduit = t.deposit;
+}
+
+if(type === "Transferts" || type === "Transfers"){
+typeTraduit = t.transfer;
+}
+
+const montant = Number(data.montant || 0);
+
+const devise = data.devise || "EUR";
+
+const beneficiaire = data.beneficiaire || "";
+
+const statut = data.statut || "";
+
+let statutTraduit = statut;
+
+if(statut === "EN ATTENTE" || statut === "PENDING"){
+statutTraduit = t.pending;
+}
+
+const date = data.date?.toDate
+? data.date.toDate()
+: new Date();
+
+let couleur="credit";
+let signe="";
+
+if(type.toLowerCase().includes("transfert")){
+
+couleur="debit";
+signe="-";
+
+}
+
+liste.innerHTML+=`
+
+<div class="transaction">
+
+<div class="transaction-top">
+
+<div class="type">
+${typeTraduit}
+</div>
+<div class="montant ${couleur}">
+${signe}${montant.toLocaleString("fr-FR")} ${devise}
+</div>
+
+</div>
+
+${beneficiaire ? `
+<div class="info">
+${t.beneficiary} : ${beneficiaire}
+</div>
+` : ""}
+
+${statut ? `
+<div class="info">
+${t.status} : <b>${statutTraduit}</b>
+</div>
+` : ""}
+
+<div class="date">
+
+${date.toLocaleDateString(lang,{
+
+day:"2-digit",
+month:"long",
+year:"numeric"
+
+})}
+
+${t.at}
+
+${date.toLocaleTimeString(lang,{
+
+hour:"2-digit",
+minute:"2-digit"
+
+})}
+
+</div>
+
+</div>
+
+`;
+
+});
+
+},(error)=>{
+
+console.error(error);
+
+document.getElementById("listeTransactions").innerHTML=`
+
+<div class="empty">
+
+${t.loadingError}
+
+</div>
+
+`;
+
+});
+
+}catch(error){
+
+console.error(error);
+
+document.getElementById("listeTransactions").innerHTML=`
+
+<div class="empty">
+
+${t.infoError}
+
+</div>
+
+`;
+
+}
+
+});
+
+/* DÉCONNEXION */
+
+document.getElementById("logoutBtn").addEventListener("click",async()=>{
+
+try{
+
+await signOut(auth);
+
+window.location.replace("connecter.html");
+
+}catch(error){
+
+alert(t.logoutError);
+
+}
+
+});
+
+</script>
+
+</body>
+</html>

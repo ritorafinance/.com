@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title id="pageTitle">Réinitialiser mot de passe - RFG</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f4f7fb;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.card{
+background:#fff;
+padding:35px 25px;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+width:90%;
+max-width:420px;
+text-align:center;
+}
+
+h1{
+font-size:20px;
+margin-bottom:15px;
+color:#0b2d67;
+}
+
+input{
+width:100%;
+height:45px;
+margin-bottom:15px;
+padding:0 12px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:14px;
+}
+
+input:focus{
+outline:none;
+border-color:#0b76c6;
+box-shadow:0 0 0 2px rgba(11,118,198,.15);
+}
+
+button{
+width:100%;
+height:48px;
+background:#0b76c6;
+color:#fff;
+border:none;
+border-radius:8px;
+font-weight:700;
+cursor:pointer;
+}
+
+button:hover{
+background:#09579a;
+}
+
+.msg{
+margin-top:12px;
+font-size:13px;
+color:#555;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1 id="title">
+Définir un nouveau mot de passe
+</h1>
+
+<input type="password" id="password">
+
+<input type="password" id="confirm">
+
+<button id="btn">
+Changer mot de passe
+</button>
+
+<div class="msg" id="msg"></div>
+
+</div>
+
+
+<script type="module">
+
+const browserLang = navigator.language.substring(0,2);
+
+const lang = [
+"fr","en","es","it","pt","de","pl","ru","nl"
+].includes(browserLang) ? browserLang : "fr";
+
+
+const t = {
+
+fr:{
+title:"Définir un nouveau mot de passe",
+password:"Nouveau mot de passe",
+confirm:"Confirmer mot de passe",
+button:"Changer mot de passe",
+mismatch:"Les mots de passe ne correspondent pas",
+success:"Mot de passe modifié avec succès",
+error:"Lien invalide ou expiré"
+},
+
+en:{
+title:"Set a new password",
+password:"New password",
+confirm:"Confirm password",
+button:"Change password",
+mismatch:"Passwords do not match",
+success:"Password changed successfully",
+error:"Invalid or expired link"
+},
+
+es:{
+title:"Definir una nueva contraseña",
+password:"Nueva contraseña",
+confirm:"Confirmar contraseña",
+button:"Cambiar contraseña",
+mismatch:"Las contraseñas no coinciden",
+success:"Contraseña modificada correctamente",
+error:"Enlace inválido o caducado"
+},
+
+it:{
+title:"Imposta una nuova password",
+password:"Nuova password",
+confirm:"Conferma password",
+button:"Cambia password",
+mismatch:"Le password non corrispondono",
+success:"Password modificata con successo",
+error:"Link non valido o scaduto"
+},
+
+pt:{
+title:"Definir uma nova palavra-passe",
+password:"Nova palavra-passe",
+confirm:"Confirmar palavra-passe",
+button:"Alterar palavra-passe",
+mismatch:"As palavras-passe não coincidem",
+success:"Palavra-passe alterada com sucesso",
+error:"Link inválido ou expirado"
+},
+
+de:{
+title:"Neues Passwort festlegen",
+password:"Neues Passwort",
+confirm:"Passwort bestätigen",
+button:"Passwort ändern",
+mismatch:"Passwörter stimmen nicht überein",
+success:"Passwort erfolgreich geändert",
+error:"Ungültiger oder abgelaufener Link"
+},
+
+pl:{
+title:"Ustaw nowe hasło",
+password:"Nowe hasło",
+confirm:"Potwierdź hasło",
+button:"Zmień hasło",
+mismatch:"Hasła nie są zgodne",
+success:"Hasło zostało pomyślnie zmienione",
+error:"Nieprawidłowy lub wygasły link"
+},
+
+ru:{
+title:"Установить новый пароль",
+password:"Новый пароль",
+confirm:"Подтвердить пароль",
+button:"Изменить пароль",
+mismatch:"Пароли не совпадают",
+success:"Пароль успешно изменён",
+error:"Недействительная или устаревшая ссылка"
+},
+
+nl:{
+title:"Nieuw wachtwoord instellen",
+password:"Nieuw wachtwoord",
+confirm:"Bevestig wachtwoord",
+button:"Wachtwoord wijzigen",
+mismatch:"Wachtwoorden komen niet overeen",
+success:"Wachtwoord succesvol gewijzigd",
+error:"Ongeldige of verlopen link"
+}
+
+}[lang];
+
+
+document.title = t.title + " - RFG";
+
+document.getElementById("title").textContent = t.title;
+
+document.getElementById("password").placeholder = t.password;
+
+document.getElementById("confirm").placeholder = t.confirm;
+
+document.getElementById("btn").textContent = t.button;
+
+
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+getAuth,
+confirmPasswordReset
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+
+const app = initializeApp({
+apiKey: "AIzaSyA3bj3QMqH9fxda8ixe66dSlW-Kb8mD8hk",
+authDomain: "rfg-finance.firebaseapp.com",
+projectId: "rfg-finance"
+});
+
+
+const auth = getAuth(app);
+
+const msg = document.getElementById("msg");
+
+
+function getOobCode(){
+
+const params = new URLSearchParams(window.location.search);
+
+return params.get("oobCode");
+
+}
+
+
+
+document.getElementById("btn").addEventListener("click", async()=>{
+
+
+const password = document.getElementById("password").value;
+
+const confirm = document.getElementById("confirm").value;
+
+
+
+if(password !== confirm){
+
+msg.textContent = t.mismatch;
+
+return;
+
+}
+
+
+
+try{
+
+
+const code = getOobCode();
+
+
+await confirmPasswordReset(auth, code, password);
+
+
+msg.textContent = t.success;
+
+
+setTimeout(()=>{
+
+window.location.href="connecter.html";
+
+},1500);
+
+
+
+}catch(error){
+
+
+msg.textContent = t.error;
+
+console.log(error);
+
+
+}
+
+
+});
+
+
+</script>
+
+</body>
+</html>

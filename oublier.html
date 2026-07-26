@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title id="pageTitle">Mot de passe oublié - RFG</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#f4f7fb;
+color:#222;
+}
+
+header{
+background:#0b76c6;
+color:white;
+padding:30px 20px;
+text-align:center;
+}
+
+.header-flex{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px;
+}
+
+.logo-rfg{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+margin-right:10px;
+}
+
+.logo-emoji{
+font-size:70px;
+}
+
+.logo-text{
+font-family:Georgia;
+font-size:42px;
+font-weight:900;
+color:#000;
+line-height:.9;
+}
+
+.section-title{
+text-align:center;
+font-size:26px;
+font-weight:700;
+color:#0b2d67;
+margin:40px 20px 25px;
+}
+
+.form-container{
+max-width:500px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.recovery-title{
+background:#000;
+color:white;
+text-align:center;
+padding:12px;
+border-radius:8px;
+font-size:20px;
+font-weight:700;
+margin-bottom:25px;
+}
+
+label{
+display:block;
+font-size:14px;
+font-weight:600;
+margin-bottom:6px;
+}
+
+input{
+width:100%;
+height:46px;
+padding:0 14px;
+border:1px solid #d6dce5;
+border-radius:8px;
+margin-bottom:18px;
+font-size:14px;
+}
+
+input:focus{
+outline:none;
+border-color:#0b76c6;
+}
+
+.submit-btn{
+width:100%;
+height:50px;
+background:#0b76c6;
+color:white;
+border:none;
+border-radius:8px;
+font-weight:700;
+cursor:pointer;
+}
+
+.rfg-footer{
+background:#0b76c6;
+color:white;
+margin-top:50px;
+text-align:center;
+}
+
+.footer-content{
+padding:40px 20px;
+}
+
+.footer-btn{
+display:inline-block;
+margin-top:15px;
+background:white;
+color:#0b76c6;
+padding:12px 25px;
+border-radius:8px;
+text-decoration:none;
+font-weight:700;
+}
+
+.footer-bottom{
+padding:15px;
+border-top:1px solid rgba(255,255,255,.25);
+font-size:13px;
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="header-flex">
+
+<div class="logo-rfg">
+
+<div class="logo-emoji">💱</div>
+
+<div class="logo-text">RFG</div>
+
+</div>
+
+
+<div>
+
+<h1 id="company">
+Ritora Finance Group
+</h1>
+
+<div id="slogan" style="font-size:13px;">
+La certitude pour vos projets financiers
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+
+
+<div class="section-title" id="space">
+ESPACE CLIENT
+</div>
+
+
+
+<div class="form-container">
+
+
+<div class="recovery-title" id="recovery">
+Récupération mot de passe
+</div>
+
+
+
+<form id="recoveryForm">
+
+
+<label id="emailLabel">
+Email
+</label>
+
+
+<input type="email" id="email" required>
+
+
+
+<button class="submit-btn" type="submit" id="recoverBtn">
+RÉCUPÉRER
+</button>
+
+
+</form>
+
+
+</div>
+
+
+
+<footer class="rfg-footer">
+
+
+<div class="footer-content">
+
+<h2 id="help">
+Besoin d’aide ?
+</h2>
+
+
+<p id="advisor">
+Nos conseillers sont disponibles.
+</p>
+
+
+<a class="footer-btn" href="mailto:ritorafinancegroup@gmail.com" id="contact">
+✉ Contact
+</a>
+
+
+</div>
+
+
+<div class="footer-bottom" id="copyright">
+© 2012 - Groupe financier RFG.
+</div>
+
+
+</footer>
+
+
+
+<script type="module">
+
+
+const browserLang = navigator.language.substring(0,2);
+
+
+const lang = [
+"fr","en","es","it","pt","de","pl","ru","nl"
+].includes(browserLang) ? browserLang : "fr";
+
+
+
+const t = {
+
+
+fr:{
+slogan:"La certitude pour vos projets financiers",
+space:"ESPACE CLIENT",
+recovery:"Récupération mot de passe",
+email:"Email",
+button:"RÉCUPÉRER",
+help:"Besoin d’aide ?",
+advisor:"Nos conseillers sont disponibles.",
+contact:"✉ Contact",
+copyright:"© 2012 - Groupe financier RFG.",
+success:"Email de réinitialisation envoyé !",
+notfound:"Compte introuvable",
+invalid:"Email invalide",
+error:"Erreur lors de l'envoi"
+},
+
+
+en:{
+slogan:"Certainty for your financial projects",
+space:"CUSTOMER AREA",
+recovery:"Password recovery",
+email:"Email",
+button:"RECOVER",
+help:"Need help?",
+advisor:"Our advisors are available.",
+contact:"✉ Contact",
+copyright:"© 2012 - RFG Financial Group.",
+success:"Password reset email sent!",
+notfound:"Account not found",
+invalid:"Invalid email",
+error:"Error while sending"
+},
+
+
+es:{
+slogan:"La certeza para sus proyectos financieros",
+space:"ÁREA CLIENTE",
+recovery:"Recuperación de contraseña",
+email:"Correo electrónico",
+button:"RECUPERAR",
+help:"¿Necesita ayuda?",
+advisor:"Nuestros asesores están disponibles.",
+contact:"✉ Contacto",
+copyright:"© 2012 - Grupo financiero RFG.",
+success:"Correo enviado correctamente",
+notfound:"Cuenta no encontrada",
+invalid:"Correo inválido",
+error:"Error al enviar"
+},
+
+
+it:{
+slogan:"La certezza per i tuoi progetti finanziari",
+space:"AREA CLIENTI",
+recovery:"Recupero password",
+email:"Email",
+button:"RECUPERA",
+help:"Hai bisogno di aiuto?",
+advisor:"I nostri consulenti sono disponibili.",
+contact:"✉ Contatto",
+copyright:"© 2012 - Gruppo finanziario RFG.",
+success:"Email di recupero inviata!",
+notfound:"Account non trovato",
+invalid:"Email non valida",
+error:"Errore durante l'invio"
+},
+
+
+pt:{
+slogan:"A certeza para seus projetos financeiros",
+space:"ÁREA DO CLIENTE",
+recovery:"Recuperação de senha",
+email:"Email",
+button:"RECUPERAR",
+help:"Precisa de ajuda?",
+advisor:"Nossos consultores estão disponíveis.",
+contact:"✉ Contacto",
+copyright:"© 2012 - Grupo financeiro RFG.",
+success:"Email enviada!",
+notfound:"Conta não encontrada",
+invalid:"Email inválido",
+error:"Erro ao enviar"
+},
+
+
+de:{
+slogan:"Sicherheit für Ihre Finanzprojekte",
+space:"KUNDENBEREICH",
+recovery:"Passwortwiederherstellung",
+email:"E-Mail",
+button:"WIEDERHERSTELLEN",
+help:"Brauchen Sie Hilfe?",
+advisor:"Unsere Berater sind verfügbar.",
+contact:"✉ Kontakt",
+copyright:"© 2012 - RFG Finanzgruppe.",
+success:"E-Mail gesendet!",
+notfound:"Konto nicht gefunden",
+invalid:"Ungültige E-Mail",
+error:"Fehler beim Senden"
+},
+
+
+pl:{
+slogan:"Pewność dla Twoich projektów finansowych",
+space:"STREFA KLIENTA",
+recovery:"Odzyskiwanie hasła",
+email:"Email",
+button:"ODZYSKAJ",
+help:"Potrzebujesz pomocy?",
+advisor:"Nasi doradcy są dostępni.",
+contact:"✉ Kontakt",
+copyright:"© 2012 - Grupa finansowa RFG.",
+success:"Wysłano wiadomość!",
+notfound:"Nie znaleziono konta",
+invalid:"Nieprawidłowy email",
+error:"Błąd wysyłania"
+},
+
+
+ru:{
+slogan:"Уверенность для ваших финансовых проектов",
+space:"ЛИЧНЫЙ КАБИНЕТ",
+recovery:"Восстановление пароля",
+email:"Электронная почта",
+button:"ВОССТАНОВИТЬ",
+help:"Нужна помощь?",
+advisor:"Наши консультанты доступны.",
+contact:"✉ Контакт",
+copyright:"© 2012 - Финансовая группа RFG.",
+success:"Письмо отправлено!",
+notfound:"Аккаунт не найден",
+invalid:"Неверная почта",
+error:"Ошибка отправки"
+},
+
+
+nl:{
+slogan:"Zekerheid voor uw financiële projecten",
+space:"KLANTENZONE",
+recovery:"Wachtwoord herstellen",
+email:"E-mail",
+button:"HERSTELLEN",
+help:"Hulp nodig?",
+advisor:"Onze adviseurs zijn beschikbaar.",
+contact:"✉ Contact",
+copyright:"© 2012 - RFG Financiële Groep.",
+success:"E-mail verzonden!",
+notfound:"Account niet gevonden",
+invalid:"Ongeldige e-mail",
+error:"Fout bij verzenden"
+}
+
+}[lang];
+
+document.getElementById("slogan").textContent=t.slogan;
+document.getElementById("space").textContent=t.space;
+document.getElementById("recovery").textContent=t.recovery;
+document.getElementById("emailLabel").textContent=t.email;
+document.getElementById("recoverBtn").textContent=t.button;
+document.getElementById("help").textContent=t.help;
+document.getElementById("advisor").textContent=t.advisor;
+document.getElementById("contact").textContent=t.contact;
+document.getElementById("copyright").textContent=t.copyright;
+document.title = t.recovery + " - RFG";
+
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+getAuth,
+sendPasswordResetEmail
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+
+
+const firebaseConfig = {
+
+apiKey: "AIzaSybj3QMqH9fxda8ixe66dSlW-Kb8mD8hk",
+
+authDomain: "rfg-finance.firebaseapp.com",
+
+projectId: "rfg-finance"
+
+};
+
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+
+
+document.getElementById("recoveryForm").addEventListener("submit", async (e)=>{
+
+e.preventDefault();
+
+
+const email = document.getElementById("email").value;
+
+
+
+try{
+
+
+await sendPasswordResetEmail(auth,email);
+
+
+
+alert(t.success);
+
+
+
+window.location.href="recupere.html";
+
+
+
+}catch(error){
+
+
+
+let msg = t.error;
+
+
+
+if(error.code === "auth/user-not-found"){
+
+msg = t.notfound;
+
+}
+
+
+
+if(error.code === "auth/invalid-email"){
+
+msg = t.invalid;
+
+}
+
+
+
+alert(msg);
+
+
+
+}
+
+
+
+});
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,2517 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ritora Finance Group</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+:root{
+  --blue:#0b76c6;
+  --sky:#87CEEB;
+  --black:#000000;
+}
+body { 
+font-family:Poppins,Arial, sans-serif;
+margin:0;
+background:#fff;
+font-size:12px; 
+line-height:1.35; 
+color:#222; 
+}
+
+header { background:var(--blue);color:white;padding:30px 20px;text-align:center; animation:slideDown .6s ease;}
+
+header{
+    background:var(--blue);
+    color:white;
+    padding:30px 20px;
+    text-align:center;
+    animation:slideDown .6s ease;
+    position:relative;
+}
+
+.login-btn{
+    position:absolute;
+    top:20px;
+    right:20px;
+    background:#000;
+    color:#fff;
+    text-decoration:none;
+    padding:10px 18px;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.login-btn:hover{
+    background:#222;
+}
+
+@media(max-width:768px){
+    .login-btn{
+        top:10px;
+        right:10px;
+        padding:8px 14px;
+        font-size:12px;
+    }
+}
+
+.hero{
+    background:url('https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg') center center/cover no-repeat;
+    height:320px;
+    position:relative;
+}
+
+.hero-overlay{
+    background:rgba(6,20,60,0.75);
+    height:320px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero-content{
+    color:white;
+    padding:10px;
+    max-width:500px;
+}
+
+.hero-small-title{
+    font-size:18px;
+    font-weight:300;
+    letter-spacing:1px;
+    margin-bottom:20px;
+}
+
+.hero-title{
+    color:white;
+    font-size:32px;
+    font-weight:700;
+    line-height:1.1;
+    margin-bottom:25px;
+    border:none;
+}
+
+.hero-text{
+    font-size:14px;
+    line-height:1.9;
+    margin-bottom:15px;
+    color:white;
+}
+
+.hero-btn{
+    background:#0b2d67;
+    color:white;
+    border:none;
+    padding:18px 45px;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:700;
+    letter-spacing:4px;
+    cursor:pointer;
+}
+
+.register-box{
+    text-align:center;
+    margin:35px 0 25px 0;
+}
+
+.register-btn{
+    display:inline-block;
+    background:#000;
+    color:#fff;
+    text-decoration:none;
+    padding:14px 35px;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.register-btn:hover{
+    background:#222;
+}
+
+.info-btn{
+  background:#0b76c6;
+  color:white;
+  border:none;
+  padding:12px 24px;
+  border-radius:8px;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  margin-top:15px;
+}
+
+.about-title{
+  color:#000;
+  font-size:18px;
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+.about-section p{
+  font-size:12px;
+  margin:6px 0;
+  color:#111;
+}
+
+.stats-section{
+  text-align:center;
+  margin:50px 0;
+}
+
+.stat-item{
+  margin:80px 0;
+}
+
+.stat-number{
+  font-size:42px;
+  font-weight:800;
+  color:#000;
+}
+
+.stat-label{
+  font-size:22px;
+  color:#111;
+  margin-top:15px;
+}
+
+.experience-circle{
+    width:260px;
+    height:260px;
+    background:#0b2d67;
+    border-radius:50%;
+    color:white;
+    font-size:22px;
+    font-weight:700;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    margin-top:20px;
+    margin-left:auto;
+    transform:translateX(60px);
+}
+
+.modern-finance h2{
+    font-size:19px;
+    font-weight:700;
+}
+
+.modern-finance h3{
+    font-size:15px;
+    color:#163b73;
+    font-weight:400;
+}
+
+.modern-finance p{
+    font-size:11px;
+    line-height:2.1;
+    letter-spacing:0.2px;
+}
+
+/* ===== FOOTER RFG ===== */
+
+.rfg-footer{
+    margin-top:30px;
+    background:#0b76c6; /* même bleu que l'entête */
+    color:white;
+    text-align:center;
+    overflow:hidden;
+}
+
+.footer-content{
+    padding:40px 15px; /* réduit */
+}
+
+.footer-content h2{
+    font-size:26px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.footer-content p{
+    font-size:14px;
+    line-height:1.7;
+    max-width:600px;
+    margin:auto;
+    margin-bottom:25px;
+}
+
+.footer-btn{
+    display:inline-block;
+    background:white;
+    color:#0b76c6;
+    text-decoration:none;
+    padding:14px 28px;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.footer-btn:hover{
+    transform:scale(1.05);
+}
+
+.footer-bottom{
+    border-top:1px solid rgba(255,255,255,.3);
+    padding:15px;
+    font-size:13px;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.footer-content{
+    padding:35px 12px;
+}
+
+.footer-content h2{
+    font-size:22px;
+}
+
+.footer-content p{
+    font-size:13px;
+}
+
+.footer-btn{
+    font-size:14px;
+    padding:12px 22px;
+}
+
+}
+
+main { background:white;max-width:1100px;margin:30px auto;padding:18px;border-radius:10px;
+       box-shadow:0 6px 20px rgba(10,20,40,0.06); transform:translateY(0); }
+
+.big-title { font-size:18px;font-weight:700;color:black;margin-top:10px; }
+
+.offer-title { color:red;font-weight:700;margin-top:10px;font-size:14px; }
+
+.blue-banner { background:var(--blue);color:white;padding:14px;text-align:center;margin-top:12px;
+border-radius:8px;font-size:14px;font-weight:bold;cursor:pointer; display:inline-block;}
+
+table { width:100%;border-collapse:collapse;margin-top:12px;background:white;border-radius:8px;overflow:hidden; font-size:12px; }
+
+th,td { padding:10px 8px;text-align:left; }
+
+th { background:var(--blue);color:white;text-transform:uppercase;font-size:12px; }
+
+tr:nth-child(even) { background:#f2f8fc; }
+
+tr:hover { background:#e9f8ff;transition:0.15s; }
+
+/* New added sections */
+.certainty { margin-top:18px; padding:12px; }
+.certainty .title { font-size:26px; font-weight:800; color:var(--black); margin-bottom:6px; }
+.certainty .sub { color:var(--sky); font-weight:700; display:inline-block; margin-bottom:8px; }
+.certainty p { font-size:11px; margin:6px 0; color:#111; }
+
+/* Testimonials */
+.testimonials { margin-top:14px; }
+.testimonials .heading { color:var(--black); font-weight:700; font-size:12px; margin-bottom:8px; }
+.testimonial { display:flex; gap:10px; align-items:flex-start; padding:10px 6px; border-radius:8px; }
+.testimonial img { width:56px; height:56px; border-radius:50%; object-fit:cover; }
+.testimonial .text { font-style:italic; font-weight:300; font-size:12px; color:#111; }
+
+/* Small text everywhere */
+.small { font-size:11px; }
+
+/* Animation */
+@keyframes slideDown{ from{ transform:translateY(-10px); opacity:0} to{transform:none; opacity:1} }
+.fade-in { animation:fadeIn .8s ease; }
+@keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+
+/* Floating subtle animation on logo */
+.logo-rfg{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    animation:float 5s ease-in-out infinite;
+    margin-right:10px;
+}
+
+.logo-emoji{
+    font-size:70px;
+    line-height:1;
+}
+
+.logo-text{
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:42px;
+    font-weight:900;
+    color:#000;
+    line-height:0.9;
+    letter-spacing:1px;
+}
+
+.header-title h1{
+    margin:0;
+    font-size:32px;
+    font-weight:700;
+    color:#fff;
+    line-height:1.2;
+}
+
+.header-subtitle{
+    margin-top:4px;
+    font-size:13px;
+    font-weight:400;
+    color:#fff;
+}
+
+@keyframes float { 0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)} }
+
+.footer-note{ font-size:11px; color:#666; margin-top:10px; text-align:center; }
+
+/* responsive */
+@media(min-width:900px){
+  .testimonial .text{ font-size:13px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <a href="connecter.html" class="login-btn" id="loginBtn">🔐 Se connecter</a>
+
+  <div style="display:flex;align-items:center;justify-content:center;gap:12px;">
+    <div class="logo-rfg" aria-hidden="true">
+      <div class="logo-emoji">💱</div>
+      <div class="logo-text">RFG</div>
+    </div>
+
+    <div class="header-title">
+      <h1 id="companyName">Ritora Finance Group</h1>
+    </div>
+  </div>
+
+</header>
+
+
+<section class="hero">
+
+  <div class="hero-overlay">
+
+    <div class="hero-content">
+
+      <div class="hero-small-title" id="welcomeText">
+        BIENVENUE SUR
+      </div>
+
+
+      <h2 class="hero-title" id="heroTitle">
+        La solution financière<br>
+        adéquate
+      </h2>
+
+
+      <p class="hero-text" id="heroDescription">
+        Nous sommes Ritora Finance Group,<br>
+        votre partenaire de confiance pour des<br>
+        prêts rapides, sûrs et adaptés à vos<br>
+        besoins. Avec nous, obtenir un prêt<br>
+        simple, rapide et sûr pour concrétiser<br>
+        vos projets est possible.
+      </p>
+
+
+      <a href="formulaire.html" 
+         class="hero-btn" 
+         id="requestLoanBtn"
+         style="text-decoration:none;display:inline-block;">
+        DEMANDER UN PRÊT
+      </a>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<main class="fade-in">
+
+
+<div class="register-box">
+
+    <a href="inscription.html" 
+       class="register-btn"
+       id="openAccountBtn">
+
+        📝 Ouvrez un compte
+
+    </a>
+
+</div>
+
+
+
+<div class="about-section">
+
+
+<main class="fade-in">
+
+
+<div class="about-section">
+
+
+  <div class="about-title" id="aboutTitle">
+    Qui sommes-nous ?
+  </div>
+
+
+  <p id="aboutDescription">
+
+Nous sommes fiers de vous accompagner dans la réalisation de vos projets personnels et professionnels grâce à nos offres de prêt flexibles et adaptées à vos besoins. Que vous souhaitiez financer un projet d'envergure, consolider vos finances ou faire face à des dépenses imprévues, nous sommes prêts à vous proposer des solutions rapides, transparentes et sécurisées.
+
+Notre engagement repose sur la confiance, la simplicité et la proximité. Nous mettons tout en œuvre pour vous offrir un service rapide, attentif et entièrement personnalisé.
+
+Chaque situation étant unique, nous prenons le temps de vous proposer des solutions claires, accessibles et sur mesure.
+
+Rejoignez ceux qui nous font confiance et abordez l'avenir sereinement avec un partenaire financier dédié à vos côtés.
+
+  </p>
+
+
+</div>
+
+
+
+<div style="text-align:left;">
+
+  <a href="info.html" 
+     class="info-btn" 
+     id="moreInfoBtn"
+     style="text-decoration:none;display:inline-block;">
+
+    Plus d'informations
+
+  </a>
+
+</div>
+
+
+
+<div class="stats-section">
+
+
+  <div class="stat-item">
+
+    <div class="stat-number" data-target="100">
+      0
+    </div>
+
+    <div class="stat-label" id="satisfiedClients">
+      Clients satisfaits
+    </div>
+
+  </div>
+
+
+
+  <div class="stat-item">
+
+    <div class="stat-number" data-target="200">
+      0
+    </div>
+
+    <div class="stat-label" id="financedLabel">
+      Financé
+    </div>
+
+  </div>
+
+
+
+  <div class="stat-item">
+
+    <div class="stat-number" data-target="9">
+      0
+    </div>
+
+    <div class="stat-label" id="applicationsLabel">
+      Applications actuelles
+    </div>
+
+  </div>
+
+
+
+  <div class="stat-item">
+
+    <div class="stat-number" data-target="95">
+      0
+    </div>
+
+    <div class="stat-label" id="positiveReviews">
+      Avis positifs
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+<div class="big-title" id="offersTitle">
+  Découvrez nos offres
+</div>
+
+
+
+<div class="offer-title" id="personalLoanTitle">
+ A - Prêts personnels
+</div>
+
+
+<p class="small" id="personalLoanText">
+
+Il s'agit d'un prêt sans destination précise qui peut être utilisé pour divers projets (vacances, achats, travaux).
+
+</p>
+
+<img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg" 
+style="width:100%;border-radius:10px;margin:8px 0;">
+
+
+
+<div class="offer-title" id="businessLoanTitle">
+B - Prêts aux entreprises
+</div>
+
+
+<p class="small" id="businessLoanText">
+
+Il s'agit d'un prêt destiné aux entrepreneurs ou aux entreprises pour financer leurs activités, telles que l'achat d'équipement, de liquidités ou d'investissements.
+
+</p>
+
+
+<img src="https://images.pexels.com/photos/3183171/pexels-photo-3183171.jpeg" 
+style="width:100%;border-radius:10px;margin:8px 0;">
+
+
+
+<div class="offer-title" id="carLoanTitle">
+C - Prêts automobiles
+</div>
+
+
+<p class="small" id="carLoanText">
+
+Prêt destiné à l'achat d'une voiture neuve ou d'occasion.
+
+</p>
+
+
+<img src="https://images.pexels.com/photos/4488661/pexels-photo-4488661.jpeg" 
+style="width:100%;border-radius:10px;margin:8px 0;">
+
+
+
+<div class="offer-title" id="mortgageLoanTitle">
+D - Prêts hypothécaires
+</div>
+
+
+<p class="small" id="mortgageLoanText">
+
+Il s'agit d'un financement pour l'achat d'une maison, d'un appartement ou pour la construction d'une maison.
+
+</p>
+
+
+<img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg" 
+style="width:100%;border-radius:10px;margin:8px 0;">
+
+
+
+<div class="offer-title" id="studentLoanTitle">
+E - Prêts étudiants
+</div>
+
+
+<p class="small" id="studentLoanText">
+
+Il s'agit d'un prêt destiné à financer les études des clients (frais de scolarité, logement étudiant, etc.).
+
+</p>
+
+
+<img src="https://images.pexels.com/photos/7974/pexels-photo.jpg" 
+style="width:100%;border-radius:10px;margin:8px 0;">
+
+
+
+<div class="offer-title" id="consumerLoanTitle">
+F - Prêts à la consommation
+</div>
+
+
+<p class="small" id="consumerLoanText">
+
+Il s'agit d'un prêt destiné à financer des biens de consommation (voitures, appareils électroménagers, meubles, etc.).
+
+</p>
+
+
+<img src="https://images.pexels.com/photos/2988232/pexels-photo-2988232.jpeg" 
+style="width:100%;border-radius:10px;margin:8px 0;">
+
+
+<!-- Buttons -->
+
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;">
+
+
+<a href="formulaire.html" 
+class="blue-banner" 
+id="loanNowBtn"
+style="text-decoration:none;">
+
+JE VEUX UN PRÊT MAINTENANT
+
+</a>
+
+
+
+<div class="experience-circle" id="experienceText">
+
+16 ANS<br>
+D'EXPÉRIENCE
+
+</div>
+
+
+
+<div class="modern-finance">
+
+
+<h2 id="modernFinanceTitle">
+
+La certitude des services financiers modernes.
+
+</h2>
+
+
+
+<h3 id="modernFinanceSubtitle">
+
+Chez Ritora Finance Group, nous nous appuyons
+sur une philosophie axée sur le client.
+
+</h3>
+
+
+
+<p id="modernFinanceText">
+
+Nous savons que chaque client a des souhaits et des projets uniques.
+C'est pourquoi nous mettons tout en œuvre pour vous proposer des
+solutions de crédit flexibles et parfaitement adaptées à votre situation.
+Nous sommes convaincus que la réussite de tout projet, personnel ou
+professionnel, repose sur la confiance et le soutien mutuel.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- TABLEAU DES PRÊTS -->
+
+<table id="loanTable" aria-label="Exemples de prêts">
+
+
+<thead>
+
+<tr>
+
+<th id="amountBorrowed">
+Montant Emprunté
+</th>
+
+
+<th id="rate">
+Taux
+</th>
+
+
+<th id="amountToRepay">
+Montant à Rembourser
+</th>
+
+
+<th id="currency">
+Devise
+</th>
+
+
+<th id="duration">
+Durée
+</th>
+
+
+</tr>
+
+</thead>
+
+
+<tbody></tbody>
+
+
+</table>
+
+
+
+
+
+<div class="certainty">
+
+
+<div class="title" id="certaintyTitle">
+
+La certitude des services financiers modernes.
+
+</div>
+
+
+
+<div class="sub" id="certaintyCompany">
+
+-Chez Ritora Finance Group
+
+</div>
+
+
+
+<p id="certaintyParagraphOne">
+
+Nous sommes guidés par une philosophie centrée sur le client.
+Nous savons que chaque client a des besoins et des projets uniques.
+C'est pourquoi nous nous efforçons de proposer des solutions de crédit flexibles,
+parfaitement adaptées à votre situation.
+Nous sommes convaincus que la réussite de tout projet, personnel ou professionnel,
+repose sur la confiance et le soutien mutuel.
+
+</p>
+
+
+
+<p id="certaintyParagraphTwo">
+
+Notre équipe d'experts vous guidera étape par étape, de l'analyse de votre demande
+au versement des fonds, en veillant à ce que vous compreniez tous les aspects
+de votre contrat et des modalités de remboursement.
+
+</p>
+
+
+</div>
+
+<!-- B : Testimonials -->
+
+<div class="testimonials">
+
+
+<div class="heading" id="testimonialsTitle" style="color:#000000">
+
+Nos clients témoignent....
+
+</div>
+
+
+<div class="testimonial">
+
+
+<img src="https://i.pravatar.cc/150?img=12" 
+alt="Photo Jean Michel">
+
+
+<div class="text small" id="testimonialOne">
+
+<strong id="clientOneName">
+1 - Jean Michel Pedon — Centre-ville, Perpignan
+</strong>
+
+<br>
+
+
+En tant qu'entrepreneur, trouver le prêt adapté à mon projet n'a pas été chose facile, mais j'ai finalement trouvé un partenaire financier qui a compris mes besoins. Grâce à leur prêt sur mesure, j'ai pu lancer mon entreprise en toute sérénité. Leur service client est excellent et je suis pleinement satisfait de leurs prestations.
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="testimonial">
+
+
+<img src="https://i.pravatar.cc/150?img=32" 
+alt="Photo Elodie">
+
+
+
+<div class="text small" id="testimonialTwo">
+
+
+<strong id="clientTwoName">
+
+2 - Elodie Fente — Liège
+
+</strong>
+
+
+<br>
+
+
+J'avais besoin d'un prêt urgent pour financer des rénovations indispensables dans mon appartement, et IFG banque s'est montré incroyablement efficace. La procédure était simple, les fonds ont été débloqués rapidement et les conditions étaient parfaitement claires dès le départ. Je recommande vivement leurs services à toute personne recherchant un financement transparent et rapide.
+
+
+</div>
+
+
+</div>
+
+
+<div class="testimonial">
+
+
+<img src="https://i.pravatar.cc/150?img=45" 
+alt="Photo Louis">
+
+
+
+<div class="text small" id="testimonialThree">
+
+
+<strong id="clientThreeName">
+
+3 - Louis Ducont — Quartier des peintres, La Haye
+
+</strong>
+
+
+<br>
+
+
+Grâce à eux, j'ai pu financer l'achat de ma première voiture sans aucun stress. Leur équipe m'a accompagné à chaque étape et m'a proposé un plan de paiement parfaitement adapté à mon budget. J'ai également apprécié la flexibilité des mensualités. Une expérience très positive ; je les recommande sans hésiter.
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+</div>
+
+
+<!-- Modal for editable table -->
+
+</main>
+
+
+<script>
+
+
+// ===== TABLEAU DES PRÊTS =====
+
+
+const loanData = [
+
+{principal:10000, years:1},
+
+{principal:20000, years:2},
+
+{principal:30000, years:3},
+
+{principal:40000, years:4},
+
+{principal:50000, years:5},
+
+{principal:100000, years:10}
+
+];
+
+
+
+const tbody = document.querySelector('#loanTable tbody');
+
+
+
+function renderTable(){
+
+
+tbody.innerHTML = '';
+
+
+
+loanData.forEach(r => {
+
+
+
+const repay = Math.round(r.principal * 1.03);
+
+
+
+const tr = document.createElement('tr');
+
+
+
+tr.innerHTML = `
+
+<td>${r.principal.toLocaleString()}</td>
+
+<td>3%</td>
+
+<td>${repay.toLocaleString()}</td>
+
+<td>€</td>
+
+<td>${r.years} an(s)</td>
+
+`;
+
+
+
+tbody.appendChild(tr);
+
+
+
+});
+
+
+
+}
+
+
+
+renderTable();
+
+
+
+
+
+// ===== COMPTEURS ANIMÉS =====
+
+
+
+const statsSection = document.querySelector('.stats-section');
+
+
+let countersStarted = false;
+
+
+
+function startCounters(){
+
+
+
+if(countersStarted) return;
+
+
+
+const position = statsSection.getBoundingClientRect().top;
+
+
+const screenPosition = window.innerHeight * 0.8;
+
+
+
+if(position < screenPosition){
+
+
+
+countersStarted = true;
+
+
+
+const counters = document.querySelectorAll('.stat-number');
+
+
+
+counters.forEach(counter => {
+
+
+
+const target = parseInt(counter.getAttribute('data-target'));
+
+
+
+let count = 0;
+
+
+
+const speed = 15;
+
+
+
+const interval = setInterval(() => {
+
+
+
+count++;
+
+
+
+if(target === 200){
+
+
+
+counter.innerHTML = "+" + count + "M";
+
+
+
+}
+
+else if(target === 95){
+
+
+
+counter.innerHTML = count + "%";
+
+
+
+}
+
+else{
+
+
+
+counter.innerHTML = "+" + count;
+
+
+
+}
+
+
+
+if(count >= target){
+
+
+
+clearInterval(interval);
+
+
+
+}
+
+
+
+}, speed);
+
+
+
+});
+
+
+
+}
+
+
+
+}
+
+
+window.addEventListener('scroll', startCounters);
+
+window.addEventListener('load', startCounters);
+
+
+</script>
+
+<footer class="rfg-footer">
+
+
+<div class="footer-content">
+
+
+<h2 id="footerTitle">
+
+Souhaitez-vous parler à un conseiller ?
+
+</h2>
+
+<p id="footerDescription">
+
+Nos experts financiers sont prêts à vous conseiller et à
+vous accompagner jusqu'à l'obtention de votre prêt.
+
+</p>
+
+
+<a href="mailto:ritorafinancegroup@gmail.com" 
+class="footer-btn"
+id="contactButton">
+
+✉ Écrivez-nous maintenant
+
+</a>
+
+</div>
+
+<div class="footer-bottom" id="copyright">
+
+© 2012 - Groupe financier RFG. Tous droits réservés.
+
+</div>
+
+</footer>
+
+<script>
+
+// Détection automatique de la langue du navigateur
+
+function changeLanguage(lang){
+
+    const texts = translations[lang];
+
+    if(!texts) return;
+
+
+    Object.keys(texts).forEach(function(id){
+
+        const element = document.getElementById(id);
+
+        if(element){
+
+            element.innerHTML = texts[id];
+
+        }
+
+    });
+
+}
+
+
+const translations = {
+
+fr: {
+
+loginBtn: "🔐 Se connecter",
+
+companyName: "Ritora Finance Group",
+
+welcomeText: "BIENVENUE SUR",
+
+heroTitle: "La solution financière<br>adéquate",
+
+heroDescription: 
+"Nous sommes Ritora Finance Group,<br>votre partenaire de confiance pour des<br>prêts rapides, sûrs et adaptés à vos<br>besoins. Avec nous, obtenir un prêt<br>simple, rapide et sûr pour concrétiser<br>vos projets est possible.",
+
+requestLoanBtn: "DEMANDER UN PRÊT",
+
+openAccountBtn: "📝 Ouvrez un compte",
+
+aboutTitle: "Qui sommes-nous ?",
+
+aboutDescription:
+"Nous sommes fiers de vous accompagner dans la réalisation de vos projets personnels et professionnels grâce à nos offres de prêt flexibles et adaptées à vos besoins. Que vous souhaitiez financer un projet d'envergure, consolider vos finances ou faire face à des dépenses imprévues, nous sommes prêts à vous proposer des solutions rapides, transparentes et sécurisées.<br><br>Notre engagement repose sur la confiance, la simplicité et la proximité. Nous mettons tout en œuvre pour vous offrir un service rapide, attentif et entièrement personnalisé.<br><br>Chaque situation étant unique, nous prenons le temps de vous proposer des solutions claires, accessibles et sur mesure.<br><br>Rejoignez ceux qui nous font confiance et abordez l'avenir sereinement avec un partenaire financier dédié à vos côtés.",
+
+moreInfoBtn: "Plus d'informations",
+
+satisfiedClients: "Clients satisfaits",
+
+financedLabel: "Financé",
+
+applicationsLabel: "Applications actuelles",
+
+positiveReviews: "Avis positifs",
+
+offersTitle: "Découvrez nos offres",
+
+personalLoanTitle: "A - Prêts personnels",
+
+personalLoanText:
+"Il s'agit d'un prêt sans destination précise qui peut être utilisé pour divers projets (vacances, achats, travaux).",
+
+businessLoanTitle: "B - Prêts aux entreprises",
+
+businessLoanText:
+"Il s'agit d'un prêt destiné aux entrepreneurs ou aux entreprises pour financer leurs activités, telles que l'achat d'équipement, de liquidités ou d'investissements.",
+
+carLoanTitle: "C - Prêts automobiles",
+
+carLoanText:
+"Prêt destiné à l'achat d'une voiture neuve ou d'occasion.",
+
+mortgageLoanTitle: "D - Prêts hypothécaires",
+
+mortgageLoanText:
+"Il s'agit d'un financement pour l'achat d'une maison, d'un appartement ou pour la construction d'une maison.",
+
+studentLoanTitle: "E - Prêts étudiants",
+
+studentLoanText:
+"Il s'agit d'un prêt destiné à financer les études des clients (frais de scolarité, logement étudiant, etc.).",
+
+consumerLoanTitle: "F - Prêts à la consommation",
+
+consumerLoanText:
+"Il s'agit d'un prêt destiné à financer des biens de consommation (voitures, appareils électroménagers, meubles, etc.).",
+
+loanNowBtn: "JE VEUX UN PRÊT MAINTENANT",
+
+experienceText:
+"16 ANS<br>D'EXPÉRIENCE",
+
+modernFinanceTitle:
+"La certitude des services financiers modernes.",
+
+modernFinanceSubtitle:
+"Chez Ritora Finance Group, nous nous appuyons sur une philosophie axée sur le client.",
+
+modernFinanceText:
+"Nous savons que chaque client a des souhaits et des projets uniques. C'est pourquoi nous mettons tout en œuvre pour vous proposer des solutions de crédit flexibles et parfaitement adaptées à votre situation. Nous sommes convaincus que la réussite de tout projet, personnel ou professionnel, repose sur la confiance et le soutien mutuel.",
+
+amountBorrowed:
+"Montant Emprunté",
+
+rate:
+"Taux",
+
+amountToRepay:
+"Montant à Rembourser",
+
+currency:
+"Devise",
+
+duration:
+"Durée",
+
+certaintyTitle:
+"La certitude des services financiers modernes.",
+
+certaintyCompany:
+"-Chez Ritora Finance Group",
+
+certaintyParagraphOne:
+"Nous sommes guidés par une philosophie centrée sur le client. Nous savons que chaque client a des besoins et des projets uniques. C'est pourquoi nous nous efforçons de proposer des solutions de crédit flexibles, parfaitement adaptées à votre situation. Nous sommes convaincus que la réussite de tout projet, personnel ou professionnel, repose sur la confiance et le soutien mutuel.",
+
+certaintyParagraphTwo:
+"Notre équipe d'experts vous guidera étape par étape, de l'analyse de votre demande au versement des fonds, en veillant à ce que vous compreniez tous les aspects de votre contrat et des modalités de remboursement.",
+
+testimonialsTitle:
+"Nos clients témoignent....",
+
+clientOneName:
+"1 - Jean Michel Pedon — Centre-ville, Perpignan",
+
+testimonialOne:
+"En tant qu'entrepreneur, trouver le prêt adapté à mon projet n'a pas été chose facile, mais j'ai finalement trouvé un partenaire financier qui a compris mes besoins. Grâce à leur prêt sur mesure, j'ai pu lancer mon entreprise en toute sérénité. Leur service client est excellent et je suis pleinement satisfait de leurs prestations.",
+
+
+clientTwoName:
+"2 - Elodie Fente — Liège",
+
+testimonialTwo:
+"J'avais besoin d'un prêt urgent pour financer des rénovations indispensables dans mon appartement, et IFG banque s'est montré incroyablement efficace. La procédure était simple, les fonds ont été débloqués rapidement et les conditions étaient parfaitement claires dès le départ. Je recommande vivement leurs services à toute personne recherchant un financement transparent et rapide.",
+
+
+clientThreeName:
+"3 - Louis Ducont — Quartier des peintres, La Haye",
+
+testimonialThree:
+"Grâce à eux, j'ai pu financer l'achat de ma première voiture sans aucun stress. Leur équipe m'a accompagné à chaque étape et m'a proposé un plan de paiement parfaitement adapté à mon budget. J'ai également apprécié la flexibilité des mensualités. Une expérience très positive ; je les recommande sans hésiter.",
+
+footerTitle:
+"Souhaitez-vous parler à un conseiller ?",
+
+footerDescription:
+"Nos experts financiers sont prêts à vous conseiller et à vous accompagner jusqu'à l'obtention de votre prêt.",
+
+contactButton:
+"✉ Écrivez-nous maintenant",
+
+copyright:
+"© 2012 - Groupe financier RFG. Tous droits réservés."
+
+},
+
+en: {
+
+loginBtn: "🔐 Login",
+
+companyName: "Ritora Finance Group",
+
+welcomeText: "WELCOME TO",
+
+heroTitle: "The right financial<br>solution",
+
+heroDescription:
+"We are Ritora Finance Group,<br>your trusted partner for fast,<br>secure and suitable loans.<br>With us, obtaining a simple,<br>fast and secure loan to make<br>your projects happen is possible.",
+
+requestLoanBtn: "REQUEST A LOAN",
+
+openAccountBtn: "📝 Open an account",
+
+aboutTitle: "Who are we?",
+
+aboutDescription:
+"We are proud to support you in achieving your personal and professional projects through our flexible loan offers adapted to your needs. Whether you want to finance a major project, consolidate your finances or deal with unexpected expenses, we are ready to provide you with fast, transparent and secure solutions.<br><br>Our commitment is based on trust, simplicity and proximity. We do everything possible to provide you with a fast, attentive and fully personalized service.<br><br>Every situation is unique, which is why we take the time to offer you clear, accessible and tailor-made solutions.<br><br>Join those who trust us and approach the future with peace of mind alongside a dedicated financial partner.",
+
+moreInfoBtn: "More information",
+
+satisfiedClients: "Satisfied clients",
+
+financedLabel: "Financed",
+
+applicationsLabel: "Current applications",
+
+positiveReviews: "Positive reviews",
+
+offersTitle: "Discover our offers",
+
+personalLoanTitle: "A - Personal loans",
+
+personalLoanText:
+"This is a loan with no specific purpose that can be used for various projects (vacations, purchases, renovations).",
+
+businessLoanTitle: "B - Business loans",
+
+businessLoanText:
+"This loan is intended for entrepreneurs or companies to finance their activities, such as purchasing equipment, managing cash flow or making investments.",
+
+carLoanTitle: "C - Car loans",
+
+carLoanText:
+"Loan intended for the purchase of a new or used car.",
+
+mortgageLoanTitle: "D - Mortgage loans",
+
+mortgageLoanText:
+"This is financing for the purchase of a house, apartment or for building a home.",
+
+studentLoanTitle: "E - Student loans",
+
+studentLoanText:
+"This is a loan intended to finance customer studies (tuition fees, student housing, etc.).",
+
+consumerLoanTitle: "F - Consumer loans",
+
+consumerLoanText:
+"This is a loan intended to finance consumer goods (cars, household appliances, furniture, etc.).",
+
+loanNowBtn: "I WANT A LOAN NOW",
+
+experienceText:
+"16 YEARS<br>OF EXPERIENCE",
+
+modernFinanceTitle:
+"The certainty of modern financial services.",
+
+modernFinanceSubtitle:
+"At Ritora Finance Group, we rely on a customer-focused philosophy.",
+
+modernFinanceText:
+"We know that every client has unique wishes and projects. That is why we do everything possible to offer flexible credit solutions perfectly adapted to your situation. We believe that the success of every personal or professional project is based on trust and mutual support.",
+
+
+amountBorrowed:
+"Borrowed Amount",
+
+rate:
+"Rate",
+
+amountToRepay:
+"Amount to Repay",
+
+currency:
+"Currency",
+
+duration:
+"Duration",
+
+
+certaintyTitle:
+"The certainty of modern financial services.",
+
+certaintyCompany:
+"-At Ritora Finance Group",
+
+certaintyParagraphOne:
+"We are guided by a customer-centered philosophy. We know that every client has unique needs and projects. That is why we strive to provide flexible credit solutions perfectly adapted to your situation. We believe that the success of every personal or professional project depends on trust and mutual support.",
+
+certaintyParagraphTwo:
+"Our team of experts will guide you step by step, from analyzing your application to the release of funds, ensuring that you fully understand every aspect of your contract and repayment terms.",
+
+
+testimonialsTitle:
+"Our clients testify....",
+
+
+clientOneName:
+"1 - Jean Michel Pedon — Downtown, Perpignan",
+
+testimonialOne:
+"As an entrepreneur, finding the right loan for my project was not easy, but I finally found a financial partner who understood my needs. Thanks to their customized loan, I was able to launch my business with complete peace of mind. Their customer service is excellent and I am fully satisfied with their services.",
+
+
+clientTwoName:
+"2 - Elodie Fente — Liège",
+
+testimonialTwo:
+"I needed an urgent loan to finance essential renovations in my apartment, and IFG Bank was incredibly efficient. The process was simple, the funds were released quickly and the conditions were perfectly clear from the beginning. I highly recommend their services to anyone looking for transparent and fast financing.",
+
+
+clientThreeName:
+"3 - Louis Ducont — Painters District, The Hague",
+
+testimonialThree:
+"Thanks to them, I was able to finance the purchase of my first car without any stress. Their team supported me at every step and offered me a payment plan perfectly adapted to my budget. I also appreciated the flexibility of the monthly payments. A very positive experience; I recommend them without hesitation.",
+
+
+footerTitle:
+"Would you like to speak with an advisor?",
+
+footerDescription:
+"Our financial experts are ready to advise you and support you until you obtain your loan.",
+
+contactButton:
+"✉ Write to us now",
+
+copyright:
+"© 2012 - RFG Financial Group. All rights reserved."
+
+},
+
+es: {
+
+loginBtn: "🔐 Iniciar sesión",
+
+companyName: "Ritora Finance Group",
+
+welcomeText: "BIENVENIDO A",
+
+heroTitle: "La solución financiera<br>adecuada",
+
+heroDescription:
+"Somos Ritora Finance Group,<br>su socio de confianza para<br>préstamos rápidos, seguros<br>y adaptados a sus necesidades.<br>Con nosotros, obtener un préstamo<br>simple, rápido y seguro para<br>realizar sus proyectos es posible.",
+
+requestLoanBtn: "SOLICITAR UN PRÉSTAMO",
+
+openAccountBtn: "📝 Abrir una cuenta",
+
+aboutTitle: "¿Quiénes somos?",
+
+aboutDescription:
+"Estamos orgullosos de acompañarle en la realización de sus proyectos personales y profesionales gracias a nuestras ofertas de préstamos flexibles adaptadas a sus necesidades. Ya sea que desee financiar un gran proyecto, consolidar sus finanzas o hacer frente a gastos imprevistos, estamos preparados para ofrecerle soluciones rápidas, transparentes y seguras.<br><br>Nuestro compromiso se basa en la confianza, la sencillez y la cercanía. Hacemos todo lo posible para ofrecerle un servicio rápido, atento y totalmente personalizado.<br><br>Cada situación es única, por eso nos tomamos el tiempo necesario para ofrecerle soluciones claras, accesibles y a medida.<br><br>Únase a quienes confían en nosotros y afronte el futuro con tranquilidad junto a un socio financiero dedicado a usted.",
+
+moreInfoBtn: "Más información",
+
+satisfiedClients: "Clientes satisfechos",
+
+financedLabel: "Financiado",
+
+applicationsLabel: "Solicitudes actuales",
+
+positiveReviews: "Opiniones positivas",
+
+offersTitle: "Descubra nuestras ofertas",
+
+personalLoanTitle: "A - Préstamos personales",
+
+personalLoanText:
+"Es un préstamo sin un destino específico que puede utilizarse para diversos proyectos (vacaciones, compras, reformas).",
+
+businessLoanTitle: "B - Préstamos empresariales",
+
+businessLoanText:
+"Es un préstamo destinado a empresarios o empresas para financiar sus actividades, como la compra de equipos, liquidez o inversiones.",
+
+carLoanTitle: "C - Préstamos para automóviles",
+
+carLoanText:
+"Préstamo destinado a la compra de un vehículo nuevo o usado.",
+
+mortgageLoanTitle: "D - Préstamos hipotecarios",
+
+mortgageLoanText:
+"Es una financiación para la compra de una casa, apartamento o para la construcción de una vivienda.",
+
+studentLoanTitle: "E - Préstamos estudiantiles",
+
+studentLoanText:
+"Es un préstamo destinado a financiar los estudios de los clientes (matrícula, alojamiento estudiantil, etc.).",
+
+consumerLoanTitle: "F - Préstamos al consumo",
+
+consumerLoanText:
+"Es un préstamo destinado a financiar bienes de consumo (coches, electrodomésticos, muebles, etc.).",
+
+loanNowBtn: "QUIERO UN PRÉSTAMO AHORA",
+
+experienceText:
+"16 AÑOS<br>DE EXPERIENCIA",
+
+modernFinanceTitle:
+"La certeza de los servicios financieros modernos.",
+
+modernFinanceSubtitle:
+"En Ritora Finance Group nos basamos en una filosofía centrada en el cliente.",
+
+modernFinanceText:
+"Sabemos que cada cliente tiene deseos y proyectos únicos. Por eso hacemos todo lo posible para ofrecer soluciones de crédito flexibles y perfectamente adaptadas a su situación. Estamos convencidos de que el éxito de cualquier proyecto personal o profesional se basa en la confianza y el apoyo mutuo.",
+
+
+amountBorrowed:
+"Cantidad prestada",
+
+rate:
+"Tasa",
+
+amountToRepay:
+"Cantidad a reembolsar",
+
+currency:
+"Moneda",
+
+duration:
+"Duración",
+
+
+certaintyTitle:
+"La certeza de los servicios financieros modernos.",
+
+certaintyCompany:
+"-En Ritora Finance Group",
+
+certaintyParagraphOne:
+"Estamos guiados por una filosofía centrada en el cliente. Sabemos que cada cliente tiene necesidades y proyectos únicos. Por eso nos esforzamos por ofrecer soluciones de crédito flexibles, perfectamente adaptadas a su situación. Estamos convencidos de que el éxito de cualquier proyecto personal o profesional depende de la confianza y el apoyo mutuo.",
+
+certaintyParagraphTwo:
+"Nuestro equipo de expertos le acompañará paso a paso, desde el análisis de su solicitud hasta la entrega de los fondos, asegurándose de que comprenda todos los aspectos de su contrato y las condiciones de reembolso.",
+
+
+testimonialsTitle:
+"Nuestros clientes opinan....",
+
+
+clientOneName:
+"1 - Jean Michel Pedon — Centro de la ciudad, Perpiñán",
+
+testimonialOne:
+"Como empresario, encontrar el préstamo adecuado para mi proyecto no fue fácil, pero finalmente encontré un socio financiero que comprendió mis necesidades. Gracias a su préstamo personalizado, pude lanzar mi empresa con total tranquilidad. Su servicio al cliente es excelente y estoy completamente satisfecho con sus servicios.",
+
+
+clientTwoName:
+"2 - Elodie Fente — Lieja",
+
+testimonialTwo:
+"Necesitaba un préstamo urgente para financiar unas renovaciones indispensables en mi apartamento, y IFG Bank demostró ser increíblemente eficiente. El proceso fue sencillo, los fondos fueron liberados rápidamente y las condiciones fueron totalmente claras desde el principio. Recomiendo sus servicios a cualquier persona que busque una financiación rápida y transparente.",
+
+
+clientThreeName:
+"3 - Louis Ducont — Barrio de los Pintores, La Haya",
+
+testimonialThree:
+"Gracias a ellos pude financiar la compra de mi primer coche sin ningún estrés. Su equipo me acompañó en cada etapa y me ofreció un plan de pago perfectamente adaptado a mi presupuesto. También aprecié la flexibilidad de las mensualidades. Una experiencia muy positiva; los recomiendo sin dudarlo.",
+
+
+footerTitle:
+"¿Desea hablar con un asesor?",
+
+footerDescription:
+"Nuestros expertos financieros están preparados para asesorarle y acompañarle hasta obtener su préstamo.",
+
+contactButton:
+"✉ Escríbanos ahora",
+
+copyright:
+"© 2012 - Grupo Financiero RFG. Todos los derechos reservados."
+
+},
+
+it: {
+
+loginBtn: "🔐 Accedi",
+
+companyName: "Ritora Finance Group",
+
+welcomeText: "BENVENUTO SU",
+
+heroTitle: "La soluzione finanziaria<br>adeguata",
+
+heroDescription:
+"Siamo Ritora Finance Group,<br>il vostro partner di fiducia per<br>prestiti rapidi, sicuri e<br>adatti alle vostre esigenze.<br>Con noi ottenere un prestito<br>semplice, veloce e sicuro per<br>realizzare i vostri progetti è possibile.",
+
+requestLoanBtn: "RICHIEDI UN PRESTITO",
+
+openAccountBtn: "📝 Apri un conto",
+
+aboutTitle: "Chi siamo?",
+
+aboutDescription:
+"Siamo orgogliosi di accompagnarvi nella realizzazione dei vostri progetti personali e professionali grazie alle nostre offerte di prestito flessibili e adattate alle vostre esigenze. Che desideriate finanziare un grande progetto, consolidare le vostre finanze o affrontare spese impreviste, siamo pronti a offrirvi soluzioni rapide, trasparenti e sicure.<br><br>Il nostro impegno si basa sulla fiducia, sulla semplicità e sulla vicinanza. Facciamo tutto il possibile per offrirvi un servizio rapido, attento e completamente personalizzato.<br><br>Ogni situazione è unica, per questo dedichiamo il tempo necessario per proporvi soluzioni chiare, accessibili e su misura.<br><br>Unitevi a coloro che si fidano di noi e affrontate il futuro con serenità grazie a un partner finanziario dedicato al vostro fianco.",
+
+moreInfoBtn: "Maggiori informazioni",
+
+satisfiedClients: "Clienti soddisfatti",
+
+financedLabel: "Finanziato",
+
+applicationsLabel: "Domande attuali",
+
+positiveReviews: "Recensioni positive",
+
+offersTitle: "Scopri le nostre offerte",
+
+personalLoanTitle: "A - Prestiti personali",
+
+personalLoanText:
+"Si tratta di un prestito senza una destinazione specifica che può essere utilizzato per diversi progetti (vacanze, acquisti, lavori).",
+
+businessLoanTitle: "B - Prestiti aziendali",
+
+businessLoanText:
+"Si tratta di un prestito destinato agli imprenditori o alle aziende per finanziare le loro attività, come l'acquisto di attrezzature, liquidità o investimenti.",
+
+carLoanTitle: "C - Prestiti auto",
+
+carLoanText:
+"Prestito destinato all'acquisto di un'auto nuova o usata.",
+
+mortgageLoanTitle: "D - Prestiti ipotecari",
+
+mortgageLoanText:
+"Si tratta di un finanziamento per l'acquisto di una casa, un appartamento o per la costruzione di un'abitazione.",
+
+studentLoanTitle: "E - Prestiti per studenti",
+
+studentLoanText:
+"Si tratta di un prestito destinato a finanziare gli studi dei clienti (tasse scolastiche, alloggio per studenti, ecc.).",
+
+consumerLoanTitle: "F - Prestiti al consumo",
+
+consumerLoanText:
+"Si tratta di un prestito destinato a finanziare beni di consumo (auto, elettrodomestici, mobili, ecc.).",
+
+loanNowBtn: "VOGLIO UN PRESTITO ORA",
+
+experienceText:
+"16 ANNI<br>DI ESPERIENZA",
+
+modernFinanceTitle:
+"La certezza dei servizi finanziari moderni.",
+
+modernFinanceSubtitle:
+"Presso Ritora Finance Group ci basiamo su una filosofia orientata al cliente.",
+
+modernFinanceText:
+"Sappiamo che ogni cliente ha desideri e progetti unici. Per questo facciamo tutto il possibile per offrire soluzioni di credito flessibili e perfettamente adattate alla vostra situazione. Siamo convinti che il successo di ogni progetto personale o professionale si basi sulla fiducia e sul sostegno reciproco.",
+
+
+amountBorrowed:
+"Importo preso in prestito",
+
+rate:
+"Tasso",
+
+amountToRepay:
+"Importo da rimborsare",
+
+currency:
+"Valuta",
+
+duration:
+"Durata",
+
+
+certaintyTitle:
+"La certezza dei servizi finanziari moderni.",
+
+certaintyCompany:
+"-Presso Ritora Finance Group",
+
+certaintyParagraphOne:
+"Siamo guidati da una filosofia centrata sul cliente. Sappiamo che ogni cliente ha esigenze e progetti unici. Per questo ci impegniamo a proporre soluzioni di credito flessibili, perfettamente adattate alla vostra situazione. Siamo convinti che il successo di ogni progetto personale o professionale dipenda dalla fiducia e dal sostegno reciproco.",
+
+certaintyParagraphTwo:
+"Il nostro team di esperti vi accompagnerà passo dopo passo, dall'analisi della vostra richiesta fino all'erogazione dei fondi, assicurandosi che comprendiate tutti gli aspetti del vostro contratto e delle condizioni di rimborso.",
+
+
+testimonialsTitle:
+"I nostri clienti testimoniano....",
+
+
+clientOneName:
+"1 - Jean Michel Pedon — Centro città, Perpignano",
+
+testimonialOne:
+"Come imprenditore, trovare il prestito adatto al mio progetto non è stato facile, ma alla fine ho trovato un partner finanziario che ha compreso le mie esigenze. Grazie al loro prestito personalizzato, ho potuto avviare la mia attività in totale tranquillità. Il loro servizio clienti è eccellente e sono pienamente soddisfatto dei loro servizi.",
+
+
+clientTwoName:
+"2 - Elodie Fente — Liegi",
+
+testimonialTwo:
+"Avevo bisogno di un prestito urgente per finanziare delle ristrutturazioni indispensabili nel mio appartamento, e IFG Bank si è dimostrata incredibilmente efficiente. La procedura è stata semplice, i fondi sono stati erogati rapidamente e le condizioni erano perfettamente chiare fin dall'inizio. Consiglio vivamente i loro servizi a chiunque cerchi un finanziamento trasparente e veloce.",
+
+
+clientThreeName:
+"3 - Louis Ducont — Quartiere dei Pittori, L'Aia",
+
+testimonialThree:
+"Grazie a loro ho potuto finanziare l'acquisto della mia prima auto senza alcuno stress. Il loro team mi ha seguito in ogni fase e mi ha proposto un piano di pagamento perfettamente adatto al mio budget. Ho apprezzato anche la flessibilità delle rate mensili. Un'esperienza molto positiva; li consiglio senza esitazione.",
+
+
+footerTitle:
+"Desiderate parlare con un consulente?",
+
+footerDescription:
+"I nostri esperti finanziari sono pronti a consigliarvi e accompagnarvi fino all'ottenimento del vostro prestito.",
+
+contactButton:
+"✉ Scriveteci ora",
+
+copyright:
+"© 2012 - Gruppo Finanziario RFG. Tutti i diritti riservati."
+
+},
+
+pt: {
+
+loginBtn: "🔐 Entrar",
+
+companyName: "Ritora Finance Group",
+
+welcomeText: "BEM-VINDO AO",
+
+heroTitle: "A solução financeira<br>adequada",
+
+heroDescription:
+"Somos a Ritora Finance Group,<br>o seu parceiro de confiança para<br>empréstimos rápidos, seguros e adaptados<br>às suas necessidades. Conosco, obter um<br>empréstimo simples, rápido e seguro para<br>realizar os seus projetos é possível.",
+
+requestLoanBtn: "SOLICITAR UM EMPRÉSTIMO",
+
+openAccountBtn: "📝 Abra uma conta",
+
+aboutTitle: "Quem somos nós?",
+
+aboutDescription:
+"Temos orgulho em acompanhá-lo na realização dos seus projetos pessoais e profissionais através das nossas ofertas de empréstimos flexíveis e adaptadas às suas necessidades. Quer pretenda financiar um grande projeto, consolidar as suas finanças ou enfrentar despesas inesperadas, estamos preparados para lhe oferecer soluções rápidas, transparentes e seguras.<br><br>O nosso compromisso baseia-se na confiança, simplicidade e proximidade. Fazemos tudo o possível para oferecer um serviço rápido, atento e totalmente personalizado.<br><br>Cada situação é única, por isso dedicamos tempo para apresentar soluções claras, acessíveis e personalizadas.<br><br>Junte-se àqueles que confiam em nós e encare o futuro com tranquilidade junto de um parceiro financeiro dedicado ao seu lado.",
+
+moreInfoBtn: "Mais informações",
+
+satisfiedClients: "Clientes satisfeitos",
+
+financedLabel: "Financiado",
+
+applicationsLabel: "Pedidos atuais",
+
+positiveReviews: "Avaliações positivas",
+
+offersTitle: "Descubra as nossas ofertas",
+
+personalLoanTitle: "A - Empréstimos pessoais",
+
+personalLoanText:
+"É um empréstimo sem finalidade específica que pode ser utilizado para vários projetos (férias, compras, obras).",
+
+businessLoanTitle: "B - Empréstimos empresariais",
+
+businessLoanText:
+"É um empréstimo destinado a empresários ou empresas para financiar as suas atividades, como compra de equipamentos, necessidades de liquidez ou investimentos.",
+
+carLoanTitle: "C - Empréstimos automóveis",
+
+carLoanText:
+"Empréstimo destinado à compra de um veículo novo ou usado.",
+
+mortgageLoanTitle: "D - Empréstimos hipotecários",
+
+mortgageLoanText:
+"É um financiamento destinado à compra de uma casa, apartamento ou construção de uma habitação.",
+
+studentLoanTitle: "E - Empréstimos estudantis",
+
+studentLoanText:
+"É um empréstimo destinado a financiar os estudos dos clientes (propinas, alojamento estudantil, etc.).",
+
+consumerLoanTitle: "F - Empréstimos ao consumo",
+
+consumerLoanText:
+"É um empréstimo destinado ao financiamento de bens de consumo (carros, eletrodomésticos, móveis, etc.).",
+
+loanNowBtn: "QUERO UM EMPRÉSTIMO AGORA",
+
+experienceText:
+"16 ANOS<br>DE EXPERIÊNCIA",
+
+modernFinanceTitle:
+"A certeza dos serviços financeiros modernos.",
+
+modernFinanceSubtitle:
+"Na Ritora Finance Group, baseamo-nos numa filosofia centrada no cliente.",
+
+modernFinanceText:
+"Sabemos que cada cliente tem desejos e projetos únicos. Por isso, fazemos tudo para oferecer soluções de crédito flexíveis e perfeitamente adaptadas à sua situação. Acreditamos que o sucesso de qualquer projeto, pessoal ou profissional, depende da confiança e do apoio mútuo.",
+
+amountBorrowed:
+"Montante Emprestado",
+
+rate:
+"Taxa",
+
+amountToRepay:
+"Montante a Reembolsar",
+
+currency:
+"Moeda",
+
+duration:
+"Duração",
+
+certaintyTitle:
+"A certeza dos serviços financeiros modernos.",
+
+certaintyCompany:
+"-Na Ritora Finance Group",
+
+certaintyParagraphOne:
+"Somos guiados por uma filosofia centrada no cliente. Sabemos que cada cliente tem necessidades e projetos únicos. Por isso, esforçamo-nos para oferecer soluções de crédito flexíveis, perfeitamente adaptadas à sua situação. Estamos convencidos de que o sucesso de qualquer projeto, pessoal ou profissional, depende da confiança e do apoio mútuo.",
+
+certaintyParagraphTwo:
+"A nossa equipa de especialistas irá acompanhá-lo passo a passo, desde a análise do seu pedido até à disponibilização dos fundos, garantindo que compreende todos os aspetos do seu contrato e das condições de reembolso.",
+
+testimonialsTitle:
+"Os nossos clientes testemunham....",
+
+clientOneName:
+"1 - Jean Michel Pedon — Centro da cidade, Perpignan",
+
+testimonialOne:
+"Como empresário, encontrar o empréstimo adequado para o meu projeto não foi fácil, mas finalmente encontrei um parceiro financeiro que compreendeu as minhas necessidades. Graças ao empréstimo personalizado, consegui iniciar o meu negócio com tranquilidade. O atendimento ao cliente é excelente e estou totalmente satisfeito com os serviços prestados.",
+
+clientTwoName:
+"2 - Elodie Fente — Liège",
+
+testimonialTwo:
+"Eu precisava de um empréstimo urgente para financiar reformas essenciais no meu apartamento, e o banco IFG mostrou-se extremamente eficiente. O processo foi simples, os fundos foram disponibilizados rapidamente e as condições eram totalmente claras desde o início. Recomendo os seus serviços a qualquer pessoa que procure um financiamento transparente e rápido.",
+
+clientThreeName:
+"3 - Louis Ducont — Bairro dos Pintores, Haia",
+
+testimonialThree:
+"Graças a eles, consegui financiar a compra do meu primeiro carro sem qualquer stress. A equipa acompanhou-me em todas as etapas e apresentou um plano de pagamento perfeitamente adaptado ao meu orçamento. Também apreciei a flexibilidade das mensalidades. Uma experiência muito positiva; recomendo sem hesitação.",
+
+footerTitle:
+"Gostaria de falar com um consultor?",
+
+footerDescription:
+"Os nossos especialistas financeiros estão prontos para aconselhá-lo e acompanhá-lo até à obtenção do seu empréstimo.",
+
+contactButton:
+"✉ Escreva-nos agora",
+
+copyright:
+"© 2012 - Grupo Financeiro RFG. Todos os direitos reservados."
+
+},
+
+de: {
+
+loginBtn: "🔐 Anmelden",
+
+companyName: "Ritora Finance Group",
+
+welcomeText: "WILLKOMMEN BEI",
+
+heroTitle: "Die passende<br>Finanzlösung",
+
+heroDescription:
+"Wir sind die Ritora Finance Group,<br>Ihr vertrauensvoller Partner für<br>schnelle, sichere und auf Ihre<br>Bedürfnisse zugeschnittene Kredite.<br>Mit uns ist es möglich, einen<br>einfachen, schnellen und sicheren Kredit<br>für die Verwirklichung Ihrer Projekte zu erhalten.",
+
+requestLoanBtn: "KREDIT BEANTRAGEN",
+
+openAccountBtn: "📝 Konto eröffnen",
+
+aboutTitle: "Wer sind wir?",
+
+aboutDescription:
+"Wir sind stolz darauf, Sie bei der Verwirklichung Ihrer persönlichen und beruflichen Projekte mit unseren flexiblen und auf Ihre Bedürfnisse zugeschnittenen Kreditangeboten zu begleiten. Egal, ob Sie ein großes Projekt finanzieren, Ihre Finanzen konsolidieren oder unerwartete Ausgaben bewältigen möchten – wir bieten Ihnen schnelle, transparente und sichere Lösungen.<br><br>Unser Engagement basiert auf Vertrauen, Einfachheit und Nähe. Wir setzen alles daran, Ihnen einen schnellen, aufmerksamen und vollständig personalisierten Service zu bieten.<br><br>Da jede Situation einzigartig ist, nehmen wir uns die Zeit, Ihnen klare, zugängliche und maßgeschneiderte Lösungen anzubieten.<br><br>Schließen Sie sich den Menschen an, die uns vertrauen, und gestalten Sie Ihre Zukunft sicher mit einem engagierten Finanzpartner an Ihrer Seite.",
+
+moreInfoBtn: "Weitere Informationen",
+
+satisfiedClients: "Zufriedene Kunden",
+
+financedLabel: "Finanziert",
+
+applicationsLabel: "Aktuelle Anträge",
+
+positiveReviews: "Positive Bewertungen",
+
+offersTitle: "Entdecken Sie unsere Angebote",
+
+personalLoanTitle: "A - Privatkredite",
+
+personalLoanText:
+"Dies ist ein Kredit ohne festgelegten Verwendungszweck, der für verschiedene Projekte genutzt werden kann (Urlaub, Einkäufe, Renovierungen).",
+
+businessLoanTitle: "B - Unternehmenskredite",
+
+businessLoanText:
+"Dies ist ein Kredit für Unternehmer oder Unternehmen zur Finanzierung ihrer Aktivitäten, wie zum Beispiel den Kauf von Ausrüstung, Liquidität oder Investitionen.",
+
+carLoanTitle: "C - Autokredite",
+
+carLoanText:
+"Kredit für den Kauf eines neuen oder gebrauchten Fahrzeugs.",
+
+mortgageLoanTitle: "D - Hypothekendarlehen",
+
+mortgageLoanText:
+"Dies ist eine Finanzierung für den Kauf eines Hauses, einer Wohnung oder für den Bau eines Hauses.",
+
+studentLoanTitle: "E - Studienkredite",
+
+studentLoanText:
+"Dies ist ein Kredit zur Finanzierung des Studiums der Kunden (Studiengebühren, Studentenunterkunft usw.).",
+
+consumerLoanTitle: "F - Konsumkredite",
+
+consumerLoanText:
+"Dies ist ein Kredit zur Finanzierung von Konsumgütern (Autos, Haushaltsgeräte, Möbel usw.).",
+
+loanNowBtn: "ICH MÖCHTE JETZT EINEN KREDIT",
+
+experienceText:
+"16 JAHRE<br>ERFAHRUNG",
+
+modernFinanceTitle:
+"Die Sicherheit moderner Finanzdienstleistungen.",
+
+modernFinanceSubtitle:
+"Bei Ritora Finance Group verfolgen wir eine kundenorientierte Philosophie.",
+
+modernFinanceText:
+"Wir wissen, dass jeder Kunde einzigartige Wünsche und Projekte hat. Deshalb setzen wir alles daran, flexible Kreditlösungen anzubieten, die perfekt an Ihre Situation angepasst sind. Wir sind überzeugt, dass der Erfolg jedes persönlichen oder beruflichen Projekts auf Vertrauen und gegenseitiger Unterstützung beruht.",
+
+amountBorrowed:
+"Geliehener Betrag",
+
+rate:
+"Zinssatz",
+
+amountToRepay:
+"Rückzahlungsbetrag",
+
+currency:
+"Währung",
+
+duration:
+"Laufzeit",
+
+certaintyTitle:
+"Die Sicherheit moderner Finanzdienstleistungen.",
+
+certaintyCompany:
+"-Bei Ritora Finance Group",
+
+certaintyParagraphOne:
+"Wir lassen uns von einer kundenorientierten Philosophie leiten. Wir wissen, dass jeder Kunde unterschiedliche Bedürfnisse und Projekte hat. Deshalb bemühen wir uns, flexible Kreditlösungen anzubieten, die perfekt zu Ihrer Situation passen. Wir sind überzeugt, dass der Erfolg jedes persönlichen oder beruflichen Projekts auf Vertrauen und gegenseitiger Unterstützung basiert.",
+
+certaintyParagraphTwo:
+"Unser Expertenteam begleitet Sie Schritt für Schritt, von der Analyse Ihres Antrags bis zur Auszahlung der Mittel. Dabei stellen wir sicher, dass Sie alle Aspekte Ihres Vertrags und die Rückzahlungsbedingungen vollständig verstehen.",
+
+testimonialsTitle:
+"Unsere Kunden berichten....",
+
+clientOneName:
+"1 - Jean Michel Pedon — Stadtzentrum, Perpignan",
+
+testimonialOne:
+"Als Unternehmer war es nicht einfach, den passenden Kredit für mein Projekt zu finden. Schließlich habe ich einen Finanzpartner gefunden, der meine Bedürfnisse verstanden hat. Dank des maßgeschneiderten Kredits konnte ich mein Unternehmen mit voller Sicherheit starten. Der Kundenservice ist ausgezeichnet und ich bin mit den angebotenen Leistungen vollkommen zufrieden.",
+
+clientTwoName:
+"2 - Elodie Fente — Lüttich",
+
+testimonialTwo:
+"Ich benötigte dringend einen Kredit zur Finanzierung notwendiger Renovierungen meiner Wohnung, und die IFG Bank erwies sich als äußerst effizient. Der Ablauf war einfach, die Mittel wurden schnell freigegeben und die Bedingungen waren von Anfang an vollkommen klar. Ich empfehle ihre Dienstleistungen jedem, der eine transparente und schnelle Finanzierung sucht.",
+
+clientThreeName:
+"3 - Louis Ducont — Malerviertel, Den Haag",
+
+testimonialThree:
+"Dank ihnen konnte ich den Kauf meines ersten Autos ohne Stress finanzieren. Das Team hat mich bei jedem Schritt begleitet und mir einen Zahlungsplan angeboten, der perfekt zu meinem Budget passte. Besonders geschätzt habe ich die Flexibilität der monatlichen Raten. Eine sehr positive Erfahrung; ich empfehle sie ohne zu zögern weiter.",
+
+footerTitle:
+"Möchten Sie mit einem Berater sprechen?",
+
+footerDescription:
+"Unsere Finanzexperten stehen bereit, um Sie zu beraten und Sie bis zur Bewilligung Ihres Kredits zu begleiten.",
+
+contactButton:
+"✉ Schreiben Sie uns jetzt",
+
+copyright:
+"© 2012 - RFG Finanzgruppe. Alle Rechte vorbehalten."
+
+},
+
+pl: {
+
+loginBtn: "🔐 Zaloguj się",
+
+companyName: "Ritora Finance Group",
+
+welcomeText: "WITAMY W",
+
+heroTitle: "Odpowiednie<br>rozwiązanie finansowe",
+
+heroDescription:
+"Jesteśmy Ritora Finance Group,<br>Twoim zaufanym partnerem oferującym<br>szybkie, bezpieczne i dopasowane<br>do Twoich potrzeb kredyty.<br>Z nami uzyskanie prostego, szybkiego<br>i bezpiecznego kredytu na realizację<br>Twoich projektów jest możliwe.",
+
+requestLoanBtn: "ZŁÓŻ WNIOSEK O KREDYT",
+
+openAccountBtn: "📝 Otwórz konto",
+
+aboutTitle: "Kim jesteśmy?",
+
+aboutDescription:
+"Jesteśmy dumni, że możemy wspierać Cię w realizacji Twoich osobistych i zawodowych projektów dzięki naszym elastycznym ofertom kredytowym dostosowanym do Twoich potrzeb. Niezależnie od tego, czy chcesz sfinansować duży projekt, uporządkować swoje finanse lub pokryć nieprzewidziane wydatki, oferujemy szybkie, przejrzyste i bezpieczne rozwiązania.<br><br>Nasze zobowiązanie opiera się na zaufaniu, prostocie i bliskości. Dokładamy wszelkich starań, aby zapewnić szybki, uważny i w pełni spersonalizowany serwis.<br><br>Każda sytuacja jest wyjątkowa, dlatego poświęcamy czas na przedstawienie jasnych, dostępnych i dopasowanych rozwiązań.<br><br>Dołącz do osób, które nam zaufały i spokojnie patrz w przyszłość z dedykowanym partnerem finansowym u swojego boku.",
+
+moreInfoBtn: "Więcej informacji",
+
+satisfiedClients: "Zadowoleni klienci",
+
+financedLabel: "Sfinansowane",
+
+applicationsLabel: "Aktualne wnioski",
+
+positiveReviews: "Pozytywne opinie",
+
+offersTitle: "Poznaj nasze oferty",
+
+personalLoanTitle: "A - Kredyty osobiste",
+
+personalLoanText:
+"Jest to kredyt bez określonego celu, który można wykorzystać na różne projekty (wakacje, zakupy, remonty).",
+
+businessLoanTitle: "B - Kredyty dla firm",
+
+businessLoanText:
+"Jest to kredyt przeznaczony dla przedsiębiorców lub firm w celu finansowania działalności, takiej jak zakup sprzętu, płynność finansowa lub inwestycje.",
+
+carLoanTitle: "C - Kredyty samochodowe",
+
+carLoanText:
+"Kredyt przeznaczony na zakup nowego lub używanego samochodu.",
+
+mortgageLoanTitle: "D - Kredyty hipoteczne",
+
+mortgageLoanText:
+"Jest to finansowanie przeznaczone na zakup domu, mieszkania lub budowę nieruchomości.",
+
+studentLoanTitle: "E - Kredyty studenckie",
+
+studentLoanText:
+"Jest to kredyt przeznaczony na finansowanie edukacji klientów (czesne, zakwaterowanie studenckie itp.).",
+
+consumerLoanTitle: "F - Kredyty konsumpcyjne",
+
+consumerLoanText:
+"Jest to kredyt przeznaczony na finansowanie dóbr konsumpcyjnych (samochody, sprzęt AGD, meble itp.).",
+
+loanNowBtn: "CHCĘ KREDYT TERAZ",
+
+experienceText:
+"16 LAT<br>DOŚWIADCZENIA",
+
+modernFinanceTitle:
+"Pewność nowoczesnych usług finansowych.",
+
+modernFinanceSubtitle:
+"W Ritora Finance Group kierujemy się filozofią skoncentrowaną na kliencie.",
+
+modernFinanceText:
+"Wiemy, że każdy klient ma wyjątkowe potrzeby i projekty. Dlatego dokładamy wszelkich starań, aby oferować elastyczne rozwiązania kredytowe idealnie dopasowane do Twojej sytuacji. Jesteśmy przekonani, że sukces każdego projektu, osobistego lub zawodowego, opiera się na zaufaniu i wzajemnym wsparciu.",
+
+amountBorrowed:
+"Pożyczona kwota",
+
+rate:
+"Oprocentowanie",
+
+amountToRepay:
+"Kwota do spłaty",
+
+currency:
+"Waluta",
+
+duration:
+"Okres",
+
+certaintyTitle:
+"Pewność nowoczesnych usług finansowych.",
+
+certaintyCompany:
+"-W Ritora Finance Group",
+
+certaintyParagraphOne:
+"Kierujemy się filozofią skoncentrowaną na kliencie. Wiemy, że każdy klient ma inne potrzeby i wyjątkowe projekty. Dlatego staramy się oferować elastyczne rozwiązania kredytowe idealnie dopasowane do Twojej sytuacji. Jesteśmy przekonani, że sukces każdego projektu, osobistego lub zawodowego, opiera się na zaufaniu i wzajemnym wsparciu.",
+
+certaintyParagraphTwo:
+"Nasz zespół ekspertów przeprowadzi Cię krok po kroku, od analizy Twojego wniosku aż do wypłaty środków, dbając o to, abyś dokładnie rozumiał wszystkie aspekty umowy oraz warunki spłaty.",
+
+testimonialsTitle:
+"Nasi klienci mówią....",
+
+clientOneName:
+"1 - Jean Michel Pedon — Centrum miasta, Perpignan",
+
+testimonialOne:
+"Jako przedsiębiorca znalezienie odpowiedniego kredytu dla mojego projektu nie było łatwe, ale ostatecznie znalazłem partnera finansowego, który zrozumiał moje potrzeby. Dzięki dopasowanemu kredytowi mogłem spokojnie rozpocząć działalność. Obsługa klienta jest doskonała i jestem w pełni zadowolony z oferowanych usług.",
+
+clientTwoName:
+"2 - Elodie Fente — Liège",
+
+testimonialTwo:
+"Potrzebowałam pilnego kredytu na sfinansowanie niezbędnego remontu mojego mieszkania, a IFG Bank okazał się niezwykle skuteczny. Procedura była prosta, środki zostały szybko udostępnione, a warunki były jasne od samego początku. Gorąco polecam ich usługi każdemu, kto szuka przejrzystego i szybkiego finansowania.",
+
+clientThreeName:
+"3 - Louis Ducont — Dzielnica Malarzy, Haga",
+
+testimonialThree:
+"Dzięki nim mogłem sfinansować zakup mojego pierwszego samochodu bez żadnego stresu. Ich zespół towarzyszył mi na każdym etapie i zaproponował plan spłat idealnie dopasowany do mojego budżetu. Doceniłem również elastyczność miesięcznych rat. Bardzo pozytywne doświadczenie; polecam ich bez wahania.",
+
+footerTitle:
+"Czy chcesz porozmawiać z doradcą?",
+
+footerDescription:
+"Nasi eksperci finansowi są gotowi doradzić Ci i towarzyszyć Ci aż do uzyskania kredytu.",
+
+contactButton:
+"✉ Napisz do nas teraz",
+
+copyright:
+"© 2012 - Grupa Finansowa RFG. Wszelkie prawa zastrzeżone."
+
+},
+
+ru: {
+
+loginBtn: "🔐 Войти",
+
+companyName: "Ritora Finance Group",
+
+welcomeText: "ДОБРО ПОЖАЛОВАТЬ В",
+
+heroTitle: "Подходящее<br>финансовое решение",
+
+heroDescription:
+"Мы — Ritora Finance Group,<br>ваш надежный партнер по<br>быстрым, безопасным и<br>адаптированным под ваши<br>потребности кредитам.<br>С нами получить простой,<br>быстрый и безопасный кредит<br>для реализации ваших проектов возможно.",
+
+requestLoanBtn: "ЗАПРОСИТЬ КРЕДИТ",
+
+openAccountBtn: "📝 Открыть счет",
+
+aboutTitle: "Кто мы?",
+
+aboutDescription:
+"Мы гордимся тем, что помогаем вам реализовывать ваши личные и профессиональные проекты благодаря нашим гибким кредитным предложениям, адаптированным под ваши потребности. Независимо от того, хотите ли вы финансировать крупный проект, улучшить свое финансовое положение или справиться с непредвиденными расходами, мы готовы предложить быстрые, прозрачные и безопасные решения.<br><br>Наши принципы основаны на доверии, простоте и близости к клиенту. Мы делаем все возможное, чтобы предоставить вам быстрый, внимательный и полностью персонализированный сервис.<br><br>Каждая ситуация уникальна, поэтому мы уделяем время для предоставления понятных, доступных и индивидуальных решений.<br><br>Присоединяйтесь к тем, кто уже доверяет нам, и уверенно смотрите в будущее вместе с надежным финансовым партнером рядом с вами.",
+
+moreInfoBtn: "Больше информации",
+
+satisfiedClients: "Довольные клиенты",
+
+financedLabel: "Профинансировано",
+
+applicationsLabel: "Текущие заявки",
+
+positiveReviews: "Положительные отзывы",
+
+offersTitle: "Откройте наши предложения",
+
+personalLoanTitle: "A - Персональные кредиты",
+
+personalLoanText:
+"Это кредит без определенной цели использования, который можно применять для различных проектов (отдых, покупки, ремонт).",
+
+businessLoanTitle: "B - Кредиты для бизнеса",
+
+businessLoanText:
+"Это кредит, предназначенный для предпринимателей или компаний для финансирования их деятельности, такой как покупка оборудования, пополнение оборотных средств или инвестиции.",
+
+carLoanTitle: "C - Автокредиты",
+
+carLoanText:
+"Кредит предназначен для покупки нового или подержанного автомобиля.",
+
+mortgageLoanTitle: "D - Ипотечные кредиты",
+
+mortgageLoanText:
+"Это финансирование для покупки дома, квартиры или строительства жилья.",
+
+studentLoanTitle: "E - Студенческие кредиты",
+
+studentLoanText:
+"Это кредит для финансирования обучения клиентов (оплата обучения, студенческое жилье и т.д.).",
+
+consumerLoanTitle: "F - Потребительские кредиты",
+
+consumerLoanText:
+"Это кредит для финансирования потребительских товаров (автомобили, бытовая техника, мебель и т.д.).",
+
+loanNowBtn: "Я ХОЧУ КРЕДИТ СЕЙЧАС",
+
+experienceText:
+"16 ЛЕТ<br>ОПЫТА",
+
+modernFinanceTitle:
+"Уверенность в современных финансовых услугах.",
+
+modernFinanceSubtitle:
+"В Ritora Finance Group мы придерживаемся философии, ориентированной на клиента.",
+
+modernFinanceText:
+"Мы знаем, что каждый клиент имеет уникальные желания и проекты. Поэтому мы стремимся предлагать гибкие кредитные решения, идеально соответствующие вашей ситуации. Мы уверены, что успех любого личного или профессионального проекта основан на доверии и взаимной поддержке.",
+
+amountBorrowed:
+"Заемная сумма",
+
+rate:
+"Ставка",
+
+amountToRepay:
+"Сумма к возврату",
+
+currency:
+"Валюта",
+
+duration:
+"Срок",
+
+certaintyTitle:
+"Уверенность в современных финансовых услугах.",
+
+certaintyCompany:
+"-В Ritora Finance Group",
+
+certaintyParagraphOne:
+"Мы руководствуемся философией, ориентированной на клиента. Мы знаем, что у каждого клиента есть свои потребности и уникальные проекты. Поэтому мы стараемся предлагать гибкие кредитные решения, идеально подходящие для вашей ситуации. Мы убеждены, что успех любого личного или профессионального проекта зависит от доверия и взаимной поддержки.",
+
+certaintyParagraphTwo:
+"Наша команда экспертов будет сопровождать вас на каждом этапе — от анализа вашей заявки до выдачи средств, гарантируя, что вы полностью понимаете все условия вашего договора и порядок погашения кредита.",
+
+testimonialsTitle:
+"Отзывы наших клиентов....",
+
+clientOneName:
+"1 - Jean Michel Pedon — Центр города, Перпиньян",
+
+testimonialOne:
+"Как предпринимателю, мне было непросто найти подходящий кредит для моего проекта, но в итоге я нашел финансового партнера, который понял мои потребности. Благодаря индивидуальному кредитному предложению я смог спокойно запустить свой бизнес. Обслуживание клиентов превосходное, и я полностью доволен предоставленными услугами.",
+
+clientTwoName:
+"2 - Elodie Fente — Льеж",
+
+testimonialTwo:
+"Мне срочно понадобился кредит для финансирования необходимого ремонта моей квартиры, и банк IFG показал себя невероятно эффективным. Процедура была простой, средства были быстро предоставлены, а условия были полностью понятны с самого начала. Я рекомендую их услуги всем, кто ищет прозрачное и быстрое финансирование.",
+
+clientThreeName:
+"3 - Louis Ducont — Квартал художников, Гаага",
+
+testimonialThree:
+"Благодаря им я смог профинансировать покупку своего первого автомобиля без какого-либо стресса. Их команда сопровождала меня на каждом этапе и предложила план платежей, идеально подходящий моему бюджету. Я также оценил гибкость ежемесячных платежей. Очень положительный опыт; рекомендую их без колебаний.",
+
+footerTitle:
+"Хотите поговорить с консультантом?",
+
+footerDescription:
+"Наши финансовые эксперты готовы проконсультировать вас и сопровождать до получения вашего кредита.",
+
+contactButton:
+"✉ Напишите нам сейчас",
+
+copyright:
+"© 2012 - Финансовая группа RFG. Все права защищены."
+
+},
+
+nl: {
+
+loginBtn: "🔐 Inloggen",
+
+companyName: "Ritora Finance Group",
+
+welcomeText: "WELKOM BIJ",
+
+heroTitle: "De juiste<br>financiële oplossing",
+
+heroDescription:
+"Wij zijn Ritora Finance Group,<br>uw betrouwbare partner voor<br>snelle, veilige en op uw behoeften<br>aangepaste leningen.<br>Met ons is het mogelijk om een<br>eenvoudige, snelle en veilige lening<br>te verkrijgen om uw projecten te realiseren.",
+
+requestLoanBtn: "EEN LENING AANVRAGEN",
+
+openAccountBtn: "📝 Open een account",
+
+aboutTitle: "Wie zijn wij?",
+
+aboutDescription:
+"Wij zijn er trots op u te begeleiden bij het realiseren van uw persoonlijke en professionele projecten dankzij onze flexibele leningaanbiedingen die zijn afgestemd op uw behoeften. Of u nu een groot project wilt financieren, uw financiën wilt verbeteren of onverwachte kosten moet opvangen, wij bieden u snelle, transparante en veilige oplossingen.<br><br>Onze inzet is gebaseerd op vertrouwen, eenvoud en nabijheid. Wij doen er alles aan om u een snelle, attente en volledig persoonlijke service te bieden.<br><br>Omdat elke situatie uniek is, nemen wij de tijd om duidelijke, toegankelijke en op maat gemaakte oplossingen voor te stellen.<br><br>Sluit u aan bij degenen die ons vertrouwen en kijk met vertrouwen naar de toekomst met een toegewijde financiële partner aan uw zijde.",
+
+moreInfoBtn: "Meer informatie",
+
+satisfiedClients: "Tevreden klanten",
+
+financedLabel: "Gefinancierd",
+
+applicationsLabel: "Huidige aanvragen",
+
+positiveReviews: "Positieve beoordelingen",
+
+offersTitle: "Ontdek onze aanbiedingen",
+
+personalLoanTitle: "A - Persoonlijke leningen",
+
+personalLoanText:
+"Dit is een lening zonder specifiek doel die kan worden gebruikt voor verschillende projecten (vakantie, aankopen, renovaties).",
+
+businessLoanTitle: "B - Zakelijke leningen",
+
+businessLoanText:
+"Dit is een lening voor ondernemers of bedrijven om hun activiteiten te financieren, zoals de aankoop van apparatuur, liquiditeit of investeringen.",
+
+carLoanTitle: "C - Autoleningen",
+
+carLoanText:
+"Lening bedoeld voor de aankoop van een nieuwe of gebruikte auto.",
+
+mortgageLoanTitle: "D - Hypotheekleningen",
+
+mortgageLoanText:
+"Dit is een financiering voor de aankoop van een huis, appartement of voor de bouw van een woning.",
+
+studentLoanTitle: "E - Studentenleningen",
+
+studentLoanText:
+"Dit is een lening bedoeld om de studie van klanten te financieren (collegegeld, studentenhuisvesting, enz.).",
+
+consumerLoanTitle: "F - Consumentenleningen",
+
+consumerLoanText:
+"Dit is een lening bedoeld voor de financiering van consumptiegoederen (auto's, huishoudelijke apparaten, meubels, enz.).",
+
+loanNowBtn: "IK WIL NU EEN LENING",
+
+experienceText:
+"16 JAAR<br>ERVARING",
+
+modernFinanceTitle:
+"De zekerheid van moderne financiële diensten.",
+
+modernFinanceSubtitle:
+"Bij Ritora Finance Group hanteren wij een klantgerichte filosofie.",
+
+modernFinanceText:
+"Wij weten dat elke klant unieke wensen en projecten heeft. Daarom doen wij er alles aan om flexibele kredietoplossingen aan te bieden die perfect aansluiten bij uw situatie. Wij zijn ervan overtuigd dat het succes van elk persoonlijk of professioneel project gebaseerd is op vertrouwen en wederzijdse ondersteuning.",
+
+amountBorrowed:
+"Geleend bedrag",
+
+rate:
+"Rente",
+
+amountToRepay:
+"Terug te betalen bedrag",
+
+currency:
+"Valuta",
+
+duration:
+"Duur",
+
+certaintyTitle:
+"De zekerheid van moderne financiële diensten.",
+
+certaintyCompany:
+"-Bij Ritora Finance Group",
+
+certaintyParagraphOne:
+"Wij worden geleid door een klantgerichte filosofie. Wij weten dat elke klant verschillende behoeften en unieke projecten heeft. Daarom streven wij ernaar flexibele kredietoplossingen aan te bieden die perfect aansluiten bij uw situatie. Wij zijn ervan overtuigd dat het succes van elk persoonlijk of professioneel project gebaseerd is op vertrouwen en wederzijdse ondersteuning.",
+
+certaintyParagraphTwo:
+"Ons team van experts begeleidt u stap voor stap, van de analyse van uw aanvraag tot de uitbetaling van de middelen, waarbij wij ervoor zorgen dat u alle aspecten van uw contract en de terugbetalingsvoorwaarden volledig begrijpt.",
+
+testimonialsTitle:
+"Onze klanten vertellen....",
+
+clientOneName:
+"1 - Jean Michel Pedon — Centrum, Perpignan",
+
+testimonialOne:
+"Als ondernemer was het niet eenvoudig om de juiste lening voor mijn project te vinden, maar uiteindelijk vond ik een financiële partner die mijn behoeften begreep. Dankzij de lening op maat kon ik mijn bedrijf met vertrouwen starten. De klantenservice is uitstekend en ik ben volledig tevreden met hun diensten.",
+
+clientTwoName:
+"2 - Elodie Fente — Luik",
+
+testimonialTwo:
+"Ik had dringend een lening nodig om noodzakelijke renovaties aan mijn appartement te financieren, en IFG Bank bleek ongelooflijk efficiënt. De procedure was eenvoudig, de middelen werden snel vrijgegeven en de voorwaarden waren vanaf het begin volledig duidelijk. Ik raad hun diensten ten zeerste aan aan iedereen die op zoek is naar transparante en snelle financiering.",
+
+clientThreeName:
+"3 - Louis Ducont — Schilderswijk, Den Haag",
+
+testimonialThree:
+"Dankzij hen kon ik de aankoop van mijn eerste auto financieren zonder stress. Hun team begeleidde mij bij elke stap en stelde een betalingsplan voor dat perfect bij mijn budget paste. Ik waardeerde ook de flexibiliteit van de maandelijkse betalingen. Een zeer positieve ervaring; ik beveel hen zonder twijfel aan.",
+
+footerTitle:
+"Wilt u met een adviseur spreken?",
+
+footerDescription:
+"Onze financiële experts staan klaar om u te adviseren en u te begeleiden totdat u uw lening ontvangt.",
+
+contactButton:
+"✉ Schrijf ons nu",
+
+copyright:
+"© 2012 - RFG Financiële Groep. Alle rechten voorbehouden."
+
+}
+
+};
+
+const browserLang = navigator.language.substring(0,2);
+
+if(translations[browserLang]){
+    changeLanguage(browserLang);
+}else{
+    changeLanguage("fr");
+}
+
+</script>
+
+</body>
+</html>

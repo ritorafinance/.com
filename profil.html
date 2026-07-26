@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title id="pageTitle">Mon Profil - RFG</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f2f3f7;
+}
+
+/* HEADER */
+
+.topbar{
+height:80px;
+background:#0b76d1;
+display:flex;
+align-items:center;
+padding:0 22px;
+color:white;
+box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.menu-btn{
+font-size:34px;
+margin-right:25px;
+cursor:pointer;
+}
+
+.page-title{
+font-size:22px;
+font-weight:500;
+}
+
+/* MENU */
+
+.sidebar{
+position:fixed;
+top:0;
+left:-280px;
+width:280px;
+height:100%;
+background:white;
+box-shadow:3px 0 20px rgba(0,0,0,.25);
+transition:.3s;
+z-index:999;
+overflow-y:auto;
+}
+
+.sidebar.active{
+left:0;
+}
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.4);
+display:none;
+z-index:998;
+}
+
+.overlay.active{
+display:block;
+}
+
+.sidebar-header{
+background:#0b76d1;
+padding:25px;
+color:white;
+}
+
+.profile-box{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.profile-photo{
+width:90px;
+height:90px;
+border-radius:50%;
+border:3px solid white;
+object-fit:cover;
+background:white;
+margin-bottom:12px;
+}
+
+.profile-name{
+font-size:18px;
+font-weight:600;
+}
+
+.profile-account{
+margin-top:6px;
+font-size:14px;
+opacity:.9;
+}
+
+.profile-balance{
+margin-top:12px;
+background:rgba(255,255,255,.18);
+padding:8px 18px;
+border-radius:20px;
+font-weight:600;
+}
+
+.sidebar a{
+display:block;
+padding:18px 25px;
+text-decoration:none;
+color:#222;
+border-bottom:1px solid #eee;
+font-size:15px;
+}
+
+.sidebar a:hover{
+background:#f5f5f5;
+}
+
+.logout{
+color:#e53935!important;
+font-weight:600;
+}
+
+/* CONTENU */
+
+.container{
+padding:20px;
+}
+
+/* CARTE */
+
+.card{
+background:white;
+border-radius:5px;
+box-shadow:0 2px 8px rgba(0,0,0,.15);
+margin-bottom:28px;
+overflow:hidden;
+}
+
+/* ENTÊTE */
+
+.card-title{
+background:#455a64;
+color:white;
+padding:18px 20px;
+font-size:28px;
+font-weight:600;
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+/* PHOTO */
+
+.avatar-zone{
+text-align:center;
+padding:30px;
+}
+
+.avatar-zone img{
+width:120px;
+height:120px;
+border-radius:50%;
+border:4px solid #0b76d1;
+object-fit:cover;
+margin-bottom:15px;
+}
+
+.user-name{
+font-size:24px;
+font-weight:600;
+color:#333;
+margin-bottom:8px;
+}
+
+.status{
+display:inline-block;
+background:#00c853;
+color:white;
+padding:6px 18px;
+border-radius:4px;
+font-size:14px;
+margin-top:8px;
+}
+
+.info-table{
+width:100%;
+border-collapse:collapse;
+}
+
+.info-table tr{
+border-bottom:1px solid #ececec;
+}
+
+.info-table td{
+padding:18px 20px;
+font-size:18px;
+}
+
+.info-table td:first-child{
+width:45%;
+font-weight:600;
+color:#555;
+}
+
+.info-table td:last-child{
+color:#444;
+}
+
+@media(max-width:700px){
+
+.info-table td{
+display:block;
+width:100%;
+padding:10px 20px;
+}
+
+.info-table td:first-child{
+padding-bottom:0;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="sidebar" id="sidebar">
+
+<div class="sidebar-header">
+
+<div class="profile-box">
+
+<img id="menuPhoto"
+class="profile-photo"
+src="https://ui-avatars.com/api/?name=RFG&background=ffffff&color=0b76d1&size=200">
+
+<div class="profile-name" id="profileName">
+</div>
+
+<div class="profile-account" id="menuCompte">
+Compte : ----------
+</div>
+
+<div class="profile-balance">
+<span id="labelSolde">SOLDE :</span>
+<span id="menuSolde">0 €</span>
+</div>
+</div>
+
+</div>
+<a href="dashboard.html" id="homeMenu">Accueil</a>
+
+<a href="profil.html" id="profileMenu">Mon profil</a>
+
+<a href="transfert.html" id="transferMenu">Transferts</a>
+
+<a href="depot.html" id="depositMenu">Recharger mon compte</a>
+
+<a href="historique.html" id="historyMenu">Historiques</a>
+
+<a href="#" class="logout" id="logoutBtn">Déconnexion</a>
+
+</div>
+
+<div class="topbar">
+
+<div class="menu-btn" id="menuBtn">
+☰
+</div>
+
+<div class="page-title" id="pageHeader">
+Mon compte
+</div>
+
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<div class="avatar-zone">
+
+<img id="photoProfil"
+src="https://ui-avatars.com/api/?name=RFG&background=ffffff&color=0b76d1&size=200">
+
+<div class="user-name" id="nomComplet">
+Chargement...
+</div>
+
+<div class="status" id="statusText">
+Actif
+</div>
+
+</div>
+
+<table class="info-table">
+
+<tr>
+<td id="lblNumeroCompte">Numéro de compte</td>
+<td id="numeroCompte">----------</td>
+</tr>
+
+<tr>
+<td id="lblMembreDepuis">Membre depuis</td>
+<td id="dateInscription">----------</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="card">
+
+<div class="card-title" id="infoTitle">
+👤 INFORMATION
+</div>
+
+<table class="info-table">
+
+<tr>
+<td id="lblPrenom">Prénom :</td>
+<td id="prenom"></td>
+</tr>
+
+<tr>
+<td id="lblNom">Nom de famille :</td>
+<td id="nom"></td>
+</tr>
+
+<tr>
+<td id="lblGenre">Genre :</td>
+<td id="genre"></td>
+</tr>
+
+<tr>
+<td id="lblNaissance">Date de naissance :</td>
+<td id="naissance"></td>
+</tr>
+
+<tr>
+<td id="lblTypeCompte">Type de compte :</td>
+<td id="typeCompte"></td>
+</tr>
+
+<tr>
+<td id="lblDevise">Compte en devises :</td>
+<td id="devise">€</td>
+</tr>
+
+<tr>
+<td id="lblEmail">E-mail :</td>
+<td id="email"></td>
+</tr>
+
+<tr>
+<td id="lblTelephone">Téléphone :</td>
+<td id="telephone"></td>
+</tr>
+
+<tr>
+<td id="lblAdresse">Adresse :</td>
+<td id="adresse"></td>
+</tr>
+
+<tr>
+<td id="lblProfession">Profession :</td>
+<td id="profession"></td>
+</tr>
+
+<tr>
+<td id="lblVille">Ville :</td>
+<td id="ville"></td>
+</tr>
+
+<tr>
+<td id="lblPays">Pays :</td>
+<td id="pays"></td>
+</tr>
+
+</table>
+</div>
+
+</div>
+
+<script>
+
+const browserLang = navigator.language.substring(0,2);
+
+const lang = [
+"fr",
+"en",
+"es",
+"it",
+"pt",
+"de",
+"pl",
+"ru",
+"nl"
+].includes(browserLang) ? browserLang : "fr";
+
+const t = {
+
+fr:{
+pageTitle:"Mon Profil - RFG",
+pageHeader:"Mon compte",
+loading:"Chargement...",
+status:"Actif",
+account:"Compte",
+balance:"SOLDE",
+home:"Accueil",
+profile:"Mon profil",
+transfer:"Transferts",
+deposit:"Recharger mon compte",
+history:"Historiques",
+logout:"Déconnexion",
+info:"👤 INFORMATION",
+numeroCompte:"Numéro de compte",
+membreDepuis:"Membre depuis",
+prenom:"Prénom :",
+nom:"Nom de famille :",
+genre:"Genre :",
+naissance:"Date de naissance :",
+typeCompte:"Type de compte :",
+devise:"Compte en devises :",
+email:"E-mail :",
+telephone:"Téléphone :",
+adresse:"Adresse :",
+profession:"Profession :",
+ville:"Ville :",
+pays:"Pays :"
+},
+
+en:{
+pageTitle:"My Profile - RFG",
+pageHeader:"My Account",
+loading:"Loading...",
+status:"Active",
+account:"Account",
+balance:"BALANCE",
+home:"Home",
+profile:"My Profile",
+transfer:"Transfers",
+deposit:"Deposit Funds",
+history:"History",
+logout:"Logout",
+info:"👤 INFORMATION",
+numeroCompte:"Account Number",
+membreDepuis:"Member Since",
+prenom:"First Name:",
+nom:"Last Name:",
+genre:"Gender:",
+naissance:"Date of Birth:",
+typeCompte:"Account Type:",
+devise:"Currency Account:",
+email:"Email:",
+telephone:"Phone:",
+adresse:"Address:",
+profession:"Profession:",
+ville:"City:",
+pays:"Country:"
+},
+
+
+es:{
+pageTitle:"Mi Perfil - RFG",
+pageHeader:"Mi cuenta",
+loading:"Cargando...",
+status:"Activo",
+account:"Cuenta",
+balance:"SALDO",
+home:"Inicio",
+profile:"Mi perfil",
+transfer:"Transferencias",
+deposit:"Recargar cuenta",
+history:"Historial",
+logout:"Cerrar sesión",
+info:"👤 INFORMACIÓN",
+numeroCompte:"Número de cuenta",
+membreDepuis:"Miembro desde",
+prenom:"Nombre:",
+nom:"Apellido:",
+genre:"Género:",
+naissance:"Fecha de nacimiento:",
+typeCompte:"Tipo de cuenta:",
+devise:"Cuenta en divisas:",
+email:"Correo electrónico:",
+telephone:"Teléfono:",
+adresse:"Dirección:",
+profession:"Profesión:",
+ville:"Ciudad:",
+pays:"País:"
+},
+
+it:{
+pageTitle:"Il mio Profilo - RFG",
+pageHeader:"Il mio conto",
+loading:"Caricamento...",
+status:"Attivo",
+account:"Conto",
+balance:"SALDO",
+home:"Home",
+profile:"Il mio profilo",
+transfer:"Trasferimenti",
+deposit:"Ricarica conto",
+history:"Cronologia",
+logout:"Disconnessione",
+info:"👤 INFORMAZIONI",
+numeroCompte:"Numero di conto",
+membreDepuis:"Membro dal",
+prenom:"Nome:",
+nom:"Cognome:",
+genre:"Genere:",
+naissance:"Data di nascita:",
+typeCompte:"Tipo di conto:",
+devise:"Conto in valuta:",
+email:"E-mail:",
+telephone:"Telefono:",
+adresse:"Indirizzo:",
+profession:"Professione:",
+ville:"Città:",
+pays:"Paese:"
+},
+
+pt:{
+pageTitle:"Meu Perfil - RFG",
+pageHeader:"Minha conta",
+loading:"Carregando...",
+status:"Ativo",
+account:"Conta",
+balance:"SALDO",
+home:"Início",
+profile:"Meu perfil",
+transfer:"Transferências",
+deposit:"Recarregar conta",
+history:"Histórico",
+logout:"Sair",
+info:"👤 INFORMAÇÕES",
+numeroCompte:"Número da conta",
+membreDepuis:"Membro desde",
+prenom:"Nome:",
+nom:"Sobrenome:",
+genre:"Gênero:",
+naissance:"Data de nascimento:",
+typeCompte:"Tipo de conta:",
+devise:"Conta em moeda estrangeira:",
+email:"E-mail:",
+telephone:"Telefone:",
+adresse:"Endereço:",
+profession:"Profissão:",
+ville:"Cidade:",
+pays:"País:"
+},
+
+de:{
+pageTitle:"Mein Profil - RFG",
+pageHeader:"Mein Konto",
+loading:"Laden...",
+status:"Aktiv",
+account:"Konto",
+balance:"KONTOSTAND",
+home:"Startseite",
+profile:"Mein Profil",
+transfer:"Überweisungen",
+deposit:"Konto aufladen",
+history:"Verlauf",
+logout:"Abmelden",
+info:"👤 INFORMATIONEN",
+numeroCompte:"Kontonummer",
+membreDepuis:"Mitglied seit",
+prenom:"Vorname:",
+nom:"Nachname:",
+genre:"Geschlecht:",
+naissance:"Geburtsdatum:",
+typeCompte:"Kontotyp:",
+devise:"Währungskonto:",
+email:"E-Mail:",
+telephone:"Telefon:",
+adresse:"Adresse:",
+profession:"Beruf:",
+ville:"Stadt:",
+pays:"Land:"
+},
+
+pl:{
+pageTitle:"Mój Profil - RFG",
+pageHeader:"Moje konto",
+loading:"Ładowanie...",
+status:"Aktywne",
+account:"Konto",
+balance:"SALDO",
+home:"Strona główna",
+profile:"Mój profil",
+transfer:"Przelewy",
+deposit:"Doładuj konto",
+history:"Historia",
+logout:"Wyloguj",
+info:"👤 INFORMACJE",
+numeroCompte:"Numer konta",
+membreDepuis:"Członek od",
+prenom:"Imię:",
+nom:"Nazwisko:",
+genre:"Płeć:",
+naissance:"Data urodzenia:",
+typeCompte:"Typ konta:",
+devise:"Konto walutowe:",
+email:"E-mail:",
+telephone:"Telefon:",
+adresse:"Adres:",
+profession:"Zawód:",
+ville:"Miasto:",
+pays:"Kraj:"
+},
+
+ru:{
+pageTitle:"Мой профиль - RFG",
+pageHeader:"Мой счет",
+loading:"Загрузка...",
+status:"Активен",
+account:"Счет",
+balance:"БАЛАНС",
+home:"Главная",
+profile:"Мой профиль",
+transfer:"Переводы",
+deposit:"Пополнить счет",
+history:"История",
+logout:"Выход",
+info:"👤 ИНФОРМАЦИЯ",
+numeroCompte:"Номер счета",
+membreDepuis:"Клиент с",
+prenom:"Имя:",
+nom:"Фамилия:",
+genre:"Пол:",
+naissance:"Дата рождения:",
+typeCompte:"Тип счета:",
+devise:"Валютный счет:",
+email:"Эл. почта:",
+telephone:"Телефон:",
+adresse:"Адрес:",
+profession:"Профессия:",
+ville:"Город:",
+pays:"Страна:"
+},
+
+nl:{
+pageTitle:"Mijn Profiel - RFG",
+pageHeader:"Mijn account",
+loading:"Laden...",
+status:"Actief",
+account:"Account",
+balance:"SALDO",
+home:"Home",
+profile:"Mijn profiel",
+transfer:"Overschrijvingen",
+deposit:"Account opladen",
+history:"Geschiedenis",
+logout:"Uitloggen",
+info:"👤 INFORMATIE",
+numeroCompte:"Rekeningnummer",
+membreDepuis:"Lid sinds",
+prenom:"Voornaam:",
+nom:"Achternaam:",
+genre:"Geslacht:",
+naissance:"Geboortedatum:",
+typeCompte:"Accounttype:",
+devise:"Valutarekening:",
+email:"E-mail:",
+telephone:"Telefoon:",
+adresse:"Adres:",
+profession:"Beroep:",
+ville:"Stad:",
+pays:"Land:"
+}
+
+}[lang];
+
+document.title=t.pageTitle;
+
+document.getElementById("pageHeader").textContent=t.pageHeader;
+document.getElementById("statusText").textContent=t.status;
+document.getElementById("labelSolde").textContent=t.balance;
+document.getElementById("menuCompte").textContent=t.account+" : ----------";
+
+document.getElementById("homeMenu").textContent=t.home;
+document.getElementById("profileMenu").textContent=t.profile;
+document.getElementById("transferMenu").textContent=t.transfer;
+document.getElementById("depositMenu").textContent=t.deposit;
+document.getElementById("historyMenu").textContent=t.history;
+document.getElementById("logoutBtn").textContent=t.logout;
+document.getElementById("profileName").textContent = t.loading;
+
+document.getElementById("infoTitle").textContent=t.info;
+
+document.getElementById("lblNumeroCompte").textContent=t.numeroCompte;
+document.getElementById("lblMembreDepuis").textContent=t.membreDepuis;
+document.getElementById("lblPrenom").textContent=t.prenom;
+document.getElementById("lblNom").textContent=t.nom;
+document.getElementById("lblGenre").textContent=t.genre;
+document.getElementById("lblNaissance").textContent=t.naissance;
+document.getElementById("lblTypeCompte").textContent=t.typeCompte;
+document.getElementById("lblDevise").textContent=t.devise;
+document.getElementById("lblEmail").textContent=t.email;
+document.getElementById("lblTelephone").textContent=t.telephone;
+document.getElementById("lblAdresse").textContent=t.adresse;
+document.getElementById("lblProfession").textContent=t.profession;
+document.getElementById("lblVille").textContent=t.ville;
+document.getElementById("lblPays").textContent=t.pays;
+
+</script>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged,
+signOut
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+getFirestore,
+doc,
+getDoc
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey:"AIzaSyA3bj3QMqH9fxda8ixe66dSlW-Kb8mD8hk",
+
+authDomain:"rfg-finance.firebaseapp.com",
+
+projectId:"rfg-finance",
+
+storageBucket:"rfg-finance.firebasestorage.app",
+
+messagingSenderId:"600995823489",
+
+appId:"1:600995823489:web:1a4449f074d14eca05f280"
+
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+/* MENU */
+
+const sidebar=document.getElementById("sidebar");
+const menuBtn=document.getElementById("menuBtn");
+const overlay=document.getElementById("overlay");
+
+menuBtn.onclick=()=>{
+
+sidebar.classList.add("active");
+overlay.classList.add("active");
+
+};
+
+overlay.onclick=()=>{
+
+sidebar.classList.remove("active");
+overlay.classList.remove("active");
+
+};
+
+/* CHARGEMENT DES DONNÉES */
+
+onAuthStateChanged(auth,async(user)=>{
+
+if(!user){
+
+window.location.replace("connecter.html");
+return;
+
+}
+
+try{
+
+const ref=doc(db,"utilisateurs",user.uid);
+
+const snap=await getDoc(ref);
+
+if(snap.exists()){
+
+const data=snap.data();
+
+const prenom=data.prenom||"";
+const nom=data.nom||"";
+const nomComplet=prenom+" "+nom;
+
+/* PHOTO */
+
+if(data.photo){
+
+document.getElementById("photoProfil").src=data.photo;
+document.getElementById("menuPhoto").src=data.photo;
+
+}else{
+
+const avatar=`https://ui-avatars.com/api/?name=${encodeURIComponent(nomComplet)}&background=ffffff&color=0b76d1&size=200`;
+
+document.getElementById("photoProfil").src=avatar;
+document.getElementById("menuPhoto").src=avatar;
+
+}
+
+/* NOM */
+
+document.getElementById("nomComplet").textContent=nomComplet;
+document.getElementById("profileName").textContent =
+nomComplet || t.loading;
+/* MENU */
+
+document.getElementById("menuCompte").textContent =
+t.account + " : " + (data.numeroCompte || "---------");
+
+document.getElementById("menuSolde").textContent =
+Number(data.solde ?? 0).toLocaleString(lang) + " " + (data.devise || "€");
+
+/* INFORMATIONS */
+
+document.getElementById("numeroCompte").textContent=data.numeroCompte||"";
+document.getElementById("dateInscription").textContent =
+data.dateCreation
+? new Date(data.dateCreation).toLocaleDateString(lang)
+: "";
+document.getElementById("prenom").textContent=data.prenom||"";
+document.getElementById("nom").textContent=data.nom||"";
+document.getElementById("genre").textContent=data.sexe||"";
+document.getElementById("naissance").textContent=data.dateNaissance||"";
+document.getElementById("typeCompte").textContent=data.typeCompte||"Compte courant";
+document.getElementById("devise").textContent=data.devise||"€";
+document.getElementById("email").textContent=data.email||user.email||"";
+document.getElementById("telephone").textContent=data.telephone||"";
+document.getElementById("adresse").textContent=data.adresse||"";
+document.getElementById("profession").textContent=data.profession||"";
+document.getElementById("ville").textContent=data.ville||"";
+document.getElementById("pays").textContent=data.pays||"";
+
+}else{
+
+window.location.replace("dashboard.html");
+
+}
+
+}catch(error){
+
+console.error(error);
+alert("Erreur lors du chargement du profil.");
+
+}
+
+});
+
+/* DÉCONNEXION */
+
+document.getElementById("logoutBtn").addEventListener("click",async()=>{
+
+try{
+
+await signOut(auth);
+
+window.location.replace("connecter.html");
+
+}catch(error){
+
+alert("Impossible de se déconnecter.");
+
+}
+
+});
+
+</script>
+
+</body>
+</html>

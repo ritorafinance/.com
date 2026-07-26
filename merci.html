@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Merci - Ritora Finance Group</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --blue:#0b76c6;
+    --green:#4CAF50;
+    --dark:#1b1b1b;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f5f7fb;
+    color:#222;
+}
+
+/* HEADER */
+
+header{
+    background:var(--blue);
+    color:white;
+    padding:30px 20px;
+    text-align:center;
+    position:relative;
+}
+
+
+.logo-rfg{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    animation:float 5s ease-in-out infinite;
+    margin-right:10px;
+}
+
+.logo-emoji{
+    font-size:70px;
+    line-height:1;
+}
+
+.logo-text{
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:42px;
+    font-weight:900;
+    color:#000;
+    line-height:0.9;
+    letter-spacing:1px;
+}
+
+.header-flex{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+}
+
+/* MAIN */
+
+.container{
+    max-width:1000px;
+    margin:40px auto;
+    padding:20px;
+}
+
+/* SUCCESS BANNER */
+
+.success-banner{
+    background:var(--green);
+    color:white;
+    border-radius:20px;
+    padding:60px 40px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+    animation:fadeIn .8s ease;
+}
+
+.check{
+    width:90px;
+    height:90px;
+    background:white;
+    color:var(--green);
+    border-radius:50%;
+    margin:auto;
+    font-size:55px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:25px;
+}
+
+.success-banner h1{
+    font-size:38px;
+    margin-bottom:20px;
+}
+
+.success-banner p{
+    font-size:22px;
+    line-height:1.8;
+    font-weight:500;
+}
+
+/* NEXT STEPS */
+
+.info-box{
+    background:white;
+    margin-top:30px;
+    border-radius:15px;
+    padding:30px;
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+}
+
+.info-box h2{
+    color:var(--blue);
+    margin-bottom:15px;
+}
+
+.info-box ul{
+    padding-left:20px;
+    line-height:2;
+}
+
+/* BUTTON */
+
+.home-btn{
+    display:inline-block;
+    margin-top:25px;
+    background:var(--blue);
+    color:white;
+    text-decoration:none;
+    padding:14px 30px;
+    border-radius:10px;
+    font-weight:700;
+}
+
+.home-btn:hover{
+    opacity:.9;
+}
+
+/* FOOTER */
+
+.rfg-footer{
+    margin-top:50px;
+    background:var(--blue);
+    color:white;
+    text-align:center;
+}
+
+.footer-content{
+    padding:40px 15px;
+}
+
+.footer-content h2{
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.footer-content p{
+    max-width:650px;
+    margin:auto;
+    line-height:1.8;
+}
+
+.footer-btn{
+    display:inline-block;
+    margin-top:20px;
+    background:white;
+    color:var(--blue);
+    text-decoration:none;
+    padding:14px 28px;
+    border-radius:10px;
+    font-weight:700;
+}
+
+.footer-bottom{
+    border-top:1px solid rgba(255,255,255,.3);
+    padding:15px;
+    font-size:13px;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+@media(max-width:768px){
+
+.success-banner{
+    padding:40px 20px;
+}
+
+.success-banner h1{
+    font-size:28px;
+}
+
+.success-banner p{
+    font-size:18px;
+}
+
+.header-flex{
+    flex-direction:column;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<body>
+
+<header>
+
+<div class="header-flex">
+
+<div class="logo-rfg" aria-hidden="true">
+<div class="logo-emoji">💱</div>
+<div class="logo-text">RFG</div>
+</div>
+
+<div>
+<h1 id="company">Ritora Finance Group</h1>
+<div id="slogan">La certitude pour vos projets financiers</div>
+</div>
+
+</div>
+
+</header>
+
+<div class="container">
+
+<div class="success-banner">
+
+<div class="check">✓</div>
+
+<h1 id="success_title">
+Demande enregistrée avec succès
+</h1>
+
+<p id="success_text">
+Votre demande de prêt a bien été enregistrée.<br><br>
+L'équipe technique vous contactera par courriel
+pour la suite du traitement.<br>
+Merci pour votre confiance.
+</p>
+
+<a href="index.html" class="home-btn" id="home_btn">
+Retour à l'accueil
+</a>
+
+</div>
+
+<div class="info-box">
+
+<h2 id="steps_title">📋 Prochaines étapes</h2>
+
+<ul>
+<li id="step1"></li>
+<li id="step2"></li>
+<li id="step3"></li>
+<li id="step4"></li>
+</ul>
+
+</div>
+
+</div>
+
+<footer class="rfg-footer">
+
+<div class="footer-content">
+
+<h2 id="advisor_title">
+Souhaitez-vous parler à un conseiller ?
+</h2>
+
+<p id="advisor_text">
+Nos experts financiers sont prêts à vous accompagner
+dans la réalisation de votre projet.
+</p>
+
+<a href="mailto:ritorafinancegroup@gmail.com"
+class="footer-btn"
+id="contact_btn">
+✉ Écrivez-nous maintenant
+</a>
+
+</div>
+
+<div class="footer-bottom" id="copyright">
+© 2012 - Groupe financier RFG. Tous droits réservés.
+</div>
+
+</footer>
+
+<script>
+
+const t = {
+
+fr:{
+title:"Merci - Ritora Finance Group",
+slogan:"La certitude pour vos projets financiers",
+success_title:"Demande enregistrée avec succès",
+success_text:"Votre demande de prêt a bien été enregistrée.<br><br>L'équipe technique vous contactera par courriel pour la suite du traitement.<br>Merci pour votre confiance.",
+home_btn:"Retour à l'accueil",
+steps_title:"📋 Prochaines étapes",
+step1:"Analyse de votre dossier par nos conseillers.",
+step2:"Vérification des informations transmises.",
+step3:"Réponse par e-mail sous 24 à 72 heures.",
+step4:"Accompagnement personnalisé jusqu'au déblocage des fonds.",
+advisor_title:"Souhaitez-vous parler à un conseiller ?",
+advisor_text:"Nos experts financiers sont prêts à vous accompagner dans la réalisation de votre projet.",
+contact_btn:"✉ Écrivez-nous maintenant",
+copyright:"© 2012 - Groupe financier RFG. Tous droits réservés."
+},
+
+en:{
+title:"Thank You - Ritora Finance Group",
+slogan:"Confidence for your financial projects",
+success_title:"Application Successfully Submitted",
+success_text:"Your loan application has been successfully registered.<br><br>Our technical team will contact you by email regarding the next steps.<br>Thank you for your trust.",
+home_btn:"Back to Home",
+steps_title:"📋 Next Steps",
+step1:"Review of your application by our advisors.",
+step2:"Verification of submitted information.",
+step3:"Email response within 24 to 72 hours.",
+step4:"Personalized support until funds are released.",
+advisor_title:"Would you like to speak with an advisor?",
+advisor_text:"Our financial experts are ready to assist you with your project.",
+contact_btn:"✉ Contact us now",
+copyright:"© 2012 - RFG Financial Group. All rights reserved."
+},
+
+es:{
+title:"Gracias - Ritora Finance Group",
+slogan:"La certeza para sus proyectos financieros",
+success_title:"Solicitud registrada con éxito",
+success_text:"Su solicitud de préstamo ha sido registrada correctamente.<br><br>Nuestro equipo técnico se pondrá en contacto con usted por correo electrónico.<br>Gracias por su confianza.",
+home_btn:"Volver al inicio",
+steps_title:"📋 Próximos pasos",
+step1:"Análisis de su expediente.",
+step2:"Verificación de la información enviada.",
+step3:"Respuesta por correo electrónico en 24 a 72 horas.",
+step4:"Acompañamiento personalizado hasta la liberación de los fondos.",
+advisor_title:"¿Desea hablar con un asesor?",
+advisor_text:"Nuestros expertos financieros están listos para ayudarle.",
+contact_btn:"✉ Escríbanos ahora",
+copyright:"© 2012 - Grupo Financiero RFG. Todos los derechos reservados."
+},
+
+it:{
+title:"Grazie - Ritora Finance Group",
+slogan:"La certezza per i vostri progetti finanziari",
+success_title:"Richiesta registrata con successo",
+success_text:"La tua richiesta di prestito è stata registrata correttamente.<br><br>Il nostro team ti contatterà via email.<br>Grazie per la fiducia.",
+home_btn:"Torna alla home",
+steps_title:"📋 Prossimi passi",
+step1:"Analisi della pratica.",
+step2:"Verifica delle informazioni.",
+step3:"Risposta via email entro 24-72 ore.",
+step4:"Supporto personalizzato fino all'erogazione.",
+advisor_title:"Vuoi parlare con un consulente?",
+advisor_text:"I nostri esperti finanziari sono pronti ad aiutarti.",
+contact_btn:"✉ Scrivici ora",
+copyright:"© 2012 - Gruppo Finanziario RFG. Tutti i diritti riservati."
+},
+
+pt:{
+title:"Obrigado - Ritora Finance Group",
+slogan:"A certeza para os seus projetos financeiros",
+success_title:"Solicitação registrada com sucesso",
+success_text:"Seu pedido de empréstimo foi registrado com sucesso.<br><br>Nossa equipe entrará em contato por e-mail.<br>Obrigado pela confiança.",
+home_btn:"Voltar ao início",
+steps_title:"📋 Próximas etapas",
+step1:"Análise do seu processo.",
+step2:"Verificação das informações.",
+step3:"Resposta por e-mail em 24 a 72 horas.",
+step4:"Acompanhamento personalizado.",
+advisor_title:"Deseja falar com um consultor?",
+advisor_text:"Nossos especialistas estão prontos para ajudá-lo.",
+contact_btn:"✉ Escreva para nós",
+copyright:"© 2012 - Grupo Financeiro RFG. Todos os direitos reservados."
+},
+
+de:{
+title:"Danke - Ritora Finance Group",
+slogan:"Sicherheit für Ihre Finanzprojekte",
+success_title:"Antrag erfolgreich eingereicht",
+success_text:"Ihr Kreditantrag wurde erfolgreich registriert.<br><br>Unser Team wird Sie per E-Mail kontaktieren.<br>Vielen Dank für Ihr Vertrauen.",
+home_btn:"Zur Startseite",
+steps_title:"📋 Nächste Schritte",
+step1:"Prüfung Ihres Antrags.",
+step2:"Überprüfung der Angaben.",
+step3:"Antwort per E-Mail innerhalb von 24 bis 72 Stunden.",
+step4:"Persönliche Betreuung bis zur Auszahlung.",
+advisor_title:"Möchten Sie mit einem Berater sprechen?",
+advisor_text:"Unsere Experten helfen Ihnen gerne weiter.",
+contact_btn:"✉ Jetzt kontaktieren",
+copyright:"© 2012 - RFG Finanzgruppe. Alle Rechte vorbehalten."
+},
+
+pl:{
+title:"Dziękujemy - Ritora Finance Group",
+slogan:"Pewność dla Twoich projektów finansowych",
+success_title:"Wniosek został zapisany",
+success_text:"Twój wniosek został pomyślnie zarejestrowany.<br><br>Nasz zespół skontaktuje się z Tobą e-mailem.<br>Dziękujemy za zaufanie.",
+home_btn:"Powrót do strony głównej",
+steps_title:"📋 Kolejne kroki",
+step1:"Analiza wniosku.",
+step2:"Weryfikacja informacji.",
+step3:"Odpowiedź e-mail w ciągu 24–72 godzin.",
+step4:"Indywidualne wsparcie.",
+advisor_title:"Chcesz porozmawiać z doradcą?",
+advisor_text:"Nasi eksperci są gotowi pomóc.",
+contact_btn:"✉ Napisz do nas",
+copyright:"© 2012 - Grupa Finansowa RFG. Wszelkie prawa zastrzeżone."
+},
+
+ru:{
+title:"Спасибо - Ritora Finance Group",
+slogan:"Уверенность для ваших финансовых проектов",
+success_title:"Заявка успешно зарегистрирована",
+success_text:"Ваша заявка успешно зарегистрирована.<br><br>Наша команда свяжется с вами по электронной почте.<br>Спасибо за доверие.",
+home_btn:"Вернуться на главную",
+steps_title:"📋 Следующие шаги",
+step1:"Анализ заявки.",
+step2:"Проверка информации.",
+step3:"Ответ по электронной почте в течение 24–72 часов.",
+step4:"Персональное сопровождение.",
+advisor_title:"Хотите поговорить с консультантом?",
+advisor_text:"Наши специалисты готовы помочь.",
+contact_btn:"✉ Напишите нам",
+copyright:"© 2012 - Финансовая группа RFG. Все права защищены."
+},
+
+nl:{
+title:"Bedankt - Ritora Finance Group",
+slogan:"Zekerheid voor uw financiële projecten",
+success_title:"Aanvraag succesvol geregistreerd",
+success_text:"Uw leningaanvraag is succesvol geregistreerd.<br><br>Ons team neemt contact met u op via e-mail.<br>Bedankt voor uw vertrouwen.",
+home_btn:"Terug naar home",
+steps_title:"📋 Volgende stappen",
+step1:"Analyse van uw dossier.",
+step2:"Controle van de gegevens.",
+step3:"Antwoord per e-mail binnen 24 tot 72 uur.",
+step4:"Persoonlijke begeleiding.",
+advisor_title:"Wilt u met een adviseur spreken?",
+advisor_text:"Onze experts staan klaar om u te helpen.",
+contact_btn:"✉ Schrijf ons nu",
+copyright:"© 2012 - RFG Financiële Groep. Alle rechten voorbehouden."
+}
+
+};
+
+const lang = navigator.language.substring(0,2);
+const tr = t[lang] || t.fr;
+
+document.title = tr.title;
+
+document.getElementById("slogan").innerHTML = tr.slogan;
+document.getElementById("success_title").innerHTML = tr.success_title;
+document.getElementById("success_text").innerHTML = tr.success_text;
+document.getElementById("home_btn").innerHTML = tr.home_btn;
+document.getElementById("steps_title").innerHTML = tr.steps_title;
+document.getElementById("step1").innerHTML = tr.step1;
+document.getElementById("step2").innerHTML = tr.step2;
+document.getElementById("step3").innerHTML = tr.step3;
+document.getElementById("step4").innerHTML = tr.step4;
+document.getElementById("advisor_title").innerHTML = tr.advisor_title;
+document.getElementById("advisor_text").innerHTML = tr.advisor_text;
+document.getElementById("contact_btn").innerHTML = tr.contact_btn;
+document.getElementById("copyright").innerHTML = tr.copyright;
+
+</script>
+
+</body>
+</html>

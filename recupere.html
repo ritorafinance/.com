@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title id="pageTitle">Récupération envoyée - RFG</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f4f7fb;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.card{
+background:#fff;
+padding:40px 25px;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+text-align:center;
+max-width:420px;
+width:90%;
+}
+
+.icon{
+font-size:60px;
+margin-bottom:15px;
+}
+
+h1{
+font-size:22px;
+color:#0b2d67;
+margin-bottom:10px;
+}
+
+p{
+font-size:14px;
+color:#555;
+margin-bottom:20px;
+line-height:1.5;
+}
+
+.btn{
+display:inline-block;
+background:#0b76c6;
+color:#fff;
+padding:12px 20px;
+border-radius:8px;
+text-decoration:none;
+font-weight:600;
+}
+
+.btn:hover{
+background:#09579a;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="icon">📩</div>
+
+<h1 id="titleText">
+Email envoyé
+</h1>
+
+<p id="messageText">
+Un lien de réinitialisation a été envoyé à votre adresse email.<br>
+Vérifiez votre boîte de réception et vos spams.
+</p>
+
+<a href="connecter.html" class="btn" id="btnText">
+Retour connexion
+</a>
+
+</div>
+
+
+<script>
+
+const browserLang = navigator.language.substring(0,2);
+
+const lang = [
+"fr","en","es","it","pt","de","pl","ru","nl"
+].includes(browserLang) ? browserLang : "fr";
+
+
+const t = {
+
+fr:{
+title:"Récupération envoyée - RFG",
+email:"Email envoyé",
+message:"Un lien de réinitialisation a été envoyé à votre adresse email.<br>Vérifiez votre boîte de réception et vos spams.",
+button:"Retour connexion"
+},
+
+en:{
+title:"Recovery sent - RFG",
+email:"Email sent",
+message:"A password reset link has been sent to your email address.<br>Check your inbox and spam folder.",
+button:"Back to login"
+},
+
+es:{
+title:"Recuperación enviada - RFG",
+email:"Correo enviado",
+message:"Se ha enviado un enlace de restablecimiento a su correo electrónico.<br>Revise su bandeja de entrada y spam.",
+button:"Volver al inicio de sesión"
+},
+
+it:{
+title:"Recupero inviato - RFG",
+email:"Email inviata",
+message:"Un link per reimpostare la password è stato inviato al tuo indirizzo email.<br>Controlla la posta in arrivo e lo spam.",
+button:"Torna al login"
+},
+
+pt:{
+title:"Recuperação enviada - RFG",
+email:"Email enviado",
+message:"Um link de redefinição de senha foi enviado para seu endereço de email.<br>Verifique sua caixa de entrada e spam.",
+button:"Voltar ao login"
+},
+
+de:{
+title:"Wiederherstellung gesendet - RFG",
+email:"E-Mail gesendet",
+message:"Ein Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail-Adresse gesendet.<br>Überprüfen Sie Ihren Posteingang und Spam.",
+button:"Zurück zur Anmeldung"
+},
+
+pl:{
+title:"Odzyskiwanie wysłane - RFG",
+email:"E-mail wysłany",
+message:"Link resetowania hasła został wysłany na Twój adres e-mail.<br>Sprawdź skrzynkę odbiorczą i spam.",
+button:"Powrót do logowania"
+},
+
+ru:{
+title:"Восстановление отправлено - RFG",
+email:"Письмо отправлено",
+message:"Ссылка для сброса пароля отправлена на вашу электронную почту.<br>Проверьте входящие и спам.",
+button:"Вернуться к входу"
+},
+
+nl:{
+title:"Herstel verzonden - RFG",
+email:"E-mail verzonden",
+message:"Een link om uw wachtwoord opnieuw in te stellen is naar uw e-mailadres verzonden.<br>Controleer uw inbox en spam.",
+button:"Terug naar inloggen"
+}
+
+}[lang];
+
+
+document.title=t.title;
+
+document.getElementById("titleText").innerHTML=t.email;
+
+document.getElementById("messageText").innerHTML=t.message;
+
+document.getElementById("btnText").textContent=t.button;
+
+
+</script>
+
+
+</body>
+</html>

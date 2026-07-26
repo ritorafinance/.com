@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dépôt financier - RFG</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f2f3f7;
+}
+
+/* BARRE DU HAUT */
+
+.topbar{
+height:80px;
+background:#0b76d1;
+display:flex;
+align-items:center;
+padding:0 22px;
+color:white;
+box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.menu-btn{
+font-size:34px;
+margin-right:25px;
+cursor:pointer;
+}
+
+.page-title{
+font-size:22px;
+font-weight:500;
+}
+
+/* MENU LATÉRAL */
+
+.sidebar{
+position:fixed;
+top:0;
+left:-280px;
+width:280px;
+height:100%;
+background:white;
+box-shadow:3px 0 20px rgba(0,0,0,.2);
+transition:.3s;
+z-index:999;
+overflow:auto;
+}
+
+.sidebar.active{
+left:0;
+}
+
+.sidebar-header{
+background:#0b76d1;
+padding:25px;
+color:white;
+}
+
+.profile-box{
+display:flex;
+flex-direction:column;
+align-items:center;
+text-align:center;
+}
+
+.profile-photo{
+width:80px;
+height:80px;
+border-radius:50%;
+border:3px solid white;
+background:white;
+object-fit:cover;
+margin-bottom:12px;
+}
+
+.profile-name{
+font-size:18px;
+font-weight:600;
+margin-bottom:6px;
+}
+
+.profile-account{
+font-size:14px;
+margin-bottom:10px;
+opacity:.9;
+}
+
+.profile-balance{
+background:rgba(255,255,255,.2);
+padding:8px 18px;
+border-radius:20px;
+font-size:15px;
+font-weight:600;
+}
+
+.sidebar a{
+display:block;
+padding:18px 25px;
+text-decoration:none;
+color:#222;
+border-bottom:1px solid #eee;
+}
+
+.sidebar a:hover{
+background:#f5f5f5;
+}
+
+.logout{
+color:#e53935!important;
+font-weight:600;
+}
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.4);
+display:none;
+z-index:998;
+}
+
+.overlay.active{
+display:block;
+}
+
+/* CONTENU */
+
+.container{
+max-width:900px;
+margin:30px auto;
+background:white;
+border-radius:6px;
+box-shadow:0 2px 8px rgba(0,0,0,.15);
+overflow:hidden;
+}
+
+.back-link{
+padding:25px 30px 0;
+font-size:18px;
+color:#0b76d1;
+font-weight:500;
+}
+
+.back-link a{
+color:#0b76d1;
+text-decoration:none;
+}
+
+.form-title{
+padding:25px 30px;
+font-size:32px;
+font-weight:600;
+border-bottom:1px solid #e5e5e5;
+color:#444;
+}
+
+.form-content{
+padding:35px;
+}
+
+label{
+display:block;
+margin-top:22px;
+margin-bottom:10px;
+font-size:17px;
+font-weight:500;
+color:#444;
+}
+
+input{
+width:100%;
+padding:16px;
+font-size:17px;
+border:1px solid #d5d5d5;
+border-radius:4px;
+outline:none;
+}
+
+input:focus{
+border-color:#0b76d1;
+}
+
+.success-box{
+
+position:fixed;
+top:30px;
+left:50%;
+transform:translateX(-50%);
+width:90%;
+max-width:700px;
+
+background:#eaf8df;
+
+border:1px solid #cbe7b6;
+
+color:#2f5d1d;
+
+padding:25px;
+
+border-radius:8px;
+
+font-size:20px;
+
+line-height:1.7;
+
+display:none;
+
+z-index:99999;
+
+box-shadow:0 8px 20px rgba(0,0,0,.2);
+
+}
+
+.close-success{
+
+position:absolute;
+right:20px;
+top:10px;
+font-size:28px;
+cursor:pointer;
+
+}
+
+.checkbox{
+display:flex;
+align-items:flex-start;
+gap:12px;
+margin-top:25px;
+}
+
+.checkbox input{
+width:22px;
+height:22px;
+margin-top:3px;
+}
+
+.checkbox label{
+margin:0;
+font-size:18px;
+font-weight:400;
+}
+
+.deposit-btn{
+margin-top:30px;
+background:#0b76d1;
+color:white;
+border:none;
+padding:18px 40px;
+font-size:22px;
+border-radius:5px;
+cursor:pointer;
+transition:.3s;
+}
+
+.deposit-btn:hover{
+background:#095ea8;
+}
+
+@media(max-width:700px){
+
+.form-title{
+font-size:22px;
+}
+
+.form-content{
+padding:20px;
+}
+
+.deposit-btn{
+width:100%;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="sidebar" id="sidebar">
+
+<div class="sidebar-header">
+
+<div class="profile-box">
+
+<img
+id="profilePhoto"
+class="profile-photo"
+src="https://ui-avatars.com/api/?name=RFG&background=ffffff&color=0b76d1&size=200">
+
+<div
+class="profile-name"
+id="profileName">
+
+Chargement...
+
+</div>
+
+<div
+class="profile-account"
+id="accountNumber">
+
+Compte : ............
+
+</div>
+
+<div class="profile-balance">
+
+SOLDE :
+<span id="menuSolde">0 €</span>
+
+</div>
+
+</div>
+
+</div>
+
+<a href="dashboard.html" id="homeMenu">Accueil</a>
+<a href="profil.html" id="profileMenu">Mon profil</a>
+<a href="transfert.html" id="transferMenu">Transferts</a>
+<a href="depot.html" id="depositMenu">Recharger mon compte</a>
+<a href="historique.html" id="historyMenu">Historiques</a>
+
+<a href="#" class="logout" id="logoutBtn">Déconnexion</a>
+
+</div>
+
+<div class="topbar">
+
+<div class="menu-btn" id="menuBtn">
+
+☰
+
+</div>
+
+<div class="page-title" id="pageHeader">
+Mon compte
+</div>
+
+</div>
+
+<div class="container">
+
+<div class="back-link">
+<a href="historique.html" id="historyLink">
+← Consulter l'historique des transactions
+</a>
+</div>
+<div class="form-title" id="formTitle">
+Formulaire de dépôt financier
+</div>
+
+<div class="form-content">
+
+<label id="lblCompte">
+Numéro de compte bancaire 
+</label>
+
+<input
+type="text"
+id="numeroCompte"
+readonly>
+
+<label id="lblMontant">
+Montant à déposer 
+</label>
+
+<input
+type="number"
+id="montant"
+placeholder="Saisissez ici le montant à déposer...">
+<div class="checkbox">
+
+<input
+type="checkbox"
+id="validationDepot">
+
+<label for="validationDepot" id="lblValidation">
+Cochez cette case pour valider la demande de dépôt financier
+</label>
+</div>
+
+<button
+class="deposit-btn"
+id="btnDepot">
+Confirmer
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const browserLang = navigator.language.substring(0,2);
+
+const lang = [
+"fr",
+"en",
+"es",
+"it",
+"pt",
+"de",
+"pl",
+"ru",
+"nl"
+].includes(browserLang) ? browserLang : "fr";
+
+const t={
+
+fr:{
+title:"Dépôt financier - RFG",
+page:"Mon compte",
+loading:"Chargement...",
+account:"Compte",
+balance:"SOLDE",
+home:"Accueil",
+profile:"Mon profil",
+transfer:"Transferts",
+deposit:"Recharger mon compte",
+history:"Historiques",
+logout:"Déconnexion",
+back:"← Consulter l'historique des transactions",
+formTitle:"Formulaire de dépôt financier",
+bankAccount:"Numéro de compte bancaire",
+amount:"Montant à déposer",
+placeholder:"Saisissez ici le montant à déposer...",
+check:"Cochez cette case pour valider la demande de dépôt financier",
+confirm:"Confirmer",
+successTitle:"Excellent !",
+invalidAmount:"Montant invalide",
+pending:"EN ATTENTE",
+depositError:"Erreur lors du dépôt :",
+validationRequired:"Validation obligatoire",
+successMessage1:"Votre demande de dépôt financier a bien été envoyée.",
+successMessage2:"Un expert financier vous contactera pour vous expliquer la suite des démarches."
+},
+
+en:{
+title:"Financial Deposit - RFG",
+page:"My Account",
+loading:"Loading...",
+account:"Account",
+balance:"BALANCE",
+home:"Home",
+profile:"My Profile",
+transfer:"Transfers",
+deposit:"Deposit Funds",
+history:"History",
+logout:"Logout",
+back:"← View transaction history",
+formTitle:"Financial Deposit Form",
+bankAccount:"Bank Account Number",
+amount:"Amount to Deposit",
+placeholder:"Enter the amount to deposit...",
+check:"Tick this box to confirm your deposit request",
+confirm:"Confirm",
+successTitle:"Excellent!",
+invalidAmount:"Invalid amount",
+pending:"PENDING",
+depositError:"Deposit error:",
+validationRequired:"Validation required",
+successMessage1:"Your financial deposit request has been successfully submitted.",
+successMessage2:"A financial expert will contact you to explain the next steps."
+},
+
+es:{
+title:"Depósito financiero - RFG",
+page:"Mi cuenta",
+loading:"Cargando...",
+account:"Cuenta",
+balance:"SALDO",
+home:"Inicio",
+profile:"Mi perfil",
+transfer:"Transferencias",
+deposit:"Recargar cuenta",
+history:"Historial",
+logout:"Cerrar sesión",
+back:"← Ver historial de transacciones",
+formTitle:"Formulario de depósito",
+bankAccount:"Número de cuenta bancaria",
+amount:"Importe a depositar",
+placeholder:"Introduzca el importe...",
+check:"Marque esta casilla para validar la solicitud",
+confirm:"Confirmar",
+successTitle:"¡Excelente!",
+invalidAmount:"Importe no válido",
+pending:"PENDIENTE",
+depositError:"Error en el depósito:",
+validationRequired:"Validación obligatoria",
+successMessage1:"Su solicitud de depósito financiero ha sido enviada correctamente.",
+successMessage2:"Un experto financiero se pondrá en contacto con usted para explicarle los siguientes pasos."
+},
+
+it:{
+title:"Deposito finanziario - RFG",
+page:"Il mio conto",
+loading:"Caricamento...",
+account:"Conto",
+balance:"SALDO",
+home:"Home",
+profile:"Il mio profilo",
+transfer:"Trasferimenti",
+deposit:"Ricarica conto",
+history:"Cronologia",
+logout:"Disconnetti",
+back:"← Visualizza cronologia transazioni",
+formTitle:"Modulo di deposito",
+bankAccount:"Numero di conto bancario",
+amount:"Importo da depositare",
+placeholder:"Inserisci l'importo...",
+check:"Seleziona questa casella per confermare la richiesta",
+confirm:"Conferma",
+successTitle:"Eccellente!",
+invalidAmount:"Importo non valido",
+pending:"IN ATTESA",
+depositError:"Errore nel deposito:",
+validationRequired:"Convalida obbligatoria",
+successMessage1:"La tua richiesta di deposito finanziario è stata inviata correttamente.",
+successMessage2:"Un esperto finanziario ti contatterà per spiegarti i prossimi passaggi."
+},
+
+pt:{
+title:"Depósito financeiro - RFG",
+page:"Minha conta",
+loading:"Carregando...",
+account:"Conta",
+balance:"SALDO",
+home:"Início",
+profile:"Meu perfil",
+transfer:"Transferências",
+deposit:"Recarregar conta",
+history:"Histórico",
+logout:"Sair",
+back:"← Ver histórico de transações",
+formTitle:"Formulário de depósito",
+bankAccount:"Número da conta bancária",
+amount:"Valor do depósito",
+placeholder:"Digite o valor...",
+check:"Marque esta caixa para confirmar o pedido",
+confirm:"Confirmar",
+successTitle:"Excelente!",
+invalidAmount:"Valor inválido",
+pending:"PENDENTE",
+depositError:"Erro no depósito:",
+validationRequired:"Validação obrigatória",
+successMessage1:"Sua solicitação de depósito financeiro foi enviada com sucesso.",
+successMessage2:"Um especialista financeiro entrará em contato para explicar os próximos passos."
+},
+
+de:{
+title:"Finanzeinzahlung - RFG",
+page:"Mein Konto",
+loading:"Laden...",
+account:"Konto",
+balance:"KONTOSTAND",
+home:"Startseite",
+profile:"Mein Profil",
+transfer:"Überweisungen",
+deposit:"Konto aufladen",
+history:"Verlauf",
+logout:"Abmelden",
+back:"← Transaktionsverlauf anzeigen",
+formTitle:"Einzahlungsformular",
+bankAccount:"Bankkontonummer",
+amount:"Einzahlungsbetrag",
+placeholder:"Betrag eingeben...",
+check:"Dieses Kästchen zur Bestätigung aktivieren",
+confirm:"Bestätigen",
+successTitle:"Ausgezeichnet!",
+invalidAmount:"Ungültiger Betrag",
+pending:"AUSSTEHEND",
+depositError:"Fehler bei der Einzahlung:",
+validationRequired:"Bestätigung erforderlich",
+successMessage1:"Ihre Finanzierungsanfrage wurde erfolgreich gesendet.",
+successMessage2:"Ein Finanzexperte wird Sie kontaktieren, um Ihnen die nächsten Schritte zu erklären."
+},
+
+pl:{
+title:"Wpłata finansowa - RFG",
+page:"Moje konto",
+loading:"Ładowanie...",
+account:"Konto",
+balance:"SALDO",
+home:"Strona główna",
+profile:"Mój profil",
+transfer:"Przelewy",
+deposit:"Doładuj konto",
+history:"Historia",
+logout:"Wyloguj",
+back:"← Historia transakcji",
+formTitle:"Formularz wpłaty",
+bankAccount:"Numer rachunku",
+amount:"Kwota wpłaty",
+placeholder:"Wpisz kwotę...",
+check:"Zaznacz pole, aby potwierdzić",
+confirm:"Potwierdź",
+successTitle:"Doskonałe!",
+invalidAmount:"Nieprawidłowa kwota",
+pending:"OCZEKUJĄCE",
+depositError:"Błąd wpłaty:",
+validationRequired:"Potwierdzenie wymagane",
+successMessage1:"Twoja prośba o wpłatę finansową została pomyślnie wysłana.",
+successMessage2:"Ekspert finansowy skontaktuje się z Tobą, aby wyjaśnić dalsze kroki."
+},
+
+ru:{
+title:"Финансовый депозит - RFG",
+page:"Мой счет",
+loading:"Загрузка...",
+account:"Счет",
+balance:"БАЛАНС",
+home:"Главная",
+profile:"Мой профиль",
+transfer:"Переводы",
+deposit:"Пополнить счет",
+history:"История",
+logout:"Выход",
+back:"← История операций",
+formTitle:"Форма депозита",
+bankAccount:"Номер банковского счета",
+amount:"Сумма депозита",
+placeholder:"Введите сумму...",
+check:"Отметьте для подтверждения",
+confirm:"Подтвердить",
+successTitle:"Отлично!",
+invalidAmount:"Недопустимая сумма",
+pending:"В ОЖИДАНИИ",
+depositError:"Ошибка при внесении депозита:",
+validationRequired:"Требуется подтверждение",
+successMessage1:"Ваша заявка на финансовый депозит успешно отправлена.",
+successMessage2:"Финансовый эксперт свяжется с вами, чтобы объяснить дальнейшие шаги."
+},
+
+nl:{
+title:"Financiële storting - RFG",
+page:"Mijn account",
+loading:"Laden...",
+account:"Account",
+balance:"SALDO",
+home:"Home",
+profile:"Mijn profiel",
+transfer:"Overschrijvingen",
+deposit:"Account opladen",
+history:"Geschiedenis",
+logout:"Uitloggen",
+back:"← Transactiegeschiedenis bekijken",
+formTitle:"Stortingsformulier",
+bankAccount:"Bankrekeningnummer",
+amount:"Stortingsbedrag",
+placeholder:"Voer het bedrag in...",
+check:"Vink dit vakje aan om te bevestigen",
+confirm:"Bevestigen",
+successTitle:"Uitstekend!",
+invalidAmount:"Ongeldig bedrag",
+pending:"IN AFWACHTING",
+depositError:"Fout bij storting:",
+validationRequired:"Bevestiging vereist",
+successMessage1:"Uw financiële stortingsaanvraag is succesvol verzonden.",
+successMessage2:"Een financieel expert neemt contact met u op om de volgende stappen uit te leggen."
+}
+
+}[lang];
+
+document.title=t.title;
+
+document.getElementById("pageHeader").textContent=t.page;
+
+document.getElementById("profileName").textContent=t.loading;
+
+document.querySelector(".profile-account").textContent=t.account+" : ............";
+
+document.querySelector(".profile-balance").childNodes[0].textContent=t.balance+" : ";
+
+document.getElementById("homeMenu").textContent=t.home;
+document.getElementById("profileMenu").textContent=t.profile;
+document.getElementById("transferMenu").textContent=t.transfer;
+document.getElementById("depositMenu").textContent=t.deposit;
+document.getElementById("historyMenu").textContent=t.history;
+document.getElementById("logoutBtn").textContent=t.logout;
+
+document.getElementById("historyLink").textContent=t.back;
+
+document.getElementById("formTitle").textContent=t.formTitle;
+
+document.getElementById("lblCompte").textContent=t.bankAccount;
+
+document.getElementById("lblMontant").textContent=t.amount;
+
+document.getElementById("montant").placeholder=t.placeholder;
+
+document.getElementById("lblValidation").textContent=t.check;
+
+document.getElementById("btnDepot").textContent=t.confirm;
+
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged,
+signOut
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+getFirestore,
+doc,
+getDoc,
+addDoc,
+collection,
+serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey:"AIzaSyA3bj3QMqH9fxda8ixe66dSlW-Kb8mD8hk",
+authDomain:"rfg-finance.firebaseapp.com",
+projectId:"rfg-finance",
+storageBucket:"rfg-finance.firebasestorage.app",
+messagingSenderId:"600995823489",
+appId:"1:600995823489:web:1a4449f074d14eca05f280"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+let userId = null;
+let deviseUtilisateur = "";
+
+/* MENU */
+const sidebar=document.getElementById("sidebar");
+const overlay=document.getElementById("overlay");
+const menuBtn=document.getElementById("menuBtn");
+
+menuBtn.onclick=()=>{
+sidebar.classList.add("active");
+overlay.classList.add("active");
+};
+
+overlay.onclick=()=>{
+sidebar.classList.remove("active");
+overlay.classList.remove("active");
+};
+
+/* USER */
+onAuthStateChanged(auth, async (user)=>{
+
+if(!user){
+window.location.replace("connecter.html");
+return;
+}
+
+userId = user.uid;
+
+const ref = doc(db,"utilisateurs",user.uid);
+const snap = await getDoc(ref);
+
+if(!snap.exists()) return;
+
+const data = snap.data();
+deviseUtilisateur = data.devise || "EUR";
+
+document.getElementById("profileName").textContent =
+`${data.prenom || ""} ${data.nom || ""}`;
+
+document.getElementById("accountNumber").textContent =
+t.account + " : " + (data.numeroCompte || "");
+
+document.getElementById("numeroCompte").value =
+data.numeroCompte || "";
+
+document.getElementById("menuSolde").textContent =
+Number(data.solde || 0).toLocaleString(lang) + " " + (data.devise || "€");
+
+});
+
+let traitementEnCours = false;
+
+/* DEPOT */
+document.getElementById("btnDepot").addEventListener("click", async ()=>{
+
+if(traitementEnCours) return;
+traitementEnCours = true;
+
+const montant = Number(document.getElementById("montant").value);
+const validation = document.getElementById("validationDepot").checked;
+
+if(!montant || montant <= 0) return alert(t.invalidAmount);
+if(!validation) return alert(t.validationRequired);
+
+const user = auth.currentUser;
+if(!user) return;
+
+const depotId = "DP-" + Date.now();
+
+try{
+
+/* TRANSACTION SOLDE */
+
+/* HISTORIQUE GLOBAL */
+await addDoc(collection(db,"historique"),{
+uid:user.uid,
+type:t.deposit,
+transactionId:depotId,
+montant,
+statut:t.pending,
+devise:deviseUtilisateur,
+date:serverTimestamp()
+});
+
+/* TABLE DEPOTS */
+await addDoc(collection(db,"depot"),{
+uid:user.uid,
+depotId,
+numeroCompte:document.getElementById("numeroCompte").value,
+montant,
+pending:t.pending,
+createdAt:serverTimestamp()
+});
+
+successBox.style.display="block";
+
+}catch(e){
+
+traitementEnCours = false;
+
+console.error(e);
+alert(t.depositError + " " + e);
+
+}
+
+});
+
+/* LOGOUT */
+document.getElementById("logoutBtn").addEventListener("click", async ()=>{
+await signOut(auth);
+window.location.replace("connecter.html");
+});
+
+document.getElementById("successTitle").textContent=t.successTitle;
+
+document.getElementById("successMessage1").innerHTML =
+t.successMessage1;
+
+document.getElementById("successMessage2").innerHTML =
+t.successMessage2;
+
+const successBox=document.getElementById("successBox");
+
+document.getElementById("closeSuccess").onclick=()=>{
+
+successBox.style.display="none";
+
+window.location.href="dashboard.html";
+
+};
+
+</script>
+
+<div id="successBox" class="success-box">
+
+<span class="close-success" id="closeSuccess">×</span>
+
+<b id="successTitle">Excellent !</b>
+
+<div id="successMessage1">
+Votre demande de dépôt financier a bien été envoyée.
+</div>
+
+<br>
+
+<div id="successMessage2">
+Un expert financier vous contactera pour vous expliquer la suite des démarches.
+</div>
+
+</div>
+
+</body>
+</html>

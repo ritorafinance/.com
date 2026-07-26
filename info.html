@@ -1,0 +1,1045 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title id="page_title">À propos de nous — RFG</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root{
+  --primary:#0b76c6;
+  --dark:#0f172a;
+  --text:#334155;
+  --muted:#64748b;
+  --bg:#f1f5f9;
+  --card:#ffffff;
+  --border:#e2e8f0;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+/* HEADER */
+header{
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  padding:18px 40px;
+}
+
+header h1{
+  font-size:20px;
+  font-weight:700;
+  color:var(--primary);
+  letter-spacing:.3px;
+}
+
+/* HERO */
+.hero{
+  background:linear-gradient(135deg,var(--primary),#062f4a);
+  color:#fff;
+  text-align:center;
+  padding:110px 20px;
+}
+
+.hero h2{
+  font-size:44px;
+  font-weight:700;
+  margin-bottom:12px;
+}
+
+.hero p{
+  font-size:18px;
+  max-width:700px;
+  margin:auto;
+  opacity:.9;
+}
+
+/* CONTAINER */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:70px 20px;
+}
+
+/* CARD */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:40px;
+  box-shadow:0 10px 30px rgba(15,23,42,.06);
+  margin-bottom:40px;
+}
+
+.card h3{
+  font-size:26px;
+  margin-bottom:15px;
+  color:var(--dark);
+}
+
+.card p{
+  color:var(--muted);
+  margin-bottom:12px;
+  font-size:16px;
+}
+
+/* SECTION TITLE */
+.section-title{
+  text-align:center;
+  font-size:30px;
+  font-weight:700;
+  color:var(--dark);
+  margin:60px 0 30px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+/* SERVICE */
+.service{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:28px;
+  transition:.25s ease;
+}
+
+.service:hover{
+  transform:translateY(-5px);
+  box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.service h4{
+  font-size:18px;
+  margin-bottom:10px;
+  color:var(--primary);
+}
+
+.service p{
+  font-size:15px;
+  color:var(--muted);
+}
+
+/* WHY */
+.why{
+  margin-top:60px;
+  text-align:center;
+}
+
+/* AWARDS */
+.awards{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:60px 40px;
+  margin-top:30px;
+}
+
+.awards-header span{
+  font-size:12px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.awards-header h2{
+  font-size:34px;
+  margin-top:10px;
+  color:var(--dark);
+}
+
+.awards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+  margin-top:40px;
+  text-align:left;
+}
+
+.award-item{
+  padding:15px;
+  border-left:3px solid var(--primary);
+}
+
+.award-year{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+
+.award-item h3{
+  font-size:16px;
+  color:var(--dark);
+  font-weight:600;
+}
+
+.award-trophy{
+  font-size:40px;
+  margin:40px 0;
+  text-align:center;
+}
+
+.faq-item{
+  border-bottom:1px solid #e2e8f0;
+  padding:18px 0;
+}
+
+.faq-item:last-child{
+  border-bottom:none;
+}
+
+/* FOOTER */
+footer{
+  margin-top:80px;
+  background:var(--dark);
+  color:#fff;
+  text-align:center;
+}
+
+.footer-content{
+  padding:60px 20px;
+}
+
+.footer-content h2{
+  font-size:26px;
+  margin-bottom:10px;
+}
+
+.footer-content p{
+  max-width:600px;
+  margin:auto;
+  opacity:.8;
+  margin-bottom:20px;
+}
+
+.footer-btn{
+  display:inline-block;
+  background:#fff;
+  color:var(--primary);
+  padding:12px 24px;
+  border-radius:8px;
+  font-weight:600;
+  text-decoration:none;
+}
+
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.1);
+  padding:15px;
+  font-size:13px;
+  opacity:.7;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero h2{
+    font-size:32px;
+  }
+
+  .card{
+    padding:25px;
+  }
+
+  .awards{
+    padding:40px 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>RFG — Ritora Finance Group</h1>
+</header>
+
+<section class="hero">
+  <h2 id="hero_title">À propos de nous</h2>
+
+  <p id="hero_text">
+    Des solutions de financement adaptées aux besoins des particuliers et des entreprises.
+  </p>
+</section>
+
+<div class="container">
+
+  <div class="card">
+
+    <h3 id="company_title">
+      Notre société
+    </h3>
+
+    <p id="company_text1">
+      Ritora Finance Group accompagne particuliers et professionnels dans leurs projets financiers.
+    </p>
+
+    <p id="company_text2">
+      Nous proposons des solutions transparentes, sécurisées et adaptées à chaque situation.
+    </p>
+
+  </div>
+
+  <h2 class="section-title" id="engagements_title">
+    Nos engagements
+  </h2>
+
+  <div class="grid">
+
+    <div class="service">
+
+      <h4 id="service1_title">
+        Financement
+      </h4>
+
+      <p id="service1_text">
+        Des solutions adaptées à tous vos projets personnels et professionnels.
+      </p>
+
+    </div>
+
+    <div class="service">
+
+      <h4 id="service2_title">
+        Confidentialité
+      </h4>
+
+      <p id="service2_text">
+        Vos données sont protégées selon des standards élevés de sécurité.
+      </p>
+
+    </div>
+
+    <div class="service">
+
+      <h4 id="service3_title">
+        Accompagnement
+      </h4>
+
+      <p id="service3_text">
+        Une équipe disponible pour vous guider à chaque étape.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="why">
+
+    <h2 class="section-title" id="why_title">
+      Pourquoi choisir RFG ?
+    </h2>
+
+    <div class="awards">
+
+      <div class="awards-header">
+
+        <span id="awards_label">
+          NOMINATIONS & RÉCOMPENSES
+        </span>
+
+        <h2 id="awards_title">
+          Nos distinctions
+        </h2>
+
+      </div>
+
+      <div class="awards-grid">
+
+        <div class="award-item">
+          <div class="award-year">2022</div>
+
+          <h3 id="award1">
+            Meilleur fournisseur de services financiers
+          </h3>
+        </div>
+
+        <div class="award-item">
+          <div class="award-year">2021</div>
+
+          <h3 id="award2">
+            Excellence en conseil en investissement
+          </h3>
+        </div>
+
+        <div class="award-item">
+          <div class="award-year">2020</div>
+
+          <h3 id="award3">
+            Gestion financière de référence
+          </h3>
+        </div>
+
+        <div class="award-item">
+          <div class="award-year">2018</div>
+
+          <h3 id="award4">
+            Innovation en solutions financières
+          </h3>
+        </div>
+
+      </div>
+
+      <div class="award-trophy">🏆</div>
+
+      <p id="awards_text"
+      style="color:#64748b;max-width:700px;margin:auto;">
+        Nous privilégions la transparence, la confiance et la qualité du service pour chaque client.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+<h2 class="section-title" id="faq_title">
+  Questions fréquentes
+</h2>
+
+<div class="card" style="max-width:900px;margin:0 auto;">
+
+  <div class="faq-item">
+
+    <h4 id="faq1_q"
+    style="font-size:18px;margin-bottom:8px;color:#0f172a;">
+      Quels types de financement propose RFG ?
+    </h4>
+
+    <p id="faq1_a"
+    style="color:#64748b;margin-bottom:20px;">
+      Nous proposons des solutions de financement pour les projets personnels, professionnels et les besoins d’investissement, adaptées à chaque profil.
+    </p>
+
+  </div>
+
+  <div class="faq-item">
+
+    <h4 id="faq2_q"
+    style="font-size:18px;margin-bottom:8px;color:#0f172a;">
+      Mes informations sont-elles sécurisées ?
+    </h4>
+
+    <p id="faq2_a"
+    style="color:#64748b;margin-bottom:20px;">
+      Oui, toutes vos données sont traitées avec un haut niveau de confidentialité et protégées selon des standards de sécurité stricts.
+    </p>
+
+  </div>
+
+  <div class="faq-item">
+
+    <h4 id="faq3_q"
+    style="font-size:18px;margin-bottom:8px;color:#0f172a;">
+      Comment puis-je contacter votre équipe ?
+    </h4>
+
+    <p id="faq3_a"
+    style="color:#64748b;margin-bottom:20px;">
+      Vous pouvez nous contacter directement par email via le bouton “Nous contacter” en bas de page. Nous répondons rapidement à toutes les demandes.
+    </p>
+
+  </div>
+
+  <div class="faq-item">
+
+    <h4 id="faq4_q"
+    style="font-size:18px;margin-bottom:8px;color:#0f172a;">
+      RFG accompagne-t-il les particuliers et les entreprises ?
+    </h4>
+
+    <p id="faq4_a"
+    style="color:#64748b;">
+      Oui, nous accompagnons aussi bien les particuliers que les entreprises avec des solutions adaptées à chaque besoin financier.
+    </p>
+
+  </div>
+
+</div>
+
+<footer>
+
+  <div class="footer-content">
+
+    <h2 id="footer_title">
+      Contact
+    </h2>
+
+    <p id="footer_text">
+      Notre équipe est disponible pour répondre à toutes vos questions.
+    </p>
+
+    <a
+      class="footer-btn"
+      href="mailto:ritorafinancegroup@gmail.com"
+      id="footer_btn">
+      Nous contacter
+    </a>
+
+  </div>
+
+  <div
+    class="footer-bottom"
+    id="copyright">
+
+    © 2012 - RFG — Ritora Finance Group. Tous droits réservés.
+
+  </div>
+
+</footer>
+
+<script>
+
+const lang = navigator.language.substring(0,2);
+
+const tr = {
+
+fr:{
+
+page_title:"À propos de nous — RFG",
+
+hero_title:"À propos de nous",
+hero_text:"Des solutions de financement adaptées aux besoins des particuliers et des entreprises.",
+
+company_title:"Notre société",
+company_text1:"Ritora Finance Group accompagne particuliers et professionnels dans leurs projets financiers.",
+company_text2:"Nous proposons des solutions transparentes, sécurisées et adaptées à chaque situation.",
+
+engagements_title:"Nos engagements",
+
+service1_title:"Financement",
+service1_text:"Des solutions adaptées à tous vos projets personnels et professionnels.",
+
+service2_title:"Confidentialité",
+service2_text:"Vos données sont protégées selon des standards élevés de sécurité.",
+
+service3_title:"Accompagnement",
+service3_text:"Une équipe disponible pour vous guider à chaque étape.",
+
+why_title:"Pourquoi choisir RFG ?",
+
+awards_label:"NOMINATIONS & RÉCOMPENSES",
+awards_title:"Nos distinctions",
+
+award1:"Meilleur fournisseur de services financiers",
+award2:"Excellence en conseil en investissement",
+award3:"Gestion financière de référence",
+award4:"Innovation en solutions financières",
+
+awards_text:"Nous privilégions la transparence, la confiance et la qualité du service pour chaque client.",
+
+faq_title:"Questions fréquentes",
+
+faq1_q:"Quels types de financement propose RFG ?",
+faq1_a:"Nous proposons des solutions de financement pour les projets personnels, professionnels et les besoins d’investissement, adaptées à chaque profil.",
+
+faq2_q:"Mes informations sont-elles sécurisées ?",
+faq2_a:"Oui, toutes vos données sont traitées avec un haut niveau de confidentialité et protégées selon des standards de sécurité stricts.",
+
+faq3_q:"Comment puis-je contacter votre équipe ?",
+faq3_a:"Vous pouvez nous contacter directement par email via le bouton « Nous contacter » en bas de page. Nous répondons rapidement à toutes les demandes.",
+
+faq4_q:"RFG accompagne-t-il les particuliers et les entreprises ?",
+faq4_a:"Oui, nous accompagnons aussi bien les particuliers que les entreprises avec des solutions adaptées à chaque besoin financier.",
+
+footer_title:"Contact",
+footer_text:"Notre équipe est disponible pour répondre à toutes vos questions.",
+footer_btn:"Nous contacter",
+
+copyright:"© 2012 - RFG — Ritora Finance Group. Tous droits réservés."
+
+},
+
+
+en:{
+
+page_title:"About Us — RFG",
+
+hero_title:"About Us",
+hero_text:"Financing solutions tailored to the needs of individuals and businesses.",
+
+company_title:"Our Company",
+company_text1:"Ritora Finance Group supports individuals and professionals in their financial projects.",
+company_text2:"We provide transparent, secure and customized financial solutions.",
+
+engagements_title:"Our Commitments",
+
+service1_title:"Financing",
+service1_text:"Solutions adapted to all your personal and professional projects.",
+
+service2_title:"Confidentiality",
+service2_text:"Your data is protected according to high security standards.",
+
+service3_title:"Support",
+service3_text:"A team available to guide you at every step.",
+
+why_title:"Why Choose RFG?",
+
+awards_label:"AWARDS & NOMINATIONS",
+awards_title:"Our Distinctions",
+
+award1:"Best Financial Services Provider",
+award2:"Excellence in Investment Advisory",
+award3:"Reference in Financial Management",
+award4:"Innovation in Financial Solutions",
+
+awards_text:"We prioritize transparency, trust and service quality for every client.",
+
+faq_title:"Frequently Asked Questions",
+
+faq1_q:"What types of financing does RFG offer?",
+faq1_a:"We provide financing solutions for personal, professional and investment projects tailored to each profile.",
+
+faq2_q:"Is my information secure?",
+faq2_a:"Yes, all your data is handled with a high level of confidentiality and protected by strict security standards.",
+
+faq3_q:"How can I contact your team?",
+faq3_a:"You can contact us directly by email using the Contact Us button at the bottom of the page.",
+
+faq4_q:"Does RFG support individuals and businesses?",
+faq4_a:"Yes, we support both individuals and businesses with solutions adapted to every financial need.",
+
+footer_title:"Contact",
+footer_text:"Our team is available to answer all your questions.",
+footer_btn:"Contact Us",
+
+copyright:"© 2012 - RFG — Ritora Finance Group. All rights reserved."
+
+},
+
+
+es:{
+
+page_title:"Sobre nosotros — RFG",
+
+hero_title:"Sobre nosotros",
+hero_text:"Soluciones de financiación adaptadas a las necesidades de particulares y empresas.",
+
+company_title:"Nuestra empresa",
+company_text1:"Ritora Finance Group acompaña a particulares y profesionales en sus proyectos financieros.",
+company_text2:"Ofrecemos soluciones transparentes, seguras y adaptadas a cada situación.",
+
+engagements_title:"Nuestros compromisos",
+
+service1_title:"Financiación",
+service1_text:"Soluciones adaptadas a todos sus proyectos personales y profesionales.",
+
+service2_title:"Confidencialidad",
+service2_text:"Sus datos están protegidos según altos estándares de seguridad.",
+
+service3_title:"Acompañamiento",
+service3_text:"Un equipo disponible para guiarle en cada etapa.",
+
+why_title:"¿Por qué elegir RFG?",
+
+awards_label:"NOMINACIONES Y PREMIOS",
+awards_title:"Nuestros reconocimientos",
+
+award1:"Mejor proveedor de servicios financieros",
+award2:"Excelencia en asesoramiento de inversiones",
+award3:"Gestión financiera de referencia",
+award4:"Innovación en soluciones financieras",
+
+awards_text:"Priorizamos la transparencia, la confianza y la calidad del servicio para cada cliente.",
+
+faq_title:"Preguntas frecuentes",
+
+faq1_q:"¿Qué tipos de financiación ofrece RFG?",
+faq1_a:"Ofrecemos soluciones de financiación para proyectos personales, profesionales y necesidades de inversión adaptadas a cada perfil.",
+
+faq2_q:"¿Está segura mi información?",
+faq2_a:"Sí, todos sus datos son tratados con un alto nivel de confidencialidad y protegidos mediante estrictos estándares de seguridad.",
+
+faq3_q:"¿Cómo puedo contactar con su equipo?",
+faq3_a:"Puede contactarnos directamente por correo electrónico mediante el botón de contacto al final de la página.",
+
+faq4_q:"¿RFG trabaja con particulares y empresas?",
+faq4_a:"Sí, acompañamos tanto a particulares como a empresas con soluciones adaptadas a cada necesidad financiera.",
+
+footer_title:"Contacto",
+footer_text:"Nuestro equipo está disponible para responder a todas sus preguntas.",
+footer_btn:"Contactarnos",
+
+copyright:"© 2012 - RFG — Ritora Finance Group. Todos los derechos reservados."
+
+},
+
+it:{
+
+page_title:"Chi siamo — RFG",
+
+hero_title:"Chi siamo",
+hero_text:"Soluzioni di finanziamento adatte alle esigenze di privati e aziende.",
+
+company_title:"La nostra azienda",
+company_text1:"Ritora Finance Group supporta privati e professionisti nei loro progetti finanziari.",
+company_text2:"Offriamo soluzioni trasparenti, sicure e personalizzate per ogni situazione.",
+
+engagements_title:"I nostri impegni",
+
+service1_title:"Finanziamento",
+service1_text:"Soluzioni adatte a tutti i vostri progetti personali e professionali.",
+
+service2_title:"Riservatezza",
+service2_text:"I vostri dati sono protetti secondo elevati standard di sicurezza.",
+
+service3_title:"Supporto",
+service3_text:"Un team disponibile per guidarvi in ogni fase.",
+
+why_title:"Perché scegliere RFG?",
+
+awards_label:"NOMINATION E PREMI",
+awards_title:"I nostri riconoscimenti",
+
+award1:"Miglior fornitore di servizi finanziari",
+award2:"Eccellenza nella consulenza agli investimenti",
+award3:"Gestione finanziaria di riferimento",
+award4:"Innovazione nelle soluzioni finanziarie",
+
+awards_text:"Privilegiamo trasparenza, fiducia e qualità del servizio per ogni cliente.",
+
+faq_title:"Domande frequenti",
+
+faq1_q:"Quali tipi di finanziamento offre RFG?",
+faq1_a:"Offriamo soluzioni di finanziamento per progetti personali, professionali e investimenti adattate a ogni profilo.",
+
+faq2_q:"Le mie informazioni sono sicure?",
+faq2_a:"Sì, tutti i dati vengono trattati con un elevato livello di riservatezza e protetti secondo rigorosi standard di sicurezza.",
+
+faq3_q:"Come posso contattare il vostro team?",
+faq3_a:"Potete contattarci direttamente via email tramite il pulsante di contatto in fondo alla pagina.",
+
+faq4_q:"RFG supporta privati e aziende?",
+faq4_a:"Sì, assistiamo sia privati che aziende con soluzioni finanziarie personalizzate.",
+
+footer_title:"Contatto",
+footer_text:"Il nostro team è disponibile per rispondere a tutte le vostre domande.",
+footer_btn:"Contattaci",
+
+copyright:"© 2012 - RFG — Ritora Finance Group. Tutti i diritti riservati."
+
+},
+
+
+pt:{
+
+page_title:"Sobre nós — RFG",
+
+hero_title:"Sobre nós",
+hero_text:"Soluções de financiamento adaptadas às necessidades de particulares e empresas.",
+
+company_title:"A nossa empresa",
+company_text1:"A Ritora Finance Group acompanha particulares e profissionais nos seus projetos financeiros.",
+company_text2:"Oferecemos soluções transparentes, seguras e adaptadas a cada situação.",
+
+engagements_title:"Os nossos compromissos",
+
+service1_title:"Financiamento",
+service1_text:"Soluções adaptadas a todos os seus projetos pessoais e profissionais.",
+
+service2_title:"Confidencialidade",
+service2_text:"Os seus dados são protegidos segundo elevados padrões de segurança.",
+
+service3_title:"Acompanhamento",
+service3_text:"Uma equipa disponível para orientar em cada etapa.",
+
+why_title:"Por que escolher a RFG?",
+
+awards_label:"NOMEAÇÕES E PRÉMIOS",
+awards_title:"Os nossos reconhecimentos",
+
+award1:"Melhor fornecedor de serviços financeiros",
+award2:"Excelência em consultoria de investimentos",
+award3:"Referência em gestão financeira",
+award4:"Inovação em soluções financeiras",
+
+awards_text:"Priorizamos a transparência, a confiança e a qualidade do serviço para cada cliente.",
+
+faq_title:"Perguntas frequentes",
+
+faq1_q:"Que tipos de financiamento a RFG oferece?",
+faq1_a:"Oferecemos soluções de financiamento para projetos pessoais, profissionais e investimentos adaptados a cada perfil.",
+
+faq2_q:"As minhas informações estão seguras?",
+faq2_a:"Sim, todos os dados são tratados com elevado nível de confidencialidade e protegidos por padrões rigorosos de segurança.",
+
+faq3_q:"Como posso contactar a vossa equipa?",
+faq3_a:"Pode contactar-nos diretamente por email através do botão de contacto no final da página.",
+
+faq4_q:"A RFG apoia particulares e empresas?",
+faq4_a:"Sim, apoiamos particulares e empresas com soluções adaptadas às suas necessidades financeiras.",
+
+footer_title:"Contacto",
+footer_text:"A nossa equipa está disponível para responder a todas as suas perguntas.",
+footer_btn:"Contactar-nos",
+
+copyright:"© 2012 - RFG — Ritora Finance Group. Todos os direitos reservados."
+
+},
+
+
+de:{
+
+page_title:"Über uns — RFG",
+
+hero_title:"Über uns",
+hero_text:"Finanzierungslösungen für Privatpersonen und Unternehmen.",
+
+company_title:"Unser Unternehmen",
+company_text1:"Ritora Finance Group unterstützt Privatpersonen und Unternehmen bei ihren Finanzprojekten.",
+company_text2:"Wir bieten transparente, sichere und maßgeschneiderte Finanzlösungen.",
+
+engagements_title:"Unsere Verpflichtungen",
+
+service1_title:"Finanzierung",
+service1_text:"Lösungen für alle Ihre privaten und geschäftlichen Projekte.",
+
+service2_title:"Vertraulichkeit",
+service2_text:"Ihre Daten werden nach hohen Sicherheitsstandards geschützt.",
+
+service3_title:"Begleitung",
+service3_text:"Ein Team steht Ihnen in jeder Phase zur Seite.",
+
+why_title:"Warum RFG wählen?",
+
+awards_label:"AUSZEICHNUNGEN & NOMINIERUNGEN",
+awards_title:"Unsere Auszeichnungen",
+
+award1:"Bester Anbieter von Finanzdienstleistungen",
+award2:"Exzellenz in der Anlageberatung",
+award3:"Referenz im Finanzmanagement",
+award4:"Innovation bei Finanzlösungen",
+
+awards_text:"Wir setzen auf Transparenz, Vertrauen und Servicequalität für jeden Kunden.",
+
+faq_title:"Häufig gestellte Fragen",
+
+faq1_q:"Welche Finanzierungen bietet RFG an?",
+faq1_a:"Wir bieten Finanzierungslösungen für private, geschäftliche und Investitionsprojekte.",
+
+faq2_q:"Sind meine Daten sicher?",
+faq2_a:"Ja, alle Ihre Daten werden vertraulich behandelt und nach strengen Sicherheitsstandards geschützt.",
+
+faq3_q:"Wie kann ich Ihr Team kontaktieren?",
+faq3_a:"Sie können uns direkt per E-Mail über die Kontakt-Schaltfläche am Ende der Seite erreichen.",
+
+faq4_q:"Betreut RFG Privatpersonen und Unternehmen?",
+faq4_a:"Ja, wir unterstützen sowohl Privatpersonen als auch Unternehmen mit passenden Finanzlösungen.",
+
+footer_title:"Kontakt",
+footer_text:"Unser Team steht Ihnen zur Verfügung, um alle Ihre Fragen zu beantworten.",
+footer_btn:"Kontaktieren Sie uns",
+
+copyright:"© 2012 - RFG — Ritora Finance Group. Alle Rechte vorbehalten."
+
+},
+
+pl:{
+
+page_title:"O nas — RFG",
+
+hero_title:"O nas",
+hero_text:"Rozwiązania finansowe dostosowane do potrzeb osób prywatnych i firm.",
+
+company_title:"Nasza firma",
+company_text1:"Ritora Finance Group wspiera osoby prywatne i przedsiębiorstwa w realizacji projektów finansowych.",
+company_text2:"Oferujemy przejrzyste, bezpieczne i dopasowane rozwiązania finansowe.",
+
+engagements_title:"Nasze zobowiązania",
+
+service1_title:"Finansowanie",
+service1_text:"Rozwiązania dostosowane do wszystkich projektów prywatnych i biznesowych.",
+
+service2_title:"Poufność",
+service2_text:"Państwa dane są chronione zgodnie z wysokimi standardami bezpieczeństwa.",
+
+service3_title:"Wsparcie",
+service3_text:"Nasz zespół pomaga Państwu na każdym etapie.",
+
+why_title:"Dlaczego warto wybrać RFG?",
+
+awards_label:"NOMINACJE I NAGRODY",
+awards_title:"Nasze wyróżnienia",
+
+award1:"Najlepszy dostawca usług finansowych",
+award2:"Doskonałość w doradztwie inwestycyjnym",
+award3:"Wzorcowe zarządzanie finansami",
+award4:"Innowacje w rozwiązaniach finansowych",
+
+awards_text:"Stawiamy na przejrzystość, zaufanie i wysoką jakość obsługi każdego klienta.",
+
+faq_title:"Najczęściej zadawane pytania",
+
+faq1_q:"Jakie finansowanie oferuje RFG?",
+faq1_a:"Oferujemy rozwiązania finansowe dla projektów prywatnych, biznesowych i inwestycyjnych.",
+
+faq2_q:"Czy moje informacje są bezpieczne?",
+faq2_a:"Tak, wszystkie dane są traktowane poufnie i chronione zgodnie z wysokimi standardami bezpieczeństwa.",
+
+faq3_q:"Jak mogę skontaktować się z zespołem?",
+faq3_a:"Można skontaktować się z nami przez e-mail za pomocą przycisku kontaktowego na dole strony.",
+
+faq4_q:"Czy RFG współpracuje z osobami prywatnymi i firmami?",
+faq4_a:"Tak, wspieramy zarówno osoby prywatne, jak i przedsiębiorstwa.",
+
+footer_title:"Kontakt",
+footer_text:"Nasz zespół jest dostępny, aby odpowiedzieć na wszystkie pytania.",
+footer_btn:"Skontaktuj się z nami",
+
+copyright:"© 2012 - RFG — Ritora Finance Group. Wszelkie prawa zastrzeżone."
+
+},
+
+
+ru:{
+
+page_title:"О нас — RFG",
+
+hero_title:"О нас",
+hero_text:"Финансовые решения для частных лиц и компаний.",
+
+company_title:"Наша компания",
+company_text1:"Ritora Finance Group помогает частным клиентам и компаниям реализовывать финансовые проекты.",
+company_text2:"Мы предлагаем прозрачные, безопасные и индивидуальные решения.",
+
+engagements_title:"Наши обязательства",
+
+service1_title:"Финансирование",
+service1_text:"Решения для личных и профессиональных проектов.",
+
+service2_title:"Конфиденциальность",
+service2_text:"Ваши данные защищены в соответствии с высокими стандартами безопасности.",
+
+service3_title:"Сопровождение",
+service3_text:"Команда специалистов помогает вам на каждом этапе.",
+
+why_title:"Почему выбирают RFG?",
+
+awards_label:"НАГРАДЫ И НОМИНАЦИИ",
+awards_title:"Наши достижения",
+
+award1:"Лучший поставщик финансовых услуг",
+award2:"Высокий уровень инвестиционного консультирования",
+award3:"Эталон финансового управления",
+award4:"Инновации в финансовых решениях",
+
+awards_text:"Мы уделяем особое внимание прозрачности, доверию и качеству обслуживания.",
+
+faq_title:"Часто задаваемые вопросы",
+
+faq1_q:"Какие виды финансирования предлагает RFG?",
+faq1_a:"Мы предлагаем решения для личных, профессиональных и инвестиционных проектов.",
+
+faq2_q:"Защищены ли мои данные?",
+faq2_a:"Да, все данные обрабатываются конфиденциально и защищены строгими стандартами безопасности.",
+
+faq3_q:"Как связаться с вашей командой?",
+faq3_a:"Вы можете связаться с нами по электронной почте через кнопку контакта внизу страницы.",
+
+faq4_q:"Работает ли RFG с частными лицами и компаниями?",
+faq4_a:"Да, мы работаем как с частными клиентами, так и с компаниями.",
+
+footer_title:"Контакты",
+footer_text:"Наша команда готова ответить на все ваши вопросы.",
+footer_btn:"Связаться с нами",
+
+copyright:"© 2012 - RFG — Ritora Finance Group. Все права защищены."
+
+},
+
+
+nl:{
+
+page_title:"Over ons — RFG",
+
+hero_title:"Over ons",
+hero_text:"Financieringsoplossingen voor particulieren en bedrijven.",
+
+company_title:"Ons bedrijf",
+company_text1:"Ritora Finance Group ondersteunt particulieren en professionals bij hun financiële projecten.",
+company_text2:"Wij bieden transparante, veilige en aangepaste financiële oplossingen.",
+
+engagements_title:"Onze verplichtingen",
+
+service1_title:"Financiering",
+service1_text:"Oplossingen voor al uw persoonlijke en zakelijke projecten.",
+
+service2_title:"Vertrouwelijkheid",
+service2_text:"Uw gegevens worden beschermd volgens hoge veiligheidsnormen.",
+
+service3_title:"Begeleiding",
+service3_text:"Een team staat klaar om u in elke fase te begeleiden.",
+
+why_title:"Waarom kiezen voor RFG?",
+
+awards_label:"NOMINATIES & PRIJZEN",
+awards_title:"Onze onderscheidingen",
+
+award1:"Beste aanbieder van financiële diensten",
+award2:"Uitmuntendheid in beleggingsadvies",
+award3:"Toonaangevend financieel beheer",
+award4:"Innovatie in financiële oplossingen",
+
+awards_text:"Wij geven prioriteit aan transparantie, vertrouwen en servicekwaliteit voor elke klant.",
+
+faq_title:"Veelgestelde vragen",
+
+faq1_q:"Welke financieringen biedt RFG aan?",
+faq1_a:"Wij bieden financieringsoplossingen voor persoonlijke, zakelijke en investeringsprojecten.",
+
+faq2_q:"Zijn mijn gegevens veilig?",
+faq2_a:"Ja, al uw gegevens worden vertrouwelijk behandeld en beschermd volgens strikte veiligheidsnormen.",
+
+faq3_q:"Hoe kan ik contact opnemen met uw team?",
+faq3_a:"U kunt ons rechtstreeks per e-mail contacteren via de contactknop onderaan de pagina.",
+
+faq4_q:"Ondersteunt RFG particulieren en bedrijven?",
+faq4_a:"Ja, wij ondersteunen zowel particulieren als bedrijven met aangepaste oplossingen.",
+
+footer_title:"Contact",
+footer_text:"Ons team staat klaar om al uw vragen te beantwoorden.",
+footer_btn:"Contact opnemen",
+
+copyright:"© 2012 - RFG — Ritora Finance Group. Alle rechten voorbehouden."
+
+}
+
+};
+
+
+const T = tr[lang] || tr.fr;
+
+
+document.title = T.page_title;
+
+
+for(const key in T){
+
+const el = document.getElementById(key);
+
+if(el){
+
+el.innerHTML = T[key];
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
