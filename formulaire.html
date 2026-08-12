@@ -1,0 +1,1392 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title id="page_title">Formulaire de prêt — RFG</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root{
+  --blue:#0b76c6;
+}
+
+body{
+    margin:0;
+    font-family:Poppins, sans-serif;
+    background:#f4f8fc;
+}
+
+header{
+    background:#0b76c6;
+    color:white;
+    text-align:center;
+    padding:25px 15px;
+}
+
+header h1{
+    margin:0;
+    font-size:26px;
+}
+
+header p{
+    margin-top:8px;
+    font-size:14px;
+}
+
+.form-container{
+    max-width:700px;
+    margin:40px auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.08);
+}
+
+.form-title{
+    font-size:24px;
+    font-weight:700;
+    margin-bottom:20px;
+    color:#0b76c6;
+    text-align:center;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    font-weight:600;
+    font-size:14px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:14px;
+    box-sizing:border-box;
+}
+
+textarea{
+    resize:none;
+}
+
+.submit-btn{
+    width:100%;
+    margin-top:25px;
+    background:#0b76c6;
+    color:white;
+    border:none;
+    padding:16px;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.submit-btn:hover{
+    opacity:0.9;
+}
+
+.rfg-footer{
+    margin-top:40px;
+    background:#0b76c6;
+    color:white;
+    text-align:center;
+}
+
+.footer-content{
+    padding:35px 15px;
+}
+
+.footer-content h2{
+    font-size:24px;
+    margin-bottom:15px;
+}
+
+.footer-content p{
+    font-size:14px;
+    line-height:1.7;
+    max-width:600px;
+    margin:auto;
+    margin-bottom:25px;
+}
+
+.footer-btn{
+    display:inline-block;
+    background:white;
+    color:#0b76c6;
+    text-decoration:none;
+    padding:14px 25px;
+    border-radius:10px;
+    font-weight:700;
+}
+
+.footer-bottom{
+    border-top:1px solid rgba(255,255,255,.3);
+    padding:15px;
+    font-size:13px;
+}
+
+/* ================================
+   SÉLECTEUR DE DATE DE NAISSANCE
+================================ */
+
+.birth-date-picker{
+    width:100%;
+}
+
+.birth-date-button{
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    background:white;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-family:Poppins,sans-serif;
+    font-size:14px;
+    text-align:left;
+    cursor:pointer;
+    box-sizing:border-box;
+}
+
+.birth-date-button:focus{
+    outline:none;
+    border-color:#0b76c6;
+}
+
+.birth-date-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:99999;
+}
+
+.birth-date-modal.active{
+    display:block;
+}
+
+.birth-date-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.55);
+}
+
+.birth-date-box{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:calc(100% - 60px);
+    max-width:690px;
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 15px 45px rgba(0,0,0,.3);
+}
+
+.birth-date-title{
+    padding:28px 35px;
+    font-size:27px;
+    font-weight:400;
+    color:#000;
+    border-bottom:1px solid #ddd;
+}
+
+.birth-date-wheels{
+    position:relative;
+    height:360px;
+    display:grid;
+    grid-template-columns:1fr 1.4fr 1fr;
+    overflow:hidden;
+    background:white;
+}
+
+.wheel{
+    position:relative;
+    height:360px;
+    overflow-y:auto;
+    scroll-snap-type:y mandatory;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    z-index:2;
+}
+
+.wheel::-webkit-scrollbar{
+    display:none;
+}
+
+.wheel > div:not(.wheel-spacer){
+    width:100%;
+}
+
+.wheel-spacer{
+    height:144px;
+}
+
+.wheel-item{
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    scroll-snap-align:center;
+    font-size:28px;
+    font-weight:400;
+    color:#b3b3b3;
+    transition:
+        color .12s ease,
+        font-weight .12s ease,
+        transform .12s ease;
+    user-select:none;
+}
+
+.wheel-item.selected{
+    color:#000000;
+    font-weight:700;
+}
+
+.wheel-selection{
+    position:absolute;
+    left:35px;
+    right:35px;
+    top:144px;
+    height:72px;
+    border-top:3px solid #78c6d8;
+    border-bottom:3px solid #78c6d8;
+    pointer-events:none;
+    z-index:3;
+}
+
+.birth-date-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    border-top:1px solid #ddd;
+}
+
+.birth-date-buttons button{
+    height:92px;
+    border:none;
+    background:white;
+    font-family:Poppins,sans-serif;
+    font-size:17px;
+    cursor:pointer;
+}
+
+.date-cancel{
+    color:#000;
+    border-right:1px solid #ddd !important;
+}
+
+.date-confirm{
+    color:#000;
+    font-weight:700;
+}
+
+.birth-date-buttons button:active{
+    background:#f2f2f2;
+}
+
+/* Message d'erreur */
+
+.birth-date-error{
+    padding:12px 20px 0;
+    color:#d00000;
+    font-size:13px;
+    text-align:center;
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+    .birth-date-box{
+        width:calc(100% - 30px);
+        border-radius:17px;
+    }
+
+    .birth-date-title{
+        padding:25px 35px;
+        font-size:25px;
+    }
+
+    .birth-date-wheels{
+        height:360px;
+    }
+
+    .wheel{
+        height:360px;
+    }
+
+    .wheel-item{
+        height:72px;
+        font-size:27px;
+    }
+
+    .wheel-spacer{
+        height:144px;
+    }
+
+    .wheel-selection{
+        top:144px;
+        left:36px;
+        right:36px;
+    }
+
+    .birth-date-buttons button{
+        height:90px;
+        font-size:16px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>RFG — Ritora Finance Group</h1>
+<p id="header_subtitle">Formulaire officiel de demande de prêt</p>
+</header>
+
+<div class="form-container">
+
+    <div class="form-title" id="form_title">
+Demande de prêt
+</div>
+
+<form onsubmit="sendDataForm(event)">
+<label id="lbl_nom">Votre nom et prénom</label>
+
+<input
+    type="text"
+    id="nom"
+    name="nom"
+    placeholder=""
+    required>
+
+<label id="lbl_genre">Votre genre</label>
+<select id="genre" name="genre" required>
+<option id="gender_male">Homme</option>
+<option id="gender_female">Femme</option>
+</select>
+
+<label id="lbl_naissance">Date de naissance</label>
+<div class="birth-date-picker">
+
+    <input
+        type="hidden"
+        id="naissance"
+        name="naissance"
+        required>
+
+    <button
+        type="button"
+        id="birthDateButton"
+        class="birth-date-button">
+        <span id="birthDateDisplay">12/08/2026</span>
+    </button>
+
+</div>
+
+<div id="birthDateModal" class="birth-date-modal">
+
+    <div class="birth-date-overlay"></div>
+
+    <div class="birth-date-box">
+
+        <div class="birth-date-title" id="picker_title">
+            Définir la date
+        </div>
+
+        <div class="birth-date-wheels">
+
+            <div class="wheel" id="dayWheel">
+                <div class="wheel-spacer"></div>
+                <div id="dayList"></div>
+                <div class="wheel-spacer"></div>
+            </div>
+
+            <div class="wheel" id="monthWheel">
+                <div class="wheel-spacer"></div>
+                <div id="monthList"></div>
+                <div class="wheel-spacer"></div>
+            </div>
+
+            <div class="wheel" id="yearWheel">
+                <div class="wheel-spacer"></div>
+                <div id="yearList"></div>
+                <div class="wheel-spacer"></div>
+            </div>
+
+            <div class="wheel-selection"></div>
+
+        </div>
+
+        <div class="birth-date-buttons">
+
+            <button
+                type="button"
+                id="cancelDate"
+                class="date-cancel">
+                Annuler
+            </button>
+
+            <button
+                type="button"
+                id="confirmDate"
+                class="date-confirm">
+                Définir
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+<label id="lbl_email">Adresse email</label>
+<input type="email" id="email" name="email" required>
+
+<label id="lbl_tel">Numéro de téléphone / WhatsApp</label>
+<input id="tel" name="tel" required>
+
+<label id="lbl_revenu">Revenu mensuel</label>
+<input id="revenu" name="revenu" required>
+
+<label id="lbl_typepret">Type de prêt</label>
+<select id="typepret" name="typepret">
+<option id="loan1">Prêt personnel</option>
+<option id="loan2">Prêt professionnel</option>
+<option id="loan3">Prêt automobile</option>
+<option id="loan4">Prêt hypothécaire</option>
+<option id="loan5">Prêt étudiant</option>
+<option id="loan6">Prêt à la consommation</option>
+</select>
+
+<label id="lbl_montant">Montant souhaité</label>
+<input id="montant" name="montant" required>
+
+<label id="lbl_duree">Durée du prêt (en mois)</label>
+<input id="duree" name="duree" required>
+
+<label id="lbl_motif">Motif de la demande</label>
+<textarea id="motif" name="motif" rows="5"></textarea>
+
+<button type="submit" class="submit-btn" id="submit_btn">
+SOUMETTRE MA DEMANDE DE PRÊT
+</button>
+
+</form>
+
+</div>
+
+<footer class="rfg-footer">
+
+  <div class="footer-content">
+
+    <h2 id="advisor_title">
+Souhaitez-vous parler à un conseiller ?
+</h2>
+
+<p id="advisor_text">
+Nos experts financiers sont prêts à vous conseiller
+et à vous accompagner.
+</p>
+
+<a href="mailto:ritorafinancegroup@gmail.com"
+class="footer-btn"
+id="contact_btn">
+✉ Écrivez-nous maintenant
+</a>
+
+<div class="footer-bottom" id="copyright">
+© 2012 - Groupe financier RFG. Tous droits réservés.
+</div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+(function(){
+  emailjs.init("07NkITrN8CXK0idSE");
+})();
+
+function sendDataForm(event){
+    event.preventDefault();
+
+    const params = {
+        nom: document.getElementById("nom").value,
+        genre: document.getElementById("genre").value,
+        naissance: document.getElementById("naissance").value,
+        email: document.getElementById("email").value,
+        tel: document.getElementById("tel").value,
+        revenu: document.getElementById("revenu").value,
+        typepret: document.getElementById("typepret").value,
+        montant: document.getElementById("montant").value,
+        duree: document.getElementById("duree").value,
+        motif: document.getElementById("motif").value
+    };
+
+    emailjs.send("service_5fvjxhu", "template_yew0eyc", params)
+    .then(() => {
+        window.location.href = "merci.html";
+    })
+    .catch((error) => {
+        alert("Erreur envoi !");
+        console.log(error);
+    });
+}
+</script>
+
+<script>
+
+const lang = navigator.language.substring(0,2);
+
+const T = {
+
+fr:{
+title:"Formulaire de prêt — RFG",
+header_subtitle:"Formulaire officiel de demande de prêt",
+form_title:"Demande de prêt",
+lbl_nom:"Votre nom et prénom",
+lbl_genre:"Votre genre",
+lbl_naissance:"Date de naissance",
+lbl_email:"Adresse email",
+lbl_tel:"Numéro de téléphone / WhatsApp",
+lbl_revenu:"Revenu mensuel",
+lbl_typepret:"Type de prêt",
+lbl_montant:"Montant souhaité",
+lbl_duree:"Durée du prêt (en mois)",
+lbl_motif:"Motif de la demande",
+gender_male:"Homme",
+gender_female:"Femme",
+loan1:"Prêt personnel",
+loan2:"Prêt professionnel",
+loan3:"Prêt automobile",
+loan4:"Prêt hypothécaire",
+loan5:"Prêt étudiant",
+loan6:"Prêt à la consommation",
+submit_btn:"SOUMETTRE MA DEMANDE DE PRÊT",
+advisor_title:"Souhaitez-vous parler à un conseiller ?",
+advisor_text:"Nos experts financiers sont prêts à vous conseiller et à vous accompagner.",
+contact_btn:"✉ Écrivez-nous maintenant",
+copyright:"© 2012 - Groupe financier RFG. Tous droits réservés.",
+picker_title:"Définir la date",
+picker_cancel:"Annuler",
+picker_confirm:"Définir",
+picker_error:"La date de naissance doit être antérieure à aujourd'hui.",
+months:["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"]
+},
+
+en:{
+title:"Loan Application Form — RFG",
+header_subtitle:"Official Loan Application Form",
+form_title:"Loan Application",
+lbl_nom:"Full Name",
+lbl_genre:"Gender",
+lbl_naissance:"Date of Birth",
+lbl_email:"Email Address",
+lbl_tel:"Phone Number / WhatsApp",
+lbl_revenu:"Monthly Income",
+lbl_typepret:"Loan Type",
+lbl_montant:"Desired Amount",
+lbl_duree:"Loan Duration (months)",
+lbl_motif:"Reason for Request",
+gender_male:"Male",
+gender_female:"Female",
+loan1:"Personal Loan",
+loan2:"Business Loan",
+loan3:"Car Loan",
+loan4:"Mortgage Loan",
+loan5:"Student Loan",
+loan6:"Consumer Loan",
+submit_btn:"SUBMIT MY LOAN APPLICATION",
+advisor_title:"Would you like to speak with an advisor?",
+advisor_text:"Our financial experts are ready to advise and assist you.",
+contact_btn:"✉ Contact us now",
+copyright:"© 2012 - RFG Financial Group. All rights reserved.",
+picker_title:"Set date",
+picker_cancel:"Cancel",
+picker_confirm:"Set",
+picker_error:"The date of birth must be earlier than today.",
+months:["January","February","March","April","May","June","July","August","September","October","November","December"]
+},
+
+es:{
+title:"Formulario de préstamo — RFG",
+header_subtitle:"Formulario oficial de solicitud de préstamo",
+form_title:"Solicitud de préstamo",
+lbl_nom:"Nombre y apellidos",
+lbl_genre:"Género",
+lbl_naissance:"Fecha de nacimiento",
+lbl_email:"Correo electrónico",
+lbl_tel:"Teléfono / WhatsApp",
+lbl_revenu:"Ingresos mensuales",
+lbl_typepret:"Tipo de préstamo",
+lbl_montant:"Monto deseado",
+lbl_duree:"Duración del préstamo (meses)",
+lbl_motif:"Motivo de la solicitud",
+gender_male:"Hombre",
+gender_female:"Mujer",
+loan1:"Préstamo personal",
+loan2:"Préstamo empresarial",
+loan3:"Préstamo automotriz",
+loan4:"Préstamo hipotecario",
+loan5:"Préstamo estudiantil",
+loan6:"Préstamo de consumo",
+submit_btn:"ENVIAR MI SOLICITUD DE PRÉSTAMO",
+advisor_title:"¿Desea hablar con un asesor?",
+advisor_text:"Nuestros expertos financieros están listos para ayudarle.",
+contact_btn:"✉ Escríbanos ahora",
+copyright:"© 2012 - Grupo Financiero RFG. Todos los derechos reservados.",
+picker_title:"Definir la fecha",
+picker_cancel:"Cancelar",
+picker_confirm:"Definir",
+picker_error:"La fecha de nacimiento debe ser anterior a hoy.",
+months:["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"]
+},
+
+it:{
+title:"Modulo di prestito — RFG",
+header_subtitle:"Modulo ufficiale di richiesta prestito",
+form_title:"Richiesta di prestito",
+lbl_nom:"Nome e cognome",
+lbl_genre:"Genere",
+lbl_naissance:"Data di nascita",
+lbl_email:"Email",
+lbl_tel:"Telefono / WhatsApp",
+lbl_revenu:"Reddito mensile",
+lbl_typepret:"Tipo di prestito",
+lbl_montant:"Importo desiderato",
+lbl_duree:"Durata del prestito (mesi)",
+lbl_motif:"Motivo della richiesta",
+gender_male:"Uomo",
+gender_female:"Donna",
+loan1:"Prestito personale",
+loan2:"Prestito professionale",
+loan3:"Prestito auto",
+loan4:"Mutuo",
+loan5:"Prestito studentesco",
+loan6:"Prestito al consumo",
+submit_btn:"INVIA LA MIA RICHIESTA DI PRESTITO",
+advisor_title:"Vuoi parlare con un consulente?",
+advisor_text:"I nostri esperti sono pronti ad aiutarti.",
+contact_btn:"✉ Scrivici ora",
+copyright:"© 2012 - Gruppo Finanziario RFG. Tutti i diritti riservati.",
+picker_title:"Imposta la data",
+picker_cancel:"Annulla",
+picker_confirm:"Imposta",
+picker_error:"La data di nascita deve essere precedente a oggi.",
+months:["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"]
+},
+
+pt:{
+title:"Formulário de empréstimo — RFG",
+header_subtitle:"Formulário oficial de empréstimo",
+form_title:"Pedido de empréstimo",
+lbl_nom:"Nome completo",
+lbl_genre:"Gênero",
+lbl_naissance:"Data de nascimento",
+lbl_email:"E-mail",
+lbl_tel:"Telefone / WhatsApp",
+lbl_revenu:"Renda mensal",
+lbl_typepret:"Tipo de empréstimo",
+lbl_montant:"Valor desejado",
+lbl_duree:"Prazo do empréstimo (meses)",
+lbl_motif:"Motivo do pedido",
+gender_male:"Homem",
+gender_female:"Mulher",
+loan1:"Empréstimo pessoal",
+loan2:"Empréstimo empresarial",
+loan3:"Empréstimo automóvel",
+loan4:"Empréstimo hipotecário",
+loan5:"Empréstimo estudantil",
+loan6:"Empréstimo ao consumo",
+submit_btn:"ENVIAR MEU PEDIDO DE EMPRÉSTIMO",
+advisor_title:"Deseja falar com um consultor?",
+advisor_text:"Nossos especialistas estão prontos para ajudá-lo.",
+contact_btn:"✉ Escreva para nós",
+copyright:"© 2012 - Grupo Financeiro RFG. Todos os direitos reservados.",
+picker_title:"Definir a data",
+picker_cancel:"Cancelar",
+picker_confirm:"Definir",
+picker_error:"A data de nascimento deve ser anterior a hoje.",
+months:["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"]
+},
+
+de:{
+title:"Kreditantrag — RFG",
+header_subtitle:"Offizielles Kreditantragsformular",
+form_title:"Kreditantrag",
+lbl_nom:"Vor- und Nachname",
+lbl_genre:"Geschlecht",
+lbl_naissance:"Geburtsdatum",
+lbl_email:"E-Mail-Adresse",
+lbl_tel:"Telefonnummer / WhatsApp",
+lbl_revenu:"Monatliches Einkommen",
+lbl_typepret:"Kreditart",
+lbl_montant:"Gewünschter Betrag",
+lbl_duree:"Laufzeit (Monate)",
+lbl_motif:"Grund des Antrags",
+gender_male:"Mann",
+gender_female:"Frau",
+loan1:"Privatkredit",
+loan2:"Geschäftskredit",
+loan3:"Autokredit",
+loan4:"Hypothekendarlehen",
+loan5:"Studienkredit",
+loan6:"Verbraucherkredit",
+submit_btn:"MEINEN KREDITANTRAG ABSENDEN",
+advisor_title:"Möchten Sie mit einem Berater sprechen?",
+advisor_text:"Unsere Experten helfen Ihnen gerne weiter.",
+contact_btn:"✉ Jetzt kontaktieren",
+copyright:"© 2012 - RFG Finanzgruppe. Alle Rechte vorbehalten.",
+picker_title:"Datum festlegen",
+picker_cancel:"Abbrechen",
+picker_confirm:"Festlegen",
+picker_error:"Das Geburtsdatum muss vor dem heutigen Datum liegen.",
+months:["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"]
+},
+
+pl:{
+title:"Formularz pożyczki — RFG",
+header_subtitle:"Oficjalny formularz pożyczkowy",
+form_title:"Wniosek o pożyczkę",
+lbl_nom:"Imię i nazwisko",
+lbl_genre:"Płeć",
+lbl_naissance:"Data urodzenia",
+lbl_email:"Adres e-mail",
+lbl_tel:"Telefon / WhatsApp",
+lbl_revenu:"Miesięczny dochód",
+lbl_typepret:"Rodzaj pożyczki",
+lbl_montant:"Kwota",
+lbl_duree:"Okres spłaty (miesiące)",
+lbl_motif:"Powód wniosku",
+gender_male:"Mężczyzna",
+gender_female:"Kobieta",
+loan1:"Pożyczka osobista",
+loan2:"Pożyczka biznesowa",
+loan3:"Pożyczka samochodowa",
+loan4:"Pożyczka hipoteczna",
+loan5:"Pożyczka studencka",
+loan6:"Pożyczka konsumencka",
+submit_btn:"WYŚLIJ WNIOSEK",
+advisor_title:"Chcesz porozmawiać z doradcą?",
+advisor_text:"Nasi eksperci są gotowi pomóc.",
+contact_btn:"✉ Napisz do nas",
+copyright:"© 2012 - Grupa Finansowa RFG. Wszelkie prawa zastrzeżone.",
+picker_title:"Ustaw datę",
+picker_cancel:"Anuluj",
+picker_confirm:"Ustaw",
+picker_error:"Data urodzenia musi być wcześniejsza niż dzisiejsza data.",
+months:["styczeń","luty","marzec","kwiecień","maj","czerwiec","lipiec","sierpień","wrzesień","październik","listopad","grudzień"]
+},
+
+ru:{
+title:"Форма кредита — RFG",
+header_subtitle:"Официальная форма заявки на кредит",
+form_title:"Заявка на кредит",
+lbl_nom:"Имя и фамилия",
+lbl_genre:"Пол",
+lbl_naissance:"Дата рождения",
+lbl_email:"Электронная почта",
+lbl_tel:"Телефон / WhatsApp",
+lbl_revenu:"Ежемесячный доход",
+lbl_typepret:"Тип кредита",
+lbl_montant:"Желаемая сумма",
+lbl_duree:"Срок кредита (месяцы)",
+lbl_motif:"Причина заявки",
+gender_male:"Мужчина",
+gender_female:"Женщина",
+loan1:"Личный кредит",
+loan2:"Бизнес-кредит",
+loan3:"Автокредит",
+loan4:"Ипотека",
+loan5:"Студенческий кредит",
+loan6:"Потребительский кредит",
+submit_btn:"ОТПРАВИТЬ ЗАЯВКУ",
+advisor_title:"Хотите поговорить с консультантом?",
+advisor_text:"Наши специалисты готовы помочь.",
+contact_btn:"✉ Напишите нам",
+copyright:"© 2012 - Финансовая группа RFG. Все права защищены.",
+picker_title:"Установить дату",
+picker_cancel:"Отмена",
+picker_confirm:"Установить",
+picker_error:"Дата рождения должна быть раньше сегодняшней даты.",
+months:["январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"]
+},
+
+nl:{
+title:"Leningformulier — RFG",
+header_subtitle:"Officieel leningaanvraagformulier",
+form_title:"Leningaanvraag",
+lbl_nom:"Volledige naam",
+lbl_genre:"Geslacht",
+lbl_naissance:"Geboortedatum",
+lbl_email:"E-mailadres",
+lbl_tel:"Telefoonnummer / WhatsApp",
+lbl_revenu:"Maandelijks inkomen",
+lbl_typepret:"Type lening",
+lbl_montant:"Gewenst bedrag",
+lbl_duree:"Looptijd (maanden)",
+lbl_motif:"Reden van aanvraag",
+gender_male:"Man",
+gender_female:"Vrouw",
+loan1:"Persoonlijke lening",
+loan2:"Zakelijke lening",
+loan3:"Autolening",
+loan4:"Hypotheek",
+loan5:"Studielening",
+loan6:"Consumptieve lening",
+submit_btn:"MIJN LENINGAANVRAAG INDIENEN",
+advisor_title:"Wilt u met een adviseur spreken?",
+advisor_text:"Onze experts staan klaar om u te helpen.",
+contact_btn:"✉ Schrijf ons nu",
+copyright:"© 2012 - RFG Financiële Groep. Alle rechten voorbehouden.",
+picker_title:"Datum instellen",
+picker_cancel:"Annuleren",
+picker_confirm:"Instellen",
+picker_error:"De geboortedatum moet vóór vandaag liggen.",
+months:["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december"]
+}
+
+};
+
+const tr = T[lang] || T.fr;
+
+
+/* =========================================
+   TRADUCTION DU SITE
+========================================= */
+
+document.title = tr.title;
+
+for(const key in tr){
+
+    const el = document.getElementById(key);
+
+    if(el && typeof tr[key] === "string"){
+        el.innerHTML = tr[key];
+    }
+
+}
+
+document.getElementById("nom").placeholder = tr.lbl_nom;
+
+
+/* =========================================
+   ÉLÉMENTS DU SÉLECTEUR
+========================================= */
+
+const birthModal = document.getElementById("birthDateModal");
+const birthButton = document.getElementById("birthDateButton");
+const birthDisplay = document.getElementById("birthDateDisplay");
+
+const birthInput = document.getElementById("naissance");
+
+const dayList = document.getElementById("dayList");
+const monthList = document.getElementById("monthList");
+const yearList = document.getElementById("yearList");
+
+const dayWheel = document.getElementById("dayWheel");
+const monthWheel = document.getElementById("monthWheel");
+const yearWheel = document.getElementById("yearWheel");
+
+const cancelDate = document.getElementById("cancelDate");
+const confirmDate = document.getElementById("confirmDate");
+
+
+/* =========================================
+   TRADUCTION DU SÉLECTEUR
+========================================= */
+
+document.getElementById("picker_title").textContent =
+    tr.picker_title;
+
+cancelDate.textContent =
+    tr.picker_cancel;
+
+confirmDate.textContent =
+    tr.picker_confirm;
+
+
+/* =========================================
+   DATE D'AUJOURD'HUI
+========================================= */
+
+const today = new Date();
+
+today.setHours(0,0,0,0);
+
+let selectedDay = today.getDate();
+let selectedMonth = today.getMonth();
+let selectedYear = today.getFullYear();
+
+let temporaryDay = selectedDay;
+let temporaryMonth = selectedMonth;
+let temporaryYear = selectedYear;
+
+
+/* =========================================
+   CRÉATION DES JOURS
+========================================= */
+
+function createDays(){
+
+    dayList.innerHTML = "";
+
+    const maxDay =
+        new Date(
+            temporaryYear,
+            temporaryMonth + 1,
+            0
+        ).getDate();
+
+    if(temporaryDay > maxDay){
+        temporaryDay = maxDay;
+    }
+
+    for(let i = 1; i <= maxDay; i++){
+
+        const item =
+            document.createElement("div");
+
+        item.className = "wheel-item";
+
+        item.dataset.value = i;
+
+        item.textContent = i;
+
+        dayList.appendChild(item);
+    }
+}
+
+
+/* =========================================
+   CRÉATION DES MOIS
+========================================= */
+
+function createMonths(){
+
+    monthList.innerHTML = "";
+
+    tr.months.forEach((month,index)=>{
+
+        const item =
+            document.createElement("div");
+
+        item.className = "wheel-item";
+
+        item.dataset.value = index;
+
+        item.textContent = month;
+
+        monthList.appendChild(item);
+
+    });
+
+}
+
+
+/* =========================================
+   CRÉATION DES ANNÉES
+========================================= */
+
+function createYears(){
+
+    yearList.innerHTML = "";
+
+    const currentYear =
+        today.getFullYear();
+
+    for(
+        let year = currentYear;
+        year >= 1900;
+        year--
+    ){
+
+        const item =
+            document.createElement("div");
+
+        item.className = "wheel-item";
+
+        item.dataset.value = year;
+
+        item.textContent = year;
+
+        yearList.appendChild(item);
+    }
+}
+
+
+/* =========================================
+   TROUVER L'ÉLÉMENT AU CENTRE
+========================================= */
+
+function updateSelectedWheel(wheel){
+
+    const items =
+        wheel.querySelectorAll(".wheel-item");
+
+    const wheelCenter =
+        wheel.scrollTop +
+        wheel.clientHeight / 2;
+
+    let closest = null;
+    let distance = Infinity;
+
+    items.forEach(item=>{
+
+        const center =
+            item.offsetTop +
+            item.offsetHeight / 2;
+
+        const currentDistance =
+            Math.abs(center - wheelCenter);
+
+        if(currentDistance < distance){
+
+            distance = currentDistance;
+            closest = item;
+
+        }
+
+        item.classList.remove("selected");
+
+    });
+
+    if(closest){
+
+        closest.classList.add("selected");
+
+        return closest;
+    }
+
+    return null;
+}
+
+
+/* =========================================
+   RÉCUPÉRER LA VALEUR DES ROUES
+========================================= */
+
+function updateTemporaryValues(){
+
+    const dayItem =
+        updateSelectedWheel(dayWheel);
+
+    const monthItem =
+        updateSelectedWheel(monthWheel);
+
+    const yearItem =
+        updateSelectedWheel(yearWheel);
+
+
+    if(dayItem){
+
+        temporaryDay =
+            parseInt(dayItem.dataset.value);
+
+    }
+
+
+    if(monthItem){
+
+        const newMonth =
+            parseInt(monthItem.dataset.value);
+
+        if(newMonth !== temporaryMonth){
+
+            temporaryMonth = newMonth;
+
+            createDays();
+
+            setTimeout(()=>{
+
+                scrollToValue(
+                    dayWheel,
+                    temporaryDay
+                );
+
+            },30);
+
+        }
+
+    }
+
+
+    if(yearItem){
+
+        const newYear =
+            parseInt(yearItem.dataset.value);
+
+        if(newYear !== temporaryYear){
+
+            temporaryYear = newYear;
+
+            createDays();
+
+            setTimeout(()=>{
+
+                scrollToValue(
+                    dayWheel,
+                    temporaryDay
+                );
+
+            },30);
+
+        }
+
+    }
+
+}
+
+
+/* =========================================
+   POSITIONNER UNE ROUE
+========================================= */
+
+function scrollToValue(wheel,value){
+
+    const item =
+        wheel.querySelector(
+            `.wheel-item[data-value="${value}"]`
+        );
+
+    if(!item) return;
+
+    wheel.scrollTo({
+
+        top:
+            item.offsetTop -
+            (wheel.clientHeight / 2) +
+            (item.offsetHeight / 2),
+
+        behavior:"auto"
+
+    });
+
+}
+
+
+/* =========================================
+   PRÉPARER LES ROUES
+========================================= */
+
+function prepareWheels(){
+
+    createMonths();
+
+    createYears();
+
+    createDays();
+
+
+    setTimeout(()=>{
+
+        scrollToValue(
+            dayWheel,
+            temporaryDay
+        );
+
+        scrollToValue(
+            monthWheel,
+            temporaryMonth
+        );
+
+        scrollToValue(
+            yearWheel,
+            temporaryYear
+        );
+
+
+        updateSelectedWheel(dayWheel);
+
+        updateSelectedWheel(monthWheel);
+
+        updateSelectedWheel(yearWheel);
+
+    },50);
+
+}
+
+
+/* =========================================
+   AFFICHAGE DE LA DATE
+========================================= */
+
+function formatDate(day,month,year){
+
+    const d =
+        String(day).padStart(2,"0");
+
+    const m =
+        String(month + 1).padStart(2,"0");
+
+    return `${d}/${m}/${year}`;
+}
+
+
+/* =========================================
+   ENREGISTRER LA DATE
+========================================= */
+
+function saveDate(){
+
+    const isoDate =
+        `${temporaryYear}-` +
+        `${String(temporaryMonth + 1).padStart(2,"0")}-` +
+        `${String(temporaryDay).padStart(2,"0")}`;
+
+
+    birthInput.value = isoDate;
+
+
+    birthDisplay.textContent =
+        formatDate(
+            temporaryDay,
+            temporaryMonth,
+            temporaryYear
+        );
+
+}
+
+
+/* =========================================
+   OUVRIR LE SÉLECTEUR
+========================================= */
+
+birthButton.addEventListener("click",()=>{
+
+    temporaryDay = selectedDay;
+
+    temporaryMonth = selectedMonth;
+
+    temporaryYear = selectedYear;
+
+
+    prepareWheels();
+
+
+    birthModal.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+});
+
+
+/* =========================================
+   ANNULER
+========================================= */
+
+cancelDate.addEventListener("click",()=>{
+
+    birthModal.classList.remove("active");
+
+    document.body.style.overflow = "";
+
+});
+
+
+/* =========================================
+   DÉFINIR
+========================================= */
+
+confirmDate.addEventListener("click",()=>{
+
+    const chosenDate =
+        new Date(
+            temporaryYear,
+            temporaryMonth,
+            temporaryDay
+        );
+
+    chosenDate.setHours(0,0,0,0);
+
+
+    /* La date doit être avant aujourd'hui */
+
+    if(chosenDate >= today){
+
+        alert(tr.picker_error);
+
+        return;
+
+    }
+
+
+    selectedDay = temporaryDay;
+
+    selectedMonth = temporaryMonth;
+
+    selectedYear = temporaryYear;
+
+
+    saveDate();
+
+
+    birthModal.classList.remove("active");
+
+    document.body.style.overflow = "";
+
+});
+
+
+/* =========================================
+   CLIQUER EN DEHORS
+========================================= */
+
+document
+    .querySelector(".birth-date-overlay")
+    .addEventListener("click",()=>{
+
+        birthModal.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+    });
+
+
+/* =========================================
+   DÉFILEMENT DES ROUES
+========================================= */
+
+let scrollTimer;
+
+
+[dayWheel,monthWheel,yearWheel].forEach(wheel=>{
+
+    wheel.addEventListener("scroll",()=>{
+
+        updateSelectedWheel(wheel);
+
+        clearTimeout(scrollTimer);
+
+        scrollTimer =
+            setTimeout(()=>{
+
+                updateTemporaryValues();
+
+            },100);
+
+    });
+
+});
+
+
+/* =========================================
+   INITIALISATION
+========================================= */
+
+prepareWheels();
+
+</script>
+
+</body>
+</html>
